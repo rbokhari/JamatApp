@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JamatApp", "JamatApp\JamatApp.csproj", "{D1F21265-332E-4846-BE1E-14E5AB1F8F3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamat.DC", "Jamat.DC\Jamat.DC.csproj", "{90F91DA7-B5B8-4982-BFFF-11D995C4EDE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamat.EntityFramework", "Jamat.EntityFramework\Jamat.EntityFramework.csproj", "{A4C87B2D-43D3-4A00-B07C-B359BFA1A6B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1F21265-332E-4846-BE1E-14E5AB1F8F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1F21265-332E-4846-BE1E-14E5AB1F8F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1F21265-332E-4846-BE1E-14E5AB1F8F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1F21265-332E-4846-BE1E-14E5AB1F8F3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90F91DA7-B5B8-4982-BFFF-11D995C4EDE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F91DA7-B5B8-4982-BFFF-11D995C4EDE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F91DA7-B5B8-4982-BFFF-11D995C4EDE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F91DA7-B5B8-4982-BFFF-11D995C4EDE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C87B2D-43D3-4A00-B07C-B359BFA1A6B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C87B2D-43D3-4A00-B07C-B359BFA1A6B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C87B2D-43D3-4A00-B07C-B359BFA1A6B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C87B2D-43D3-4A00-B07C-B359BFA1A6B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

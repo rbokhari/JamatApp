@@ -1,0 +1,392 @@
+﻿<div class="page-heading">
+    <h3>
+        Tajneed
+    </h3>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Tajneed</a>
+        </li>
+        <li>
+            <a href="/jamat/tajneed"> Listing </a>
+        </li>
+        <li class="active">Detail</li>
+    </ul>
+</div>
+
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+
+                    
+            <section class="panel">
+                <header class="panel-heading custom-tab blue-tab tab-right">
+                    <ul class="nav nav-tabs pull-right">
+                        <li class="active" ng-class="{active:isTabSelected(1)}">
+                            <a href="" ng-click="setTab(1)">
+                                <i class="fa fa-user"></i>
+                                Summary
+                            </a>
+                        </li>
+                        <li ng-class="{active:isTabSelected(2)}">
+                            <a href="" ng-click="setTab(2)">
+                                <i class="fa fa-dollar"></i>
+                                Monthly Income
+                            </a>
+                        </li>
+                        <li ng-class="{active:isTabSelected(3)}">
+                            <a href="" ng-click="setTab(3)">
+                                <i class="fa fa-envelope-o"></i>
+                                Chandas
+                            </a>
+                        </li>
+                        <li ng-class="{active:isTabSelected(4)}">
+                            <a href="" ng-click="setTab(4)">
+                                <i class="fa fa-envelope"></i>
+                                Passport / ID Cards
+                            </a>
+                        </li>
+                    </ul>
+                </header>
+                <div class="panel-body">
+                    <!--<div class="tab-content">-->
+                    <div id="home3" ng-class="{active:isTabSelected(1)}" ng-show="isTabSelected(1)">
+                        
+                            <!--<div class="col-md-3">333</div>
+                            <div class="col-md-6">666</div>
+                            <div class="col-md-3">333</div>-->
+                        
+                        <div class="col-md-3">
+                            <div class="text-center profile-pic">
+                                <img src="/Content/img/profile-pic.jpg" ng-show="!employee[0].empPicture" style="height: 220px; width: 220px;" width="220px" height="220px" />
+                                <img ng-show="employee[0].empPicture" src="data:image/jpeg;base64,{{employee[0].empPicture}}" style="height: 220px; width: 220px;" width="220px" height="220px" alt="">
+                            </div>
+                            <ul class="nav nav-stacked">
+                                <li><i class="fa fa-hand-o-right"><a ng-href="/HRMSPortal/employee/edit/{{employee[0].id}}"><i class="icon-save"></i> Update</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showPassport(employee[0].id)"><i class="icon-external-link"></i> Add Monthly Chanda</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showPassport(employee[0].id)"><i class="icon-external-link"></i> Add Tehrik Jadid</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showPassport(employee[0].id)"><i class="icon-external-link"></i> Add Waqf Jadid</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showVisa(employee[0].id)"><i class="icon-external-link"></i> Add Monthly Income</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showImageForm(employee[0].id)"><i class="icon-external-link"></i> Update Picture</a></i></li>
+                            </ul>
+
+                        </div>
+                        <div class="col-md-6">
+                            <h4>{{ employee[0].firstName }} - {{ employee[0].middleName }} <small>{{ employee[0].lastName}} </small></h4>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="span2">Code :</td>
+                                        <td>
+                                            {{ employee[0].employeeCode}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2">Father Name :</td>
+                                        <td>
+                                            {{ employee[0].validationDetailId.nameEn}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2"> Husband Name :</td>
+                                        <td>
+                                            {{ employee[0].appointment }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2">DOB :</td>
+                                        <td>
+                                            {{ employee[0].dateOfBirth | date:'longDate' }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2"> Nationality :</td>
+                                        <td>
+                                            {{ employee[0].placeOfBirth }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2"> Country :</td>
+                                        <td>
+                                            {{ employee[0].religion }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2">Region :</td>
+                                        <td>
+                                            {{ employee[0].bloodGroup }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2">Resident No :</td>
+                                        <td>
+                                            {{ employee[0].userName }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2">Passport No :</td>
+                                        <td>
+                                            {{ employee[0].userName }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h4>Contact Information</h4>
+                            <div class="well">
+                                <address>
+                                    <strong>Mobile </strong><br>
+                                    {{ employee[0].mobile }}
+                                </address>
+                                <address>
+                                    <strong>Phone </strong><br>
+                                    {{ employee[0].phone }}
+                                </address>
+                                <address>
+                                    <strong>Email </strong><br>
+                                    {{ employee[0].email }}
+                                </address>
+                                <address>
+                                    <strong>Address </strong><br>
+                                    {{ employee[0].address }}
+                                </address>
+                                <address>
+                                    <strong>Permanent Address </strong><br>
+                                    {{ employee[0].permanentAddress }}
+                                </address>
+                            </div>
+                            <hr />
+                            <a ng-href="/hrmsportal/employee/edit/{{employee[0].id}}" class="btn btn-info">
+                                <i class="icon-save"></i>
+                                Update
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <h4><i class="fa fa-hand-o-right"> Last Paid Monthly Chanda</i></h4>
+                            <ul class="icons push" ng-repeat="pemp in employee[0].previousEmployments">
+                                <li><i class="icon-hand-right"></i> <strong>{{pemp.companyName}}</strong><br /><em>Start Date : {{pemp.startDate | date:'longDate'}}</em><br /><em>End Date : {{ pemp.endDate | date:'longDate' }}</em><br></li>
+                            </ul>
+                            <hr/>
+                            <h4><i class="fa fa-hand-o-right"> Current Auxilary Budget</i></h4>
+                            <ul>
+                                
+                            </ul>
+                            <hr/>
+                            <h4><strong><i class="fa fa-hand-o-right"> TEHRIK Jadid</i></strong></h4>
+                            
+                            <hr/>
+                            <h4><i class="fa fa-hand-o-right"> WAQF Jadid</i></h4>
+                            <hr/>
+                        </div>
+
+                    </div>
+                    <div ng-class="{active:isTabSelected(2)}" ng-show="isTabSelected(2)">
+                        <i class="fa fa-angle-double-right"></i>  <strong>Monthly Income Detail</strong><br/>
+                        <span class="pull-right"><a href="" ng-click="showPassport(employee[0].id)"><i class="fa fa-external-link-square"></i> Add Monthly Income</a></span>
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <table class="table table-striped table-bordered table-advance table-hover" id="sample_1">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr.</th>
+                                            <th>Company Name</th>
+                                            <th>Start Date</th>
+                                            <th>Type</th>
+                                            <th>Income</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd">
+                                            <td>1</td>
+                                            <td><a href="/HRMSPortal/employee/passport/edit/{{ passport.id}}">W.J. Towell</a>  </td>
+                                            <td>12-Dec-2004</td>
+                                            <td>Job</td>
+                                            <td>1,200 OMR</td>
+                                            <td>
+                                                <label ng-class="{'label label-info': passport.statusId, 'label label-inverse': passport.statusId==0}">
+                                                    <ng-pluralize count="passport.statusId" when="{'0':'expire', '1':'active'}"></ng-pluralize>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contact3" ng-class="{active:isTabSelected(3)}" ng-show="isTabSelected(3)">
+                        <i class="fa fa-angle-double-right"></i>  <strong>Chandas</strong>
+                        <span class="pull-right"><a href="" ng-click="showPassport(employee[0].id)"><i class="fa fa-external-link-square"></i> Add Chanda</a></span>
+                        
+                        <div class="panel-group" id="accordion1">
+                            <div class="panel">
+                                <div class="panel-heading dark">
+                                    <a class="panel-title" ng-class="{collapsed:!collapseOne}" ng-click="collapseOne=!collapseOne">
+                                        Monthly Chandas
+                                    </a>
+                                </div>
+                                <div class="panel-collapse" ng-class="{collapse:collapseOne}">
+                                    <div class="panel-body">
+                                        <table class="table table-striped table-bordered table-advance table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Book No</th>
+                                                    <th>Receipt No</th>
+                                                    <th>Total Amount</th>
+                                                    <th>Received By</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>12-Dec-2014</td>
+                                                    <td>BK-001</td>
+                                                    <td>10012</td>
+                                                    <td>120 OMR</td>
+                                                    <td>Mr. Bashir</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-heading dark">
+                                    <a class="panel-title" ng-class="{collapsed:!collapseTwo}" ng-click="collapseTwo=!collapseTwo; collapseOne=1 ">
+                                        Auxilary Chandas
+                                    </a>
+                                </div>
+                                <div class="panel-collapse collapse" ng-class="{collapse:collapseTwo}">
+                                    <div class="panel-body">
+                                        <table class="table table-striped table-bordered table-advance table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Auxilary Type</th>
+                                                    <th>Date</th>
+                                                    <th>Book No</th>
+                                                    <th>Receipt No</th>
+                                                    <th>Total Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Khuddam</td>
+                                                    <td>12-Dec-2014</td>
+                                                    <td>BK-001</td>
+                                                    <td>10021</td>
+                                                    <td>60 OMR</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-heading dark">
+                                    <a class="panel-title" ng-class="{collapsed:!collapseThree}" ng-click="collapseThree=!collapseThree">
+                                        Tehrik Jadid Chandas
+                                    </a>
+                                </div>
+                                <div class="panel-collapse collapse" ng-class="{collapse:collapseThree}">
+                                    <div class="panel-body">
+                                        <table class="table table-striped table-bordered table-advance table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Book No</th>
+                                                    <th>Receipt No</th>
+                                                    <th>Total Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>12-Dec-2014</td>
+                                                    <td>BK-001</td>
+                                                    <td>10021</td>
+                                                    <td>25 OMR</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <div class="panel-heading dark">
+                                    <a class="panel-title" ng-class="{collapsed:!collapseFour}" ng-click="collapseFour=!collapseFour">
+                                        Waqf Jadid Chandas
+                                    </a>
+                                </div>
+                                <div class="panel-collapse collapse" ng-class="{collapse:collapseFour}">
+                                    <div class="panel-body">
+                                        <table class="table table-striped table-bordered table-advance table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Date</th>
+                                                    <th>Book No</th>
+                                                    <th>Receipt No</th>
+                                                    <th>Total Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>12-Dec-2014</td>
+                                                    <td>BK-001</td>
+                                                    <td>10021</td>
+                                                    <td>20 OMR</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+ 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="contact3" ng-class="{active:isTabSelected(4)}" ng-show="isTabSelected(4)">
+                        <i class="fa fa-angle-double-right"></i>  <strong>Passport Detail</strong><br />
+                        <span class="pull-right"><a href="" ng-click="showPassport(employee[0].id)"><i class="fa fa-external-link-square"></i> Add Monthly Income</a></span>
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <table class="table table-striped table-bordered table-advance table-hover" id="sample_1">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr.</th>
+                                            <th>Company Name</th>
+                                            <th>Start Date</th>
+                                            <th>Type</th>
+                                            <th>Income</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd" ng-repeat="passport in employee[0].employeePassports">
+                                            <td><a href="/HRMSPortal/employee/passport/edit/{{ passport.id}}">{{ passport.passportNo}}</a>  </td>
+                                            <td>{{ passport.issueDate | date:'longDate'}}</td>
+                                            <td>{{ passport.expiryDate | date:'longDate'}}</td>
+                                            <td></td>
+                                            <td>
+                                                <label ng-class="{'label label-info': passport.statusId, 'label label-inverse': passport.statusId==0}">
+                                                    <ng-pluralize count="passport.statusId" when="{'0':'expire', '1':'active'}"></ng-pluralize>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--</div>-->
+                </div>
+            </section>
+                    
+                
+        </div>
+    </div>
+</div>
+

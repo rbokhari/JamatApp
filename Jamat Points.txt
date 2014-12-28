@@ -1,0 +1,14 @@
+Add Salutation
+Add Middle Name
+Add Tajneed ID
+Make Father & Husband Seperate
+Husband optional
+Find a more relevant name for Auxilary...
+Business and HOme phone will be optional
+remove Auxilary and Jama'ati Designation fields
+Wassiyat field can be optional based on the moosi check box
+
+
+Create a child table for Chanda, Salary, Tehrik Jadid/Waqf Jadid
+create a child table for Auxilary and Jama'ati Designation
+create a child table for PP# and Additional ID cards
