@@ -44,7 +44,7 @@
 
                             <tr data-ng-repeat="tajneed in tajneeds">
                                 <td>{{$index+1}}</td>
-                                <td>{{tajneed.firstName}}</td>
+                                <td><a ng-href="/jamat/tajneed/detail/{{ tajneed.id }}">{{tajneed.firstName}}</a> </td>
                                 <td>{{tajneed.mobileNumber}}</td>
                             </tr>
                         </tbody>

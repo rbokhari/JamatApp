@@ -253,6 +253,7 @@
     <Content Include="js\controller\dashboard\dashboard-controller.js" />
     <Content Include="js\controller\dashboard\dashboard-repository.js" />
     <Content Include="js\controller\tajneed\tajneed-controller.js" />
+    <Content Include="js\controller\tajneed\tajneed-modal-controller.js" />
     <Content Include="js\controller\tajneed\tajneed-repository.js" />
     <Content Include="js\controller\validation\validation-controller.js" />
     <Content Include="js\controller\validation\validation-repository.js" />
@@ -477,6 +478,7 @@
     <Content Include="templates\tajneed\tajneed-detail.html" />
     <Content Include="templates\tajneed\tajneed-edit.html" />
     <Content Include="templates\tajneed\tajneed-add.html" />
+    <Content Include="templates\tajneed\tajneed-income.html" />
     <Content Include="templates\tajneed\tajneed-list.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

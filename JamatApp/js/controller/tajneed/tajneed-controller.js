@@ -3,8 +3,8 @@
 'use strict';
 jamatModule.controller('TajneedController',
 [
-    '$scope', '$location', '$routeParams', 'tajneedRepository', 'validationRepository', 'countryRepository',
-    function ($scope, $location, $routeParams, tajneedRepository, validationRepository, countryRepository) {
+    '$scope', '$location', '$routeParams', 'tajneedRepository', 'validationRepository', 'countryRepository','ModalService',
+    function ($scope, $location, $routeParams, tajneedRepository, validationRepository, countryRepository, ModalService) {
 
         console.log("tajneed controller");
 
@@ -60,6 +60,68 @@ jamatModule.controller('TajneedController',
             $scope.Regions = countryRepository.getAllRegionsByCountryId(id);
         };
 
+        if ($routeParams.id != undefined) {
+            $scope.isBusy = false;
+            $scope.tajneed = tajneedRepository.getTajneedById($routeParams.id);
+            $scope.tajneed.$promise
+                .then(function () { }, function () { })
+                .then(function () { $scope.isBusy = true; });
+        }
+
+        // Modal service start ----------------
+        $scope.showIncome = function (id) {
+            ModalService.showModal({
+                templateUrl: "/templates/tajneed/tajneed-income.html",
+                controller: "TajneedModalController",
+                inputs: {
+                    title: "Add New Income",
+                    parentId: id,
+                    employeePassport: {},
+                    resultData: {}
+                }
+            }).then(function (modal) {
+                modal.element.modal();
+                modal.close.then(function (result) {
+                    //employee[0].employeePassports.splice(0, 0, resultEmployeePassport.data);
+                    //console.log("show passport close : " + result.newPassport.id);
+                    $scope.employee[0].employeePassports.push(result.resultData);
+                    //$scope.complexResult = "Name: " + result.name + ", age: " + result.age;
+                    //$('.modal').modal('hide');
+                    //modal.element.close();
+                });
+
+            });
+        };
+
+        $scope.editIncome = function (income) {
+            //console.log(passport);
+            ModalService.showModal({
+                templateUrl: "/templates/hrms/employee/employee-passport.html",
+                controller: "EmployeeModalController",
+                inputs: {
+                    title: "Update Passport",
+                    parentId: income.tajneedId,
+                    tajneedIncome: income,
+                    resultData: {}
+                }
+            }).then(function (modal) {
+                modal.element.modal();
+            });
+        };
+
+        $scope.deleteIncome = function (income) {
+            var x;
+            if (confirm("Are you sure to delete this record ?") == true) {
+                employeeRepository.deleteEmployeePassport(passport)
+                    .$promise
+                    .then(function () {
+                        appRepository.showDeleteGritterNotification();
+                        $scope.employee[0].employeePassports.pop(passport);
+                    }, function (error) {
+                        appRepository.showErrorGritterNotification();
+                    });
+            }
+        };
 
         $scope.save = function(tajneed) {
             $scope.errors = [];

@@ -1,0 +1,61 @@
+﻿<div id="dvIncome" class="modal fade hide" role="dialog" aria-hidden="true" aria-labelledby="Add Income">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel1">{{title}}</h3>
+    </div>
+    <div class="modal-body">
+        <form id="frmIncome" novalidate>
+            <div class="form-horizontal">
+                <div class="control-group">
+                    <label for="tCompanyName" class="control-label">Company Name :</label>
+                    <div class="controls">
+                        <input type="text" id="tCompanyName" name="tCompanyName" ng-model="income.companyName" required />
+                        <div class="help-inline" ng-show="frmIncome.tCompanyName.$error.required && frmIncome.tCompanyName.$dirty">Please enter code !</div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Start Date :</label>
+                    <div class="controls">
+                        <input type="text" id="tStartDate" name="tStartDate" ng-model="income.startDate" required />
+                        <div class="help-inline" ng-show="frmIncome.tStartDate.$error.required && frmIncome.tStartDate.$dirty">Please enter code !</div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">End Date :</label>
+                    <div class="controls">
+                        <input type="text" id="tEndDate" name="tEndDate" ng-model="income.startDate" required />
+                        <div class="help-inline" ng-show="frmIncome.tEndDate.$error.required && frmIncome.tEndDate.$dirty">Please enter code !</div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Type :</label>
+                    <div class="controls">
+                        <input type="text" id="tType" name="tType" ng-model="income.type" required />
+                        <div class="help-inline" ng-show="frmIncome.tType.$error.required && frmIncome.tType.$dirty">Please enter Name !</div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Income :</label>
+                    <div class="controls">
+                        <input type="text" id="tIncome" name="tIncome" ng-model="income.incomeAmount" required />
+                        <div class="help-inline" ng-show="frmIncome.tIncome.$error.required && frmIncome.tIncome.$dirty">Please enter Name !</div>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">Status :</label>
+                    <div class="controls">
+                        <input type="checkbox" id="tStatusId" name="tStatusId" ng-true-value="1" ng-false-value="0" ng-model="income.statusId" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button type="submit" class="btn btn-primary" ng-click="saveTajneedIncome(parentId, income);" ng-disabled="frmIncome.$invalid">
+            <i class="icon-save"></i>
+            Save
+        </button>
+    </div>
+
+</div>

@@ -73,61 +73,73 @@
 
                         </div>
                         <div class="col-md-6">
-                            <h4>{{ employee[0].firstName }} - {{ employee[0].middleName }} <small>{{ employee[0].lastName}} </small></h4>
+                            <h4>{{ tajneed.firstName }} - {{ tajneed.middleName }} <small>{{ tajneed.lastName}} </small></h4>
                             <table class="table">
                                 <tbody>
                                     <tr>
                                         <td class="span2">Code :</td>
                                         <td>
-                                            {{ employee[0].employeeCode}}
+                                            {{ tajneed.auxilaryId}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Father Name :</td>
                                         <td>
-                                            {{ employee[0].validationDetailId.nameEn}}
+                                            {{ tajneed.fatherName}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2"> Husband Name :</td>
                                         <td>
-                                            {{ employee[0].appointment }}
+                                            {{ tajneed.husbandName }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">DOB :</td>
                                         <td>
-                                            {{ employee[0].dateOfBirth | date:'longDate' }}
+                                            {{ tajneed.birthDate | date:'longDate' }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2"> Nationality :</td>
                                         <td>
-                                            {{ employee[0].placeOfBirth }}
+                                            {{ tajneed.nationalityId }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2"> Country :</td>
                                         <td>
-                                            {{ employee[0].religion }}
+                                            {{ tajneed.countryId }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Region :</td>
                                         <td>
-                                            {{ employee[0].bloodGroup }}
+                                            {{ tajneed.regionId }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2">Is Mosi :</td>
+                                        <td>
+                                            {{ tajneed.isMosi }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="span2">Wassiyat No :</td>
+                                        <td>
+                                            {{ tajneed.wassiyatNumber }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Resident No :</td>
                                         <td>
-                                            {{ employee[0].userName }}
+                                            {{ tajneed.residentNo }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Passport No :</td>
                                         <td>
-                                            {{ employee[0].userName }}
+                                            {{ tajneed.passportNo }}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -136,23 +148,23 @@
                             <div class="well">
                                 <address>
                                     <strong>Mobile </strong><br>
-                                    {{ employee[0].mobile }}
+                                    {{ tajneed.mobileNumber }}
                                 </address>
                                 <address>
                                     <strong>Phone </strong><br>
-                                    {{ employee[0].phone }}
+                                    {{ tajneed.homeNumber }}
                                 </address>
                                 <address>
                                     <strong>Email </strong><br>
-                                    {{ employee[0].email }}
+                                    {{ tajneed.email }}
                                 </address>
                                 <address>
                                     <strong>Address </strong><br>
-                                    {{ employee[0].address }}
+                                    {{ tajneed.currentAddress }}
                                 </address>
                                 <address>
                                     <strong>Permanent Address </strong><br>
-                                    {{ employee[0].permanentAddress }}
+                                    {{ tajneed.permanentAddress }}
                                 </address>
                             </div>
                             <hr />
@@ -182,7 +194,7 @@
                     </div>
                     <div ng-class="{active:isTabSelected(2)}" ng-show="isTabSelected(2)">
                         <i class="fa fa-angle-double-right"></i>  <strong>Monthly Income Detail</strong><br/>
-                        <span class="pull-right"><a href="" ng-click="showPassport(employee[0].id)"><i class="fa fa-external-link-square"></i> Add Monthly Income</a></span>
+                        <span class="pull-right"><a href="" ng-click="showIncome(tajneed.id)"><i class="fa fa-external-link-square"></i> Add Monthly Income</a></span>
                         <div class="row-fluid">
                             <div class="span12">
                                 <table class="table table-striped table-bordered table-advance table-hover" id="sample_1">
