@@ -63,83 +63,84 @@
                                 <img ng-show="employee[0].empPicture" src="data:image/jpeg;base64,{{employee[0].empPicture}}" style="height: 220px; width: 220px;" width="220px" height="220px" alt="">
                             </div>
                             <ul class="nav nav-stacked">
-                                <li><i class="fa fa-hand-o-right"><a ng-href="/HRMSPortal/employee/edit/{{employee[0].id}}"><i class="icon-save"></i> Update</a></i></li>
-                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showPassport(employee[0].id)"><i class="icon-external-link"></i> Add Monthly Chanda</a></i></li>
-                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showPassport(employee[0].id)"><i class="icon-external-link"></i> Add Tehrik Jadid</a></i></li>
-                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showPassport(employee[0].id)"><i class="icon-external-link"></i> Add Waqf Jadid</a></i></li>
-                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showVisa(employee[0].id)"><i class="icon-external-link"></i> Add Monthly Income</a></i></li>
-                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showImageForm(employee[0].id)"><i class="icon-external-link"></i> Update Picture</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a ng-href="/HRMSPortal/employee/edit/{{tajneed[0].id}}"><i class="icon-save"></i> Update</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showIncome(tajneed[0].id)"><i class="icon-external-link"></i> Add Monthly Chanda</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showPassport(tajneed[0].id)"><i class="icon-external-link"></i> Add Tehrik Jadid</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showPassport(tajneed[0].id)"><i class="icon-external-link"></i> Add Waqf Jadid</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showIncome(tajneed[0].id)"><i class="icon-external-link"></i> Add Monthly Income</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a href="" ng-click="showImageForm(tajneed[0].id)"><i class="icon-external-link"></i> Update Picture</a></i></li>
                             </ul>
 
                         </div>
                         <div class="col-md-6">
-                            <h4>{{ tajneed.firstName }} - {{ tajneed.middleName }} <small>{{ tajneed.lastName}} </small></h4>
+                            <h4>{{ tajneed[0].firstName }} {{ tajneed[0].middleName }} <small>{{ tajneed[0].lastName}} </small></h4>
+                            <h5><b>{{ tajneed[0].auxilaryDetail.nameEn}}</b></h5>
                             <table class="table">
                                 <tbody>
                                     <tr>
                                         <td class="span2">Code :</td>
                                         <td>
-                                            {{ tajneed.auxilaryId}}
+                                            {{ tajneed[0].tajneedCode}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Father Name :</td>
                                         <td>
-                                            {{ tajneed.fatherName}}
+                                            {{ tajneed[0].fatherName}}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2"> Husband Name :</td>
                                         <td>
-                                            {{ tajneed.husbandName }}
+                                            {{ tajneed[0].husbandName }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">DOB :</td>
                                         <td>
-                                            {{ tajneed.birthDate | date:'longDate' }}
+                                            {{ tajneed[0].birthDate | date:'longDate' }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2"> Nationality :</td>
                                         <td>
-                                            {{ tajneed.nationalityId }}
+                                            {{ tajneed[0].nationalityDetail.nameEn }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2"> Country :</td>
                                         <td>
-                                            {{ tajneed.countryId }}
+                                            {{ tajneed[0].countryDetail.countryName }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Region :</td>
                                         <td>
-                                            {{ tajneed.regionId }}
+                                            {{ tajneed[0].regionDetail.regionName }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Is Mosi :</td>
                                         <td>
-                                            {{ tajneed.isMosi }}
+                                            <ng-pluralize count="tajneed[0].isMosi" when="{'0':'No', '1':'Yes'}"></ng-pluralize>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Wassiyat No :</td>
                                         <td>
-                                            {{ tajneed.wassiyatNumber }}
+                                            {{ tajneed[0].wassiyatNumber }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Resident No :</td>
                                         <td>
-                                            {{ tajneed.residentNo }}
+                                            {{ tajneed[0].residentNo }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="span2">Passport No :</td>
                                         <td>
-                                            {{ tajneed.passportNo }}
+                                            {{ tajneed[0].passportNo }}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -148,23 +149,23 @@
                             <div class="well">
                                 <address>
                                     <strong>Mobile </strong><br>
-                                    {{ tajneed.mobileNumber }}
+                                    {{ tajneed[0].mobileNumber }}
                                 </address>
                                 <address>
                                     <strong>Phone </strong><br>
-                                    {{ tajneed.homeNumber }}
+                                    {{ tajneed[0].homeNumber }}
                                 </address>
                                 <address>
                                     <strong>Email </strong><br>
-                                    {{ tajneed.email }}
+                                    {{ tajneed[0].email }}
                                 </address>
                                 <address>
                                     <strong>Address </strong><br>
-                                    {{ tajneed.currentAddress }}
+                                    {{ tajneed[0].currentAddress }}
                                 </address>
                                 <address>
                                     <strong>Permanent Address </strong><br>
-                                    {{ tajneed.permanentAddress }}
+                                    {{ tajneed[0].permanentAddress }}
                                 </address>
                             </div>
                             <hr />
@@ -194,7 +195,7 @@
                     </div>
                     <div ng-class="{active:isTabSelected(2)}" ng-show="isTabSelected(2)">
                         <i class="fa fa-angle-double-right"></i>  <strong>Monthly Income Detail</strong><br/>
-                        <span class="pull-right"><a href="" ng-click="showIncome(tajneed.id)"><i class="fa fa-external-link-square"></i> Add Monthly Income</a></span>
+                        <span class="pull-right"><a href="" ng-click="showIncome(tajneed[0].id)"><i class="fa fa-external-link-square"></i> Add Monthly Income</a></span>
                         <div class="row-fluid">
                             <div class="span12">
                                 <table class="table table-striped table-bordered table-advance table-hover" id="sample_1">
@@ -209,15 +210,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd">
-                                            <td>1</td>
-                                            <td><a href="/HRMSPortal/employee/passport/edit/{{ passport.id}}">W.J. Towell</a>  </td>
-                                            <td>12-Dec-2004</td>
-                                            <td>Job</td>
-                                            <td>1,200 OMR</td>
+                                        <tr class="odd" ng-repeat="income in tajneed[0].tajneedIncomes">
+                                            <td>{{$index + 1}}</td>
+                                            <td><a href="">{{income.companyName}}</a>  </td>
+                                            <td>{{income.startDate | date:'longDate'}}</td>
+                                            <td>{{income.typeName.nameEn}}</td>
+                                            <td>{{income.incomeAmount | currency:'OMR '}}</td>
                                             <td>
-                                                <label ng-class="{'label label-info': passport.statusId, 'label label-inverse': passport.statusId==0}">
-                                                    <ng-pluralize count="passport.statusId" when="{'0':'expire', '1':'active'}"></ng-pluralize>
+                                                <label ng-class="{'label label-info': income.statusId, 'label label-warning': income.statusId==0}">
+                                                    <ng-pluralize count="income.statusId" when="{'0':'expire', '1':'active'}"></ng-pluralize>
                                                 </label>
                                             </td>
                                         </tr>

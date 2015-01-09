@@ -21,7 +21,7 @@ jamatModule.factory('countryRepository', ['$resource', '$http', function ($resou
 
 
     var _getAllRegionByCountryId = function (id) {
-        return $resource('/api/country').query(); // can use get() instead of query(), but using query() because it except to return back array of objects
+        return $resource('/api/region/' + id).query(); // can use get() instead of query(), but using query() because it except to return back array of objects
     };
 
     var _getRegionById = function (id, rId) {

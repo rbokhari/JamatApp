@@ -37,27 +37,27 @@
                             <div class="form-group">
                                 <label for="tFirstName" class="col-lg-4 col-sm-4 control-label">First Name :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.firstName" id="tFirstName" name="tFirstName" placeholder="First Name" required>
+                                    <input type="text" class="form-control" ng-model="tajneed.firstName" id="tFirstName" name="tFirstName" required>
                                     <div class="help-block" ng-show="frmTajneed.txtCode.$error.required && frmTajneed.txtCode.$dirty">Please enter code !</div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tLastName" class="col-lg-4 col-sm-4 control-label">Middle Name :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.middleName" id="tMiddleName" name="tMiddleName" placeholder="Middle Name">
+                                    <input type="text" class="form-control" ng-model="tajneed.middleName" id="tMiddleName" name="tMiddleName" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tLastName" class="col-lg-4 col-sm-4 control-label">Last Name :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.lastName" id="tLastName" name="tLastName" placeholder="Last Name" required>
+                                    <input type="text" class="form-control" ng-model="tajneed.lastName" id="tLastName" name="tLastName" required>
                                     <div class="help-block" ng-show="frmTajneed.txtCode.$error.required && frmTajneed.txtCode.$dirty">Please enter code !</div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="cCountryId" class="col-lg-4 col-sm-4 control-label">Country :</label>
                                 <div class="col-lg-6">
-                                    <select class="form-control" ng-model="tajneed.countryId" id="cCountryId" name="cCountryId" ng-init="loadCountry()" ng-options="Country.countryId as Country.countryName for Country in Countries" required></select>
+                                    <select class="form-control" ng-model="tajneed.countryId" id="cCountryId" name="cCountryId" ng-init="loadCountry()" ng-options="Country.countryId as Country.countryName for Country in Countries" ng-change="loadRegionsByCountryId(tajneed.countryId)" required></select>
                                 </div>
                             </div>
 
@@ -70,20 +70,20 @@
                             <div class="form-group">
                                 <label for="tResidentNo" class="col-lg-4 col-sm-4 control-label">Resident No :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.residentNumber" id=" tresidentno" name="tResidentNo" placeholder="Resident No">
+                                    <input type="text" class="form-control" ng-model="tajneed.residentNumber" id=" tresidentno" name="tResidentNo" >
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="tMobile" class="col-lg-4 col-sm-4 control-label">Mobile Phone :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.mobileNumber" id=" tmobile" name="tMobile" placeholder="Mobile">
+                                    <input type="text" class="form-control" ng-model="tajneed.mobileNumber" id=" tmobile" name="tMobile" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tCurrentAddress" class="col-lg-4 col-sm-4 control-label">Current Address :</label>
                                 <div class="col-lg-6">
-                                    <textarea class="form-control" ng-model="tajneed.currentAddress" id=" tcurrentaddress" name="tCurrentAddress" placeholder="Current Address"></textarea>
+                                    <textarea class="form-control" ng-model="tajneed.currentAddress" id=" tcurrentaddress" name="tCurrentAddress" ></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -98,19 +98,19 @@
                             <div class="form-group">
                                 <label for="tFatherName" class="col-lg-4 col-sm-4 control-label">Father Name:</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.fatherName" id=" tfathername" name="tFatherName" placeholder="Father Name">
+                                    <input type="text" class="form-control" ng-model="tajneed.fatherName" id=" tfathername" name="tFatherName" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tFatherName" class="col-lg-4 col-sm-4 control-label">Husband Name:</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.husbandName" id=" thusbandname" name="thusbandname" placeholder="Husband Name">
+                                    <input type="text" class="form-control" ng-model="tajneed.husbandName" id=" thusbandname" name="thusbandname" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tDOB" class="col-lg-4 col-sm-4 control-label">DOB :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.birthDate" id="tdob" name="tdob" placeholder="Date of Birth" required="">
+                                    <input type="text" class="form-control" ng-model="tajneed.birthDate" id="tdob" name="tdob" required="">
                                     <div class="help-block" ng-show="frmTajneed.txtCode.$error.required && frmTajneed.txtCode.$dirty">Please enter code !</div>
                                 </div>
                             </div>
@@ -123,37 +123,37 @@
                             <div class="form-group">
                                 <label for="cRegionId" class="col-lg-4 col-sm-4 control-label">Region :</label>
                                 <div class="col-lg-6">
-                                    <select class="form-control" ng-model="tajneed.regionId" id="cRegionId" name="cRegionId" ng-init="loadRegionsByCountryId(tajneed.countryId)" ng-options="Regions.regionid as Region.regionName for Region in Regions" required></select>
+                                    <select class="form-control" ng-model="tajneed.regionId" id="cRegionId" name="cRegionId" ng-options="Regions.regionid as Region.regionName for Region in Regions" required></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tPassportNo" class="col-lg-4 col-sm-4 control-label">Passport No :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.passportNumber" id=" tpassportno" name="tPassportNo" placeholder="Passport No">
+                                    <input type="text" class="form-control" ng-model="tajneed.passportNumber" id=" tpassportno" name="tPassportNo" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tHomePhone" class="col-lg-4 col-sm-4 control-label">Home Phone :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.homeNumber" id=" thomephone" name="tHomePhone" placeholder="Home Phone">
+                                    <input type="text" class="form-control" ng-model="tajneed.homeNumber" id=" thomephone" name="tHomePhone" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tBusinessPhone" class="col-lg-4 col-sm-4 control-label">Business Phone :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.businessNumber" id=" tbusinessphone" name="tBusinessPhone" placeholder="Business Phone">
+                                    <input type="text" class="form-control" ng-model="tajneed.businessNumber" id=" tbusinessphone" name="tBusinessPhone" >
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tPermanentAddress" class="col-lg-4 col-sm-4 control-label">Permanent Address :</label>
                                 <div class="col-lg-6">
-                                    <textarea class="form-control" ng-model="tajneed.permanentAddress" id=" tpermanentaddress" name="tPermanentAddress" placeholder="Permanent Address"></textarea>
+                                    <textarea class="form-control" ng-model="tajneed.permanentAddress" id=" tpermanentaddress" name="tPermanentAddress" ></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tWassiyatNo" class="col-lg-4 col-sm-4 control-label">Wassiyat No :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed.wassiyatNumber" id=" twassiyatno" name="tWassiyatNo" placeholder="Wassiyat No">
+                                    <input type="text" class="form-control" ng-model="tajneed.wassiyatNumber" id=" twassiyatno" name="tWassiyatNo" >
                                 </div>
                             </div>
 

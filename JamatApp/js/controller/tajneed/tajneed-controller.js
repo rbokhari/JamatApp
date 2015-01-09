@@ -76,7 +76,7 @@ jamatModule.controller('TajneedController',
                 inputs: {
                     title: "Add New Income",
                     parentId: id,
-                    employeePassport: {},
+                    tajneedIncome: {},
                     resultData: {}
                 }
             }).then(function (modal) {
@@ -84,7 +84,7 @@ jamatModule.controller('TajneedController',
                 modal.close.then(function (result) {
                     //employee[0].employeePassports.splice(0, 0, resultEmployeePassport.data);
                     //console.log("show passport close : " + result.newPassport.id);
-                    $scope.employee[0].employeePassports.push(result.resultData);
+                    $scope.tajneed[0].tajneedIncomes.push(result.resultData);
                     //$scope.complexResult = "Name: " + result.name + ", age: " + result.age;
                     //$('.modal').modal('hide');
                     //modal.element.close();

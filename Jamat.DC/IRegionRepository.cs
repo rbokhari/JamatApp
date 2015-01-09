@@ -9,7 +9,7 @@ namespace Jamat.DC
 {
     public interface IRegionRepository
     {
-        Task<IQueryable<Region>> GetRegions();
+        Task<IQueryable<Region>> GetRegions(int id);
 
         Region GetRegion(int id);
 

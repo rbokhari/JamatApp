@@ -1,7 +1,7 @@
 ﻿var jamatModule = angular.module("jamatModule",
     [
         'ngRoute', 'ngResource', 'angularModalService', 'ngAnimate',
-        'angularUtils.directives.dirPagination', 'angularFileUpload'
+        'angularUtils.directives.dirPagination'
     ])
     .config(function($routeProvider, $locationProvider) {
         console.log('jamat module router call !');

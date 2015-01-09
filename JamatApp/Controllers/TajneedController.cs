@@ -18,6 +18,9 @@ namespace JamatApp.Controllers
         {
             _repo = repository;
         }
+
+        [Route("api/tajneed/")]
+        [HttpGet]
         public Task<IQueryable<Tajneed>> Get()
         {
             // IQueryable filter data inside sql query and on database side get specified filter results only, 
@@ -29,7 +32,7 @@ namespace JamatApp.Controllers
             return tajneeds;
         }
 
-        public Tajneed Get(int id)
+        public IQueryable<Tajneed> Get(int id)
         {
             //IDepartmentsRepository _repo = new DepartmentRepository();
             var tajneed = _repo.GetTajneed(id);
@@ -41,6 +44,8 @@ namespace JamatApp.Controllers
             return tajneed;
         }
 
+        [Route("api/tajneed/")]
+        [HttpPost]
         public HttpResponseMessage Post([FromBody] Tajneed newTajneed)
         {
             if (ModelState.IsValid)
@@ -69,6 +74,47 @@ namespace JamatApp.Controllers
             }
             return null;
         }
+
+        [ActionName("PostTajneedIncome")]
+        [HttpPost]
+        public HttpResponseMessage AddTajneedIncome([FromBody] TajneedIncome newIncome)
+        {
+            if (ModelState.IsValid)
+            {
+                if (newIncome.IncomeId == 0)
+                {
+                    //if (Request.Headers.Contains("userId"))
+                    //{
+                    //    newIncome.CreatedBy = Convert.ToInt32(Request.Headers.GetValues("userId").First());
+                    //}
+                    newIncome.CreatedOn = DateTime.UtcNow;
+
+                    if (_repo.AddIncome(newIncome) && _repo.Save())
+                    {
+                        return Request.CreateResponse(HttpStatusCode.Created, newIncome);
+                        //return new HttpResponseMessage(HttpStatusCode.OK);
+                    }
+                }
+                else if (newIncome.IncomeId != 0)
+                {
+                    //if (Request.Headers.Contains("userId"))
+                    //{
+                    //    newIncome.ModifiedBy = Convert.ToInt32(Request.Headers.GetValues("userId").First());
+                    //}
+                    newIncome.ModifiedOn = DateTime.Now;
+
+                    if (_repo.UpdateIncome(newIncome) && _repo.Save())
+                    {
+                        return Request.CreateResponse(HttpStatusCode.Created, newIncome);
+                        //return new HttpResponseMessage(HttpStatusCode.OK);
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, GetErrorMessages());
+            }
+            return Request.CreateResponse(HttpStatusCode.BadRequest, GetErrorMessages());
+        }
+
 
         private IEnumerable<string> GetErrorMessages()
         {

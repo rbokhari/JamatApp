@@ -52,7 +52,6 @@
       };
 
       self.showModal = function(options) {
-        
         //  Create a deferred we'll resolve when the modal is ready.
         var deferred = $q.defer();
 

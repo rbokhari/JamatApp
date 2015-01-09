@@ -22,9 +22,14 @@ namespace Jamat.DC
             return await Task.Run(() => _ctx.Tajneeds);
         }
 
-        public EntityFramework.Tajneed GetTajneed(int id)
+        public IQueryable<Tajneed> GetTajneed(int id)
         {
-            return _ctx.Tajneeds.Single(r => r.Id == id);
+            return _ctx.Tajneeds.Where(r => r.Id == id)
+                .Include(c=>c.NationalityDetail)
+                .Include(c=>c.AuxilaryDetail)
+                .Include(c=>c.CountryDetail)
+                .Include(c=>c.RegionDetail)
+                .Include(c=>c.TajneedIncomes.Select(a=>a.TypeName));
         }
 
         public bool Save()
@@ -69,5 +74,39 @@ namespace Jamat.DC
                 return false;
             }
         }
+
+
+
+        public bool AddIncome(TajneedIncome newIncome)
+        {
+            try
+            {
+                newIncome.CreatedBy = 1;
+                newIncome.CreatedOn = DateTime.Now;
+                _ctx.TajneedIncomes.Add(newIncome);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // TODO log this error
+                return false;
+            }
+            
+        }
+
+        public bool UpdateIncome(TajneedIncome updateIncome)
+        {
+            try
+            {
+                _ctx.Entry(updateIncome).State = EntityState.Modified;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // TODO log this error
+                return false;
+            }            
+        }
+
     }
 }

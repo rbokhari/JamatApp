@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
@@ -10,7 +11,6 @@ namespace Jamat.EntityFramework
 {
     public class Tajneed : TableStrutcture
     {
-
         public int Id { get; set; }
 
         public string TajneedCode { get; set; }
@@ -20,24 +20,25 @@ namespace Jamat.EntityFramework
 
         public string MiddleName { get; set; }
 
-        [Required(ErrorMessage = "Mandatory field missing !")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Mandatory field missing !")]
         public string FatherName { get; set; }
 
         public string HusbandName { get; set; }
 
-        [Required(ErrorMessage = "Mandatory field missing !")]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
+        [ForeignKey("AuxilaryDetail")]
         [Required(ErrorMessage = "Mandatory field missing !")]
         public int AuxilaryId { get; set; }
 
+        [ForeignKey("NationalityDetail")]
         public int NationalityId { get; set; }
 
-        public int CountryId { get; set; }
+        [ForeignKey("CountryDetail")]
+        public int? CountryId { get; set; }
 
+        [ForeignKey("RegionDetail")]
         public int RegionId { get; set; }
 
         public string MobileNumber { get; set; }
@@ -63,6 +64,16 @@ namespace Jamat.EntityFramework
 
         public int StatusId { get; set; }
 
+        public virtual Country CountryDetail { get; set; }
+
+        public virtual Region RegionDetail { get; set; }
+
+        public virtual ValidationDetail AuxilaryDetail { get; set; }
+
+        public virtual ValidationDetail NationalityDetail { get; set; }
+
+        public virtual ICollection<TajneedIncome> TajneedIncomes { get; set; } 
+
     }
 
     public class TajneedIncome : TableStrutcture
@@ -70,21 +81,22 @@ namespace Jamat.EntityFramework
         [Key]
         public int IncomeId { get; set; }
 
-
         public int TajneedId { get; set; }
 
+        [ForeignKey("TypeName")]
         public int TajneedTypeId { get; set; }
 
         public string CompanyName { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         public decimal IncomeAmount { get; set; }
 
         public int StatusId { get; set; }
 
+        public virtual ValidationDetail TypeName { get; set; }
     }
 
     public class TajneedCard : TableStrutcture

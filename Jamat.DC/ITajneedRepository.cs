@@ -11,13 +11,17 @@ namespace Jamat.DC
     {
         Task<IQueryable<Tajneed>> GetTajneedList();
 
-        Tajneed GetTajneed(int id);
+        IQueryable<Tajneed> GetTajneed(int id);
 
         bool Save();
 
         bool AddTajneed(Tajneed newTajneed);
 
         bool UpdateTajneed(Tajneed updateTajneed);
+
+        bool AddIncome(TajneedIncome newIncome);
+
+        bool UpdateIncome(TajneedIncome updateIncome);
 
     }
 }

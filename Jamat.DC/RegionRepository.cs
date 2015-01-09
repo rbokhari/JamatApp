@@ -28,9 +28,9 @@ namespace Jamat.DC
             }
         }
 
-        public async Task<IQueryable<Region>> GetRegions()
+        public async Task<IQueryable<Region>> GetRegions(int id)
         {
-            return _ctx.Regions;
+            return _ctx.Regions.Where(c=>c.CountryId == id);
         }
 
         public Region GetRegion(int id)

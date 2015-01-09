@@ -9,22 +9,28 @@ jamatModule.factory('tajneedRepository', ['$resource', '$http', function ($resou
     };
 
     var _getTajneedById = function (id) {
-        return $resource('/api/tajneed/' + id).get();
+        return $resource('/api/tajneed/' + id).query();
     };
 
     var _addTajneed = function (tajneed) {
-        return $resource('/api/tajneed').save(tajneed);
+        return $resource('/api/tajneed/').save(tajneed);
     };
 
     var _editTajneed = function (tajneed) {
         return $http.put('/api/tajneed/' + tajneed.id, tajneed);
     };
 
+    var _addTajneedIncome = function (tajneedIncome) {
+        return $resource('/api/tajneed/' + tajneedIncome.tajneedId + '/PostTajneedIncome').save(tajneedIncome);
+    };
+
+
     return {
         getAllTajneed: _getAllTajneed,
         getTajneedById: _getTajneedById,
         addTajneed: _addTajneed,
-        editTajneed: _editTajneed
+        editTajneed: _editTajneed,
+        addTajneedIncome: _addTajneedIncome
     };
 
 }]);

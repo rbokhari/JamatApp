@@ -1,112 +1,44 @@
 ﻿
 jamatModule.controller('TajneedModalController',
 [
-    '$scope', 'tajneedRepository', 'title', 'close',
-    'parentId', 'resultData', '$timeout', '$upload', 'tajneedIncome',
+    '$scope', 'tajneedRepository', 'validationRepository', 'title', 'close',
+    'parentId', 'resultData', '$timeout', 'tajneedIncome',
 
-    function ($scope, tajneedRepository, title, close,
-        parentId, resultData, $timeout, $upload, tajneedIncome) {
+    function ($scope, tajneedRepository, validationRepository, title, close,
+        parentId, resultData, $timeout, tajneedIncome) {
 
-        //$scope.name = null;
-        //$scope.age = null;
         $scope.resultData = {};
         $scope.title = title;
         $scope.parentId = parentId;
         $scope.tajneedIncome = tajneedIncome;
 
-        $scope.saveEmployeePassport = function (parentId, tajneedIncome) {
+        $scope.Types = validationRepository.getAllDetailsByValidationId(6);
+
+        $scope.saveTajneedIncome = function (tajneedIncome) {
             $scope.errors = [];
             tajneedIncome.tajneedId = parentId;
-
-            tajneedRepository.addEmployeePassport(employeePassport)
+            console.log(tajneedIncome);
+            tajneedRepository.addTajneedIncome(tajneedIncome)
                 .$promise
                 .then(
-                    function (resultEmployeePassport) {
+                    function(result) {
                         // success case
-                        $scope.resultData = resultEmployeePassport;
-                        appRepository.showAddSuccessGritterNotification();
-                        //console.log("employee passport save - Successfully !" + resultEmployeePassport.issuePlace);
-                        //console.log("employee passport save - Successfully !" + $scope.newPassport.issuePlace);
+                        $scope.resultData = result;
+                        //appRepository.showAddSuccessGritterNotification();
                         $scope.close();
-                        $('#dvPassport').modal('hide');
+                        $('#dvIncome').modal('hide');
                         //$location.url('/HRMSPortal/employee/detail/' + resultEmployeePassport.id);
-                    }, function (response) {
+                    }, function(response) {
                         // failure case
-                        console.log("employee passport save - Error !");
-                        appRepository.showErrorGritterNotification();
-                        $scope.errors = response.data;
-                    }
-                );
-            //.then(function () { $scope.close(); });
-        };
-
-        $scope.saveEmployeeVisa = function (parentId, employeeVisa) {
-            $scope.errors = [];
-            employeeVisa.employeeDefId = parentId;
-            employeeRepository.addEmployeeVisa(employeeVisa)
-                .$promise
-                .then(
-                    function (resultEmployee) {
-                        // success case
-                        $scope.resultData = resultEmployee;
-                        appRepository.showAddSuccessGritterNotification();
-                        $scope.close();
-                        $('#dvVisa').modal('hide');
-                    }, function (response) {
-                        // failure case
-                        console.log("employee visa save - Error !");
-                        appRepository.showErrorGritterNotification();
-                        $scope.errors = response.data;
-                    }
-                );
-        };
-
-        $scope.savePreviousEmployment = function (parentId, employeePreviousEmployement) {
-            $scope.errors = [];
-
-            employeePreviousEmployement.employeeDefId = parentId;
-            employeeRepository.addEmployeePreviousEmployment(employeePreviousEmployement)
-                .$promise
-                .then(
-                    function (resultEmployee) {
-                        // success case
-                        $scope.resultData = resultEmployee;
-                        appRepository.showAddSuccessGritterNotification();
-                        $scope.close();
-                        $('#dvPreviousEmployement').modal('hide');
-                    }, function (response) {
-                        // failure case
-                        console.log("savePreviousEmployment save - Error !");
-                        appRepository.showErrorGritterNotification();
-                        $scope.errors = response.data;
-                    }
-                );
-        };
-
-        $scope.saveEmployeeChild = function (parentId, employeeChild) {
-            $scope.errors = [];
-
-            employeeChild.employeeDefId = parentId;
-            employeeRepository.addEmployeeChild(employeeChild)
-                .$promise
-                .then(
-                    function (resultEmployee) {
-                        // success case
-                        $scope.resultData = resultEmployee;
-                        appRepository.showAddSuccessGritterNotification();
-                        $scope.close();
-                        $('#dvChildren').modal('hide');
-                    }, function (response) {
-                        // failure case
-                        console.log("saveEmployeeChild save - Error !");
-                        appRepository.showErrorGritterNotification();
+                        console.log("tajneed save - Error !");
+                        //appRepository.showErrorGritterNotification();
                         $scope.errors = response.data;
                     }
                 );
         };
 
         $scope.close = function () {
-            console.log("close funciton modal controller :");
+            console.log("close function modal controller :");
             close({
                 resultData: $scope.resultData
             }, 500); // close, but give 500ms for bootstrap to animate
@@ -151,7 +83,6 @@ jamatModule.controller('TajneedModalController',
         $scope.abortUpload = function (index) {
             $scope.upload[index].abort();
         };
-
 
     }
 ]);
