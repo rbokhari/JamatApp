@@ -1223,7 +1223,7 @@ footer.sticky-footer {
 
 ul.bar-legend {
     list-style-type: none;
-    margin-top: 55px;
+    margin-top: 10px;
     padding-left: 0px;
 }
 
@@ -1500,6 +1500,31 @@ ul.pros-chart li:last-child {
     box-shadow: 0 5px 0 #51a3c7;
     color: #fff;
 }
+
+.panel.purple-box {
+    background: none repeat scroll 0 0 #411964;
+    box-shadow: 0 5px 0 #411964;
+    color: #fff;
+}
+
+.panel.red-box {
+    background: none repeat scroll 0 0 #982438;
+    box-shadow: 0 5px 0 #982438;
+    color: #fff;
+}
+
+.panel.light-green-box {
+    background: none repeat scroll 0 0 #8ABB93;
+    box-shadow: 0 5px 0 #8ABB93;
+    color: #fff;
+}
+
+.panel.dark-green-box {
+    background: none repeat scroll 0 0 #3E6977;
+    box-shadow: 0 5px 0 #3E6977;
+    color: #fff;
+}
+
 
 .twt-info h3 {
     font-size: 16px;
@@ -4705,4 +4730,33 @@ ol.comment-list {
     background: #EFF0F4;
     border-radius: 5px;
     -webkit-border-radius: 5px;
+}
+
+@media screen {
+    #printSection {
+        display: none;
+    }
+    .onlyScreen {
+        display: none;
+    }
+
+}
+@media print {
+    body {
+        visibility:hidden;
+    }
+    #printSection, #printSection {
+        visibility:visible;
+    }
+    #printSection {
+        position:absolute;
+        left:0;
+        top:0;
+    }
+    .noPrint {
+        display: none;
+    }
+    .onlyScreen {
+        display: block;
+    }
 }

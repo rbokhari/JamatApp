@@ -11,6 +11,15 @@ namespace Jamat.DC
     {
         Task<IQueryable<Tajneed>> GetTajneedList();
 
+        Task<Int32> GetTajneedCount();
+
+        IQueryable<TajneedCount> GetTajneedAuxilaryCount();
+        IQueryable<TajneedCount> GetTajneedRegionCount();
+
+        IQueryable<TajneedCount> GetTajneedNationalityCount();
+
+        IQueryable<TajneedCount> GetTajneedWassiyatCount();
+
         IQueryable<Tajneed> GetTajneed(int id);
 
         bool Save();
@@ -24,4 +33,13 @@ namespace Jamat.DC
         bool UpdateIncome(TajneedIncome updateIncome);
 
     }
+
+    public class TajneedCount
+    {
+        public Int32 CountId;
+        public string CountName;
+        public Int32 CountTotal;
+        public string CountColor;
+    }
+
 }

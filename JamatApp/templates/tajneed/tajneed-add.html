@@ -64,7 +64,7 @@
                             <div class="form-group">
                                 <label for="cAuxilary" class="col-lg-4 col-sm-4 control-label">Auxilary :</label>
                                 <div class="col-lg-6">
-                                    <select class="form-control" id="cAuxilary" ng-model="tajneed.auxilaryId" name=" cauxilary" ng-model="employeeDef.postedTo" ng-init="loadAuxilary()" ng-options="Auxilary.id as Auxilary.nameEn for Auxilary in Auxilaries" required></select>
+                                    <select class="form-control" id="cAuxilary" ng-model="tajneed.auxilaryId" name="cAuxilary" ng-model="employeeDef.postedTo" ng-init="loadAuxilary()" ng-options="Auxilary.id as Auxilary.nameEn for Auxilary in Auxilaries" required></select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -123,7 +123,7 @@
                             <div class="form-group">
                                 <label for="cRegionId" class="col-lg-4 col-sm-4 control-label">Region :</label>
                                 <div class="col-lg-6">
-                                    <select class="form-control" ng-model="tajneed.regionId" id="cRegionId" name="cRegionId" ng-options="Regions.regionid as Region.regionName for Region in Regions" required></select>
+                                    <select class="form-control" ng-model="tajneed.regionId" id="cRegionId" name="cRegionId" ng-options="Region.regionId as Region.regionName for Region in Regions" required></select>
                                 </div>
                             </div>
                             <div class="form-group">

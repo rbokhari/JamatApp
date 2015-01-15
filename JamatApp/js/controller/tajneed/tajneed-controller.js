@@ -127,12 +127,12 @@ jamatModule.controller('TajneedController',
             $scope.errors = [];
 
             tajneedRepository.addTajneed(tajneed).$promise.then(
-                function () {
+                function (response) {
 
                     //appRepository.showSuccessGritterNotification();
-
+                    console.log(response);
                     console.log("save - Successfully !");
-                    $location.url('/jamat/tajneed');
+                    $location.url('/jamat/tajneed/detail/' + response.id);
                 }, function (response) {
                     // failure case
                     console.log("save - Error !");

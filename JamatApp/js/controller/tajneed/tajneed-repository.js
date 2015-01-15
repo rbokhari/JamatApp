@@ -8,6 +8,10 @@ jamatModule.factory('tajneedRepository', ['$resource', '$http', function ($resou
         return $resource('/api/tajneed').query(); // can use get() instead of query(), but using query() because it except to return back array of objects
     };
 
+    var _getTajneedCount = function () {
+        return $http.get('/api/tajneed/GetTajneedCount'); 
+    };
+
     var _getTajneedById = function (id) {
         return $resource('/api/tajneed/' + id).query();
     };
@@ -25,12 +29,33 @@ jamatModule.factory('tajneedRepository', ['$resource', '$http', function ($resou
     };
 
 
+    var _getCountByAuxilary = function() {
+        return $resource('/api/tajneed/getTajneedAuxilary').query();
+    };
+
+    var _getCountByRegion = function () {
+        return $resource('/api/tajneed/getTajneedRegion').query();
+    };
+
+    var _getCountByNationality = function () {
+        return $resource('/api/tajneed/getTajneedNationality').query();
+    };
+
+    var _getCountByWassiyat = function () {
+        return $resource('/api/tajneed/getTajneedWassiyat').query();
+    };
+
     return {
         getAllTajneed: _getAllTajneed,
         getTajneedById: _getTajneedById,
         addTajneed: _addTajneed,
         editTajneed: _editTajneed,
-        addTajneedIncome: _addTajneedIncome
+        addTajneedIncome: _addTajneedIncome,
+        getTajneedCount: _getTajneedCount,
+        getCountByAuxilary: _getCountByAuxilary,
+        getCountByRegion: _getCountByRegion,
+        getCountByNationality: _getCountByNationality,
+        getCountByWassiyat: _getCountByWassiyat
     };
 
 }]);

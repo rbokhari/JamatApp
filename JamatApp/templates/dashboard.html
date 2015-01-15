@@ -30,80 +30,143 @@
 <!--body wrapper start-->
 <div class="wrapper">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <!--statistics start-->
             <div class="row state-overview">
-                <div class="col-md-6 col-xs-12 col-sm-6">
+                <div class="col-md-2 col-xs-6 col-sm-2">
                     <div class="panel purple">
                         <div class="symbol">
-                            <i class="fa fa-gavel"></i>
+                            <i class="fa fa-user"></i>
                         </div>
                         <div class="state-value">
-                            <div class="value">230</div>
+                            <div class="value">{{totalTajneed}}</div>
                             <div class="title">Total Tajneed</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xs-12 col-sm-6">
+                <div class="col-md-2 col-xs-6 col-sm-2">
                     <div class="panel red">
                         <div class="symbol">
-                            <i class="fa fa-tags"></i>
+                            <i class="fa fa-money"></i>
                         </div>
                         <div class="state-value">
-                            <div class="value">150</div>
-                            <div class="title">Khuddam Tajneed</div>
+                            <div class="value">0</div>
+                            <div class="title">Khuddam Budget</div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row state-overview">
-                <div class="col-md-6 col-xs-12 col-sm-6">
+                <div class="col-md-2 col-xs-6 col-sm-2">
                     <div class="panel blue">
                         <div class="symbol">
                             <i class="fa fa-money"></i>
                         </div>
                         <div class="state-value">
-                            <div class="value">35</div>
-                            <div class="title"> Ansar Tajneed</div>
+                            <div class="value">0</div>
+                            <div class="title"> Ansar Budget</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-xs-12 col-sm-6">
+                <div class="col-md-2 col-xs-6 col-sm-2">
                     <div class="panel green">
                         <div class="symbol">
-                            <i class="fa fa-eye"></i>
+                            <i class="fa fa-dollar"></i>
                         </div>
                         <div class="state-value">
-                            <div class="value">39</div>
-                            <div class="title"> Lajna Tajneed</div>
+                            <div class="value">0</div>
+                            <div class="title"> Tahreek e Jadid</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-xs-6 col-sm-2">
+                    <div class="panel dark-green-box">
+                        <div class="symbol">
+                            <i class="fa fa-dollar"></i>
+                        </div>
+                        <div class="state-value">
+                            <div class="value">0</div>
+                            <div class="title"> Waqf e Jadid</div>
                         </div>
                     </div>
                 </div>
             </div>
             <!--statistics end-->
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <!--more statistics box start-->
-            <div class="panel deep-purple-box">
+            <div class="panel purple-box">
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-7 col-sm-7 col-xs-7">
-                            <div id="graph-donut" class="revenue-graph"></div>
-
+                            <div id="graph-donut-auxilary" class="revenue-graph"></div>
                         </div>
                         <div class="col-md-5 col-sm-5 col-xs-5">
-                            <ul class="bar-legend">
-                                <li><span class="blue"></span> Open rate</li>
-                                <li><span class="green"></span> Click rate</li>
-                                <li><span class="purple"></span> Share rate</li>
-                                <li><span class="red"></span> Unsubscribed rate</li>
+                            <ul class="bar-legend" id="label-donut-auxilary">
+                                <li ng-repeat="aux in countTajneedAuxilary"><span ng-style="{'background-color': aux.bgColor}"></span> {{aux.countName}} : {{aux.countTotal}}</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--more statistics box end-->
         </div>
-    </div>
+        <div class="col-md-6">
+            <!--more statistics box start-->
+            <div class="panel red-box">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-7 col-xs-7">
+                            <div id="graph-donut-region" class="revenue-graph"></div>
 
+                        </div>
+                        <div class="col-md-5 col-sm-5 col-xs-5">
+                            <ul class="bar-legend">
+                                <li ng-repeat="reg in countTajneedRegion"><span ng-style="{'background-color': reg.bgColor}"></span> {{reg.countName}} : {{reg.countTotal}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <!--more statistics box start-->
+            <div class="panel light-green-box">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-7 col-xs-7">
+                            <div id="graph-donut-nationality" class="revenue-graph"></div>
+                        </div>
+                        <div class="col-md-5 col-sm-5 col-xs-5">
+                            <ul class="bar-legend">
+                                <li ng-repeat="nat in countTajneedNationality"><span ng-style="{'background-color': nat.bgColor}"></span> {{nat.countName}} : {{nat.countTotal}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!--more statistics box start-->
+            <div class="panel dark-green-box">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-7 col-sm-7 col-xs-7">
+                            <div id="graph-donut-wassiyat" class="revenue-graph"></div>
+
+                        </div>
+                        <div class="col-md-5 col-sm-5 col-xs-5">
+                            <ul class="bar-legend">
+                                <li ng-repeat="was in countTajneedWassiyat"><span ng-style="{'background-color': reg.bgColor}"></span> {{was.countName}} : {{was.countTotal}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

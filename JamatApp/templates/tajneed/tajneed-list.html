@@ -19,42 +19,73 @@
                     Tajneed Listing
                     <span class="tools pull-right">
                         <a href="/jamat/tajneed/add" class="fa fa-plus">&nbsp;Add New Tajneed</a>
+                        <a href="" class="fa fa-print noPrint" ng-print print-element-id="dvPrint">&nbsp;Print</a>
                         <a href="javascript:;" class="fa fa-times"></a>
                     </span>
                 </header>
                 <div class="panel-body">
-                    <table class="table table-bordered table-striped table-condensed">
-                        <thead>
-                            <tr>
-                                <th>Sr.</th>
-                                <th>Name</th>
-                                <th>Mobile</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-show="isBusy">
-                                <td colspan="3">
-                                    <div class="progress progress-striped active">
-                                        <div style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" role="progressbar" class="progress-bar progress-bar-info">
-                                            <span class="sr-only"></span>
+                    <div class="adv-table">
+                        <div class="form-group pull-left">
+                            <label class="col-lg-8 control-label">
+                                Record Per Page:
+                            </label>
+                            <div class="col-lg-3">
+                                <select ng-model="recordPage" ng-init="recordPage=10" class="input-sm">
+                                    <option value="10" selected="selected">10</option>
+                                    <option value="15">15</option>
+                                </select>
+                            </div>
+                        </div>
+                        <span class="form-group pull-right">
+                            <input type="text" ng-model="tajneedSearch" class="form-control" placeholder="search here..." />
+                        </span>
+                    </div>
+                    <div id="dvPrint">
+                        <table class="display table table-bordered table-striped" id="tblTajneedAll">
+                            <thead>
+                                <tr>
+                                    <th>Sr.</th>
+                                    <th>Name</th>
+                                    <th>Father / Husband Name</th>
+                                    <th>Mobile</th>
+                                    <th>Auxilary</th>
+                                    <th>Region</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="isBusy">
+                                    <td colspan="6">
+                                        <div class="progress progress-striped active">
+                                            <div style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" role="progressbar" class="progress-bar progress-bar-info">
+                                                <span class="sr-only"></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
 
-                            <tr data-ng-repeat="tajneed in tajneeds">
-                                <td>{{$index+1}}</td>
-                                <td><a ng-href="/jamat/tajneed/detail/{{ tajneed.id }}">{{tajneed.firstName}} {{tajneed.middleName}}</a> </td>
-                                <td>{{tajneed.mobileNumber}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <tr dir-paginate="tajneed in tajneeds | filter:tajneedSearch | itemsPerPage:recordPage">
+                                    <td><label class="badge badge-info">{{$index+1}}</label> </td>
+                                    <td><a class="noPrint" ng-href="/jamat/tajneed/detail/{{ tajneed.id }}">{{tajneed.firstName}} {{tajneed.lastName}}</a> <label class="onlyScreen">{{tajneed.firstName}} {{tajneed.lastName}}</label> </td>
+                                    <td>{{tajneed.fatherName}}</td>
+                                    <td>{{tajneed.mobileNumber}}</td>
+                                    <td>{{tajneed.auxilaryDetail.nameEn}}</td>
+                                    <td>{{tajneed.regionDetail.regionName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="height:70px;">
+                        <span class="pull-left bottom-left" ng-show="tajneeds.length>0">
+                            Displaying {{ range.lower }} - {{ range.upper }} of {{ range.total }}
+                        </span>
+                        <span class="pull-right" style="margin-right: 15px;">
+                            <dir-pagination-controls template-url="/Scripts/dirPagination/dirPagination.tpl.html"></dir-pagination-controls>
+                        </span>
 
+                    </div>
                 </div>
             </section>
-
         </div>
-
     </div>
 
 </div>

@@ -258,6 +258,8 @@
     <Content Include="js\controller\validation\validation-controller.js" />
     <Content Include="js\controller\validation\validation-repository.js" />
     <Content Include="js\directive\datepicker.js" />
+    <Content Include="js\directive\onBeforePrint.js" />
+    <Content Include="js\directive\print.js" />
     <Content Include="js\module\jamat-module.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -470,6 +472,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modal\angular-modal-service.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\morris-chart\morris.css" />
+    <Content Include="Scripts\morris-chart\morris.init.js" />
+    <Content Include="Scripts\morris-chart\morris.js" />
+    <Content Include="Scripts\morris-chart\morris.min.js" />
+    <Content Include="Scripts\morris-chart\raphael-min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

@@ -32,6 +32,60 @@ namespace JamatApp.Controllers
             return tajneeds;
         }
 
+        [Route("api/tajneed/getTajneedCount")]
+        public Task<Int32> GetTajneedCount()
+        {
+            // IQueryable filter data inside sql query and on database side get specified filter results only, 
+            //where as IEnumerable get all data from databse and filter it on client side
+
+            //System.Threading.Thread.Sleep(1000);
+            return _repo.GetTajneedCount();
+        }
+
+        [Route("api/tajneed/getTajneedAuxilary")]
+        public IQueryable<TajneedCount> GetTajneedAuxilaryCount()
+        {
+            // IQueryable filter data inside sql query and on database side get specified filter results only, 
+            //where as IEnumerable get all data from databse and filter it on client side
+
+            //System.Threading.Thread.Sleep(1000);
+            return _repo.GetTajneedAuxilaryCount();
+            
+        }
+
+        [Route("api/tajneed/getTajneedRegion")]
+        public IQueryable<TajneedCount> GetTajneedRegionCount()
+        {
+            // IQueryable filter data inside sql query and on database side get specified filter results only, 
+            //where as IEnumerable get all data from databse and filter it on client side
+
+            //System.Threading.Thread.Sleep(1000);
+            return _repo.GetTajneedRegionCount();
+
+        }
+
+        [Route("api/tajneed/getTajneedNationality")]
+        public IQueryable<TajneedCount> GetTajneedNationalityCount()
+        {
+            // IQueryable filter data inside sql query and on database side get specified filter results only, 
+            //where as IEnumerable get all data from databse and filter it on client side
+
+            //System.Threading.Thread.Sleep(1000);
+            return _repo.GetTajneedNationalityCount();
+
+        }
+
+        [Route("api/tajneed/getTajneedWassiyat")]
+        public IQueryable<TajneedCount> GetTajneedWassiyatCount()
+        {
+            // IQueryable filter data inside sql query and on database side get specified filter results only, 
+            //where as IEnumerable get all data from databse and filter it on client side
+
+            //System.Threading.Thread.Sleep(1000);
+            return _repo.GetTajneedWassiyatCount();
+
+        }
+
         public IQueryable<Tajneed> Get(int id)
         {
             //IDepartmentsRepository _repo = new DepartmentRepository();
