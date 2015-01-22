@@ -42,6 +42,10 @@ namespace Jamat.EntityFramework
 
         public DbSet<Region> Regions { get; set; }
 
+        public DbSet<Jalsa> Jalsas { get; set; }
+
+        public DbSet<JalsaDay> JalsaDays { get; set; }
+
 
     }
 }

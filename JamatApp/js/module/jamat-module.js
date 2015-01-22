@@ -36,6 +36,12 @@
             });
 
         $routeProvider
+            .when('/jamat/jalsa/:id', {
+                templateUrl: '/templates/jalsa/jalsa.html',
+                controller: 'JalsaController'
+            });
+
+        $routeProvider
             .otherwise({ redirectTo: '/jamat' });
 
         $locationProvider.html5Mode({ enabled: true, requireBase: false });

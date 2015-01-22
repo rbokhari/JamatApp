@@ -179,6 +179,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JalsaController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
     <Compile Include="Controllers\TajneedController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
@@ -252,6 +253,8 @@
     <Content Include="js\controller\country\country-repository.js" />
     <Content Include="js\controller\dashboard\dashboard-controller.js" />
     <Content Include="js\controller\dashboard\dashboard-repository.js" />
+    <Content Include="js\controller\jalsa\jalsa-controller.js" />
+    <Content Include="js\controller\jalsa\jalsa-repository.js" />
     <Content Include="js\controller\tajneed\tajneed-controller.js" />
     <Content Include="js\controller\tajneed\tajneed-modal-controller.js" />
     <Content Include="js\controller\tajneed\tajneed-repository.js" />
@@ -472,6 +475,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modal\angular-modal-service.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\morris-chart\morris.css" />
     <Content Include="Scripts\morris-chart\morris.init.js" />
     <Content Include="Scripts\morris-chart\morris.js" />
@@ -482,6 +486,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\scripts.js" />
     <Content Include="templates\dashboard.html" />
+    <Content Include="templates\jalsa\jalsa.html" />
     <Content Include="templates\tajneed\tajneed-detail.html" />
     <Content Include="templates\tajneed\tajneed-edit.html" />
     <Content Include="templates\tajneed\tajneed-add.html" />

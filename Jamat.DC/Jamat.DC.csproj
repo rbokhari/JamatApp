@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IJalsaRepository.cs" />
+    <Compile Include="JalsaRepository.cs" />
     <Compile Include="RegionRepository.cs" />
     <Compile Include="CountryRepository.cs" />
     <Compile Include="IRegionRepository.cs" />

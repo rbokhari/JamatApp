@@ -49,6 +49,7 @@
     <Compile Include="Chandas.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="DbEntityContext.cs" />
+    <Compile Include="Jalsas.cs" />
     <Compile Include="JamatMigrationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableStructure.cs" />

@@ -74,6 +74,7 @@ namespace JamatApp.App_Start
             kernel.Bind<IValidationRepository>().To<ValidationRepository>().InRequestScope();
             kernel.Bind<ICountryRepository>().To<CountryRepository>().InRequestScope();
             kernel.Bind<IRegionRepository>().To<RegionRepository>().InRequestScope();
+            kernel.Bind<IJalsaRepository>().To<JalsaRepository>().InRequestScope();
 
         }        
     }
