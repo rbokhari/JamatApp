@@ -1756,6 +1756,15 @@ ul.user-states li {
     background: #2A3542;
 }
 
+.badge.badge-red {
+    background: #b40a05;
+}
+
+.badge.badge-yellow {
+    background: #ddcc0a;
+}
+
+
 /*--------------------------------
         CAROUSEL STYLES
 ---------------------------------*/
@@ -4730,6 +4739,14 @@ ol.comment-list {
     background: #EFF0F4;
     border-radius: 5px;
     -webkit-border-radius: 5px;
+}
+
+.circular {
+float: left;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 15px;
 }
 
 @media screen {

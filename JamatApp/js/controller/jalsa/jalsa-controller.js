@@ -12,7 +12,14 @@ jamatModule.controller('JalsaController',
         $scope.isBusy = false;
 
         var daysDiff = function (start, end) {
-            return moment(end).diff(moment(start), 'day');
+            //return moment(end).diff(moment(start), 'day');
+            var diff = moment(end).diff(moment(start), 'day');
+            var timeArray = [];
+            for (var i = 0; i <= diff; i++) {
+                timeArray.push(moment(new Date(moment(start).add(i, 'days'))).format('LL'));
+            }
+            //return new Array(new String("1"));
+            return timeArray;
         };
 
 
@@ -24,18 +31,82 @@ jamatModule.controller('JalsaController',
             this.tab = setTab;
         };
 
+        $scope.ansars = 0;
+        $scope.khudams = 0;
+        $scope.atfals = 0;
+        $scope.nasarats = 0;
+        $scope.lajnas = 0;
+        $scope.childs = 0;
+        $scope.grands = 0;
+
+
+        var getTotalCount = function() {
+            $scope.jalsaDaysSummary.forEach(function (days) {
+
+                $scope.ansars += days.totalAnsar;
+                $scope.khudams += days.totalKhudam;
+                $scope.atfals += days.totalAtfal;
+                $scope.nasarats += days.totalNasarat;
+                $scope.lajnas += days.totalLajnat;
+                $scope.childs += days.totalChild;
+                $scope.grands += days.grandTotal;
+            });
+        };
+
+        var getTotalDayCount = function () {
+
+            $scope.jalsaDays.forEach(function (days) {
+
+                $scope.ansars += days.ansar;
+                $scope.khudams += days.khuddam;
+                $scope.atfals += days.atfal;
+                $scope.nasarats += days.nassrat;
+                $scope.lajnas += days.lajnaat;
+                $scope.childs += days.child;
+                $scope.grands += days.total;
+            });
+        };
+
         $scope.loadJalsa = function () {
             $scope.isBusy = true;
-            $scope.jalsas = jalsaRepository.getAllJalsa($routeParams.id);
-            
-            $scope.jalsas.$promise.then(function (response) {
+            $scope.jalsaId = $routeParams.id;
+            //alert($routeParams.day);
+            $scope.jalsa = jalsaRepository.getJalsaById($scope.jalsaId);
+
+            $scope.jalsa.$promise.then(function (response) {
                 //alert("success");
-                    //console.log(response.endDate);
-                    $scope.totalDays = daysDiff(response.startDate, response.endDate);
+                //console.log(response.endDate);
+                $scope.totalDays = daysDiff(response.startDate, response.endDate);
+            }, function () {
+                //alert("error");
+            });
+
+            $scope.dayId = $routeParams.day;
+            if ($routeParams.day != undefined) {
+                $scope.jalsaDays = jalsaRepository.getAllJalsaDay($scope.jalsaId, $scope.dayId);
+                
+                $scope.jalsaDays.$promise.then(function (response) {
+                        //alert("success");
+                        getTotalDayCount();
+                        //$scope.totalDays = daysDiff(response.startDate, response.endDate);
+                    }, function() {
+                        //alert("error");
+                    })
+                    .then(function () { $scope.isBusy = false; });
+
+                
+            }
+
+            $scope.jalsaDaysSummary = jalsaRepository.getAllJalsaDaySummary($routeParams.id);
+            $scope.jalsaDaysSummary.$promise.then(function (response) {
+                //alert("success");
+                    getTotalCount();
                 }, function () {
                 //alert("error");
             })
             .then(function () { $scope.isBusy = false; });
+
+
         };
 
         $scope.loadAuxilary = function () {

@@ -11,17 +11,17 @@
 </div>
 <!-- page heading end-->
 <!--body wrapper start-->
-<div class="wrapper" >
+<div class="wrapper">
     <div class="row">
         <div class="col-md-12">
             <section class="panel" data-ng-init="loadJalsa()">
                 <header class="panel-heading">
-                    {{jalsa.jalsaName}}
+                    {{jalsa.jalsaName}} - Day {{dayId}}
                 </header>
                 <div class="panel-body">
                     <!--{{daysDiff(jalsa.startDate, jalsa.endDate)}}-->
                     <ul>
-                        <li ng-repeat="day in totalDays"><i class="fa fa-calendar"></i>&nbsp;&nbsp;<a ng-href="/jamat/jalsa/{{jalsaId}}/{{$index + 1}}">{{day}}</a></li>
+                        <li ng-repeat="day in totalDays"><i class="fa fa-calendar"></i>&nbsp;&nbsp;<a ng-href="/jamat/jalsa/{{jalsaId}}/{{$index +1}}">{{day}}</a></li>
                     </ul>
 
                     <div id="dvPrint">
@@ -29,15 +29,15 @@
                             <thead>
                                 <tr>
                                     <th>Sr.</th>
+                                    <th>Name</th>
+                                    <th>Ansar</th>
+                                    <th>Khudam</th>
+                                    <th>Atfal</th>
+                                    <th>Lajnaat</th>
+                                    <th>Nasarat</th>
+                                    <th>Child</th>
                                     <th>Country</th>
                                     <th>Region</th>
-                                    <th>Ansar</th>
-                                    <th>Khuddam</th>
-                                    <th>Atfal</th>
-                                    <th>Nasarat</th>
-                                    <th>Lajna</th>
-                                    <th>Below 7</th>
-                                    <th>Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,17 +51,17 @@
                                     </td>
                                 </tr>
 
-                                <tr ng-repeat="jalsa in jalsaDaysSummary">
+                                <tr ng-repeat="day in jalsaDays">
                                     <td>{{$index + 1}}</td>
-                                    <td><b>{{jalsa.countryName}}</b></td>
-                                    <td><b>{{jalsa.regionName}}</b></td>
-                                    <td><label class="badge badge-info">{{jalsa.totalAnsar}}</label></td>
-                                    <td><label class="badge badge-warning">{{jalsa.totalKhudam}}</label></td>
-                                    <td><label class="badge badge-success">{{jalsa.totalAtfal}}</label></td>
-                                    <td><label class="badge badge-yellow">{{jalsa.totalNasarat}}</label></td>
-                                    <td><label class="badge badge-important">{{jalsa.totalLajnat}}</label></td>
-                                    <td><label class="badge badge-red">{{jalsa.totalChild}}</label></td>
-                                    <td><label class="badge badge-inverse">{{jalsa.grandTotal}}</label></td>
+                                    <td><b>{{day.fmailyPersonName}}</b></td>
+                                    <td><b><label class="badge badge-yellow">{{day.ansar}}</label></b></td>
+                                    <td><label class="badge badge-info">{{day.khuddam}}</label></td>
+                                    <td><label class="badge badge-warning">{{day.atfal}}</label></td>
+                                    <td><label class="badge badge-success">{{day.lajnaat}}</label></td>
+                                    <td><label class="badge badge-red">{{day.nassrat}}</label></td>
+                                    <td><label class="badge badge-important">{{day.child}}</label></td>
+                                    <td>{{day.countryDetail.countryName}}</td>
+                                    <td>{{day.regionDetail.regionName}}</td>
                                 </tr>
                             </tbody>
                             <tfoot>

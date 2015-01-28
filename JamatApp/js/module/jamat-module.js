@@ -42,6 +42,12 @@
             });
 
         $routeProvider
+            .when('/jamat/jalsa/:id/:day', {
+                templateUrl: '/templates/jalsa/jalsaDays.html',
+                controller: 'JalsaController'
+            });
+
+        $routeProvider
             .otherwise({ redirectTo: '/jamat' });
 
         $locationProvider.html5Mode({ enabled: true, requireBase: false });

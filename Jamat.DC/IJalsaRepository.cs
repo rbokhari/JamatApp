@@ -9,11 +9,13 @@ namespace Jamat.DC
 {
     public interface IJalsaRepository
     {
-        Task<IQueryable<Jalsa>> GetJalsas(int id);
+        IQueryable<Jalsa> GetJalsas(int id, int day);
 
         Jalsa GetJalsaById(int id);
 
-        Task<Jalsa> GetJalsaDays(int id);
+        Task<IQueryable<JalsaDay>> GetJalsaDays(int id, int day);
+
+        IQueryable GetJalsaSummary(int id);
 
         bool SaveJalsa();
 

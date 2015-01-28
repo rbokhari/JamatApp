@@ -31,6 +31,13 @@ namespace JamatApp
                 defaults: new {id = RouteParameter.Optional}
                 );
 
+            config.Routes.MapHttpRoute(
+                name: "DefaultApiByAction",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new {id = RouteParameter.Optional}
+                );
+
+
             var jsonFormatter = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
