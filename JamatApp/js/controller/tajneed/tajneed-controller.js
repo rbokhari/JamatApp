@@ -8,6 +8,10 @@ jamatModule.controller('TajneedController',
 
         console.log("tajneed controller");
 
+        $('#mnuDashboard').removeClass('active');
+        $('#mnuTajneed').addClass('active');
+        $('#mnuTajneedList').addClass('active');
+
         $scope.isBusy = false;
 
         // bootstrap tab setting property and function for angularjs

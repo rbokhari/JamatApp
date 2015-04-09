@@ -1,0 +1,40 @@
+﻿<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="dvModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Add New Jalsa</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="tJalsaName" class="col-lg-4 col-sm-4 control-label">Jalsa Name :</label>
+                        <div class="col-lg-8">
+                            <input type="text" ng-model="jalsa.jalsaName" class="form-control" id="tJalsaName" />
+                            <!--<p class="help-block">Example block-level help text here.</p>-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tStartDate" class="col-lg-4 col-sm-4 control-label">Start Date :</label>
+                        <div class="col-lg-8">
+                            <input type="text" ng-model="jalsa.startDate" class="form-control" id="tStartDate" />
+                            <!--<p class="help-block">Example block-level help text here.</p>-->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tEndDate" class="col-lg-4 col-sm-4 control-label">End Date :</label>
+                        <div class="col-lg-8">
+                            <input type="text" ng-model="jalsa.endDate" class="form-control" id="tEndDate">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" ng-click="saveJalsa(jalsa)">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

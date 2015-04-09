@@ -1,0 +1,92 @@
+﻿<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="dvModal" class="modal fade">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Add New Attendance</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Family :</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="day.fmailyPersonName" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Ansar :</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="day.ansar" class="form-control col-lg-2" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Lajnat :</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="day.lajnaat" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Atfal :</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="day.atfal" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Country :</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" ng-model="day.countryId" ng-change="loadRegionsByCountryId(day.countryId)" ng-options="country.countryId as country.countryName for country in Countries" required></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Day :</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" ng-model="day.dayId">
+                                    <option value="1">Day 1</option>
+                                    <option value="2">Day 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Phone :</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="day.contactNo" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Khudam :</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="day.khuddam" class="form-control" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Nasrat :</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="day.nassrat" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Child :</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="day.child" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Region :</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" ng-model="day.regionId" ng-options="region.regionId as region.regionName for region in Regions" required></select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="saveJalsaDay(day)">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

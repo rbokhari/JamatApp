@@ -9,6 +9,10 @@ jamatModule.controller('JalsaController',
 
         console.log("jalsa controller");
 
+        $('#mnuDashboard').removeClass('active');
+        $('#mnuJalsa').addClass('active');
+        $('#mnuJalsaList').addClass('active');
+
         $scope.isBusy = false;
 
         var daysDiff = function (start, end) {
@@ -22,7 +26,6 @@ jamatModule.controller('JalsaController',
             return timeArray;
         };
 
-
         // bootstrap tab setting property and function for angularjs
         $scope.tab = 1;       // set active tab bydefault
 
@@ -31,40 +34,59 @@ jamatModule.controller('JalsaController',
             this.tab = setTab;
         };
 
-        $scope.ansars = 0;
-        $scope.khudams = 0;
-        $scope.atfals = 0;
-        $scope.nasarats = 0;
-        $scope.lajnas = 0;
-        $scope.childs = 0;
-        $scope.grands = 0;
-
-
         var getTotalCount = function() {
+            $scope.ansars = 0;
+            $scope.khudams = 0;
+            $scope.atfals = 0;
+            $scope.nasarats = 0;
+            $scope.lajnas = 0;
+            $scope.childs = 0;
+            $scope.grands = 0;
+
             $scope.jalsaDaysSummary.forEach(function (days) {
 
-                $scope.ansars += days.totalAnsar;
-                $scope.khudams += days.totalKhudam;
-                $scope.atfals += days.totalAtfal;
-                $scope.nasarats += days.totalNasarat;
-                $scope.lajnas += days.totalLajnat;
-                $scope.childs += days.totalChild;
-                $scope.grands += days.grandTotal;
+                $scope.ansars += days.totalAnsar1;
+                $scope.khudams += days.totalKhudam1;
+                $scope.atfals += days.totalAtfal1;
+                $scope.nasarats += days.totalNasarat1;
+                $scope.lajnas += days.totalLajnat1;
+                $scope.childs += days.totalChild1;
+                $scope.grands += days.grandTotal1;
             });
         };
 
         var getTotalDayCount = function () {
+            $scope.ansars1 = 0;
+            $scope.khudams1 = 0;
+            $scope.atfals1 = 0;
+            $scope.nasrats1 = 0;
+            $scope.lajnas1 = 0;
+            $scope.childs1 = 0;
+            $scope.grands1 = 0;
 
             $scope.jalsaDays.forEach(function (days) {
 
-                $scope.ansars += days.ansar;
-                $scope.khudams += days.khuddam;
-                $scope.atfals += days.atfal;
-                $scope.nasarats += days.nassrat;
-                $scope.lajnas += days.lajnaat;
-                $scope.childs += days.child;
-                $scope.grands += days.total;
+                $scope.ansars1 += days.ansar;
+                $scope.khudams1 += days.khuddam;
+                $scope.atfals1 += days.atfal;
+                $scope.nasrats1 += days.nassrat;
+                $scope.lajnas1 += days.lajnaat;
+                $scope.childs1 += days.child;
+                $scope.grands1 += days.total;
             });
+        };
+
+        $scope.JalsaList = function() {
+            $scope.isBusy = true;
+            $scope.jalsa = jalsaRepository.getJalsaList();
+            
+            $scope.jalsa.$promise.then(function (response) {
+                //alert("success");
+            }, function () {
+                //alert("error");
+            })
+            .then(function() { $scope.isBusy = false; });
+
         };
 
         $scope.loadJalsa = function () {
@@ -75,7 +97,6 @@ jamatModule.controller('JalsaController',
 
             $scope.jalsa.$promise.then(function (response) {
                 //alert("success");
-                //console.log(response.endDate);
                 $scope.totalDays = daysDiff(response.startDate, response.endDate);
             }, function () {
                 //alert("error");
@@ -84,17 +105,15 @@ jamatModule.controller('JalsaController',
             $scope.dayId = $routeParams.day;
             if ($routeParams.day != undefined) {
                 $scope.jalsaDays = jalsaRepository.getAllJalsaDay($scope.jalsaId, $scope.dayId);
-                
-                $scope.jalsaDays.$promise.then(function (response) {
+
+                $scope.jalsaDays.$promise.then(function(response) {
                         //alert("success");
                         getTotalDayCount();
                         //$scope.totalDays = daysDiff(response.startDate, response.endDate);
                     }, function() {
                         //alert("error");
                     })
-                    .then(function () { $scope.isBusy = false; });
-
-                
+                    .then(function() { $scope.isBusy = false; });
             }
 
             $scope.jalsaDaysSummary = jalsaRepository.getAllJalsaDaySummary($routeParams.id);
@@ -106,6 +125,14 @@ jamatModule.controller('JalsaController',
             })
             .then(function () { $scope.isBusy = false; });
 
+            $scope.jalsaDaysCountrySummary = jalsaRepository.getAllJalsaDayByCountrySummary($routeParams.id);
+            $scope.jalsaDaysCountrySummary.$promise.then(function (response) {
+                //alert("success");
+                getTotalCount();
+            }, function () {
+                //alert("error");
+            })
+            .then(function () { $scope.isBusy = false; });
 
         };
 
@@ -133,6 +160,51 @@ jamatModule.controller('JalsaController',
             $scope.Regions = countryRepository.getAllRegionsByCountryId(id);
         };
 
+        // Modal service start ----------------
+        $scope.addJalsa = function () {
+            ModalService.showModal({
+                templateUrl: "/templates/jalsa/jalsa-add.html",
+                controller: "JalsaModalController",
+                inputs: {
+                    title: "Add New Jalsa",
+                    parentId: 0,
+                    resultData: {}
+                }
+            }).then(function (modal) {
+                modal.element.modal();
+                modal.close.then(function (result) {
+                    //employee[0].employeePassports.splice(0, 0, resultEmployeePassport.data);
+                    //console.log("show passport close : " + result.newPassport.id);
+                    $scope.jalsa.push(result.resultData);
+                    //$scope.complexResult = "Name: " + result.name + ", age: " + result.age;
+                    //$('.modal').modal('hide');
+                    //modal.element.close();
+                });
+
+            });
+        };
+
+        $scope.addJalsaDay = function (day) {
+            ModalService.showModal({
+                templateUrl: "/templates/jalsa/jalsa-day-add.html",
+                controller: "JalsaModalController",
+                inputs: {
+                    title: "Add New Attandence",
+                    parentId: $routeParams.id,
+                    parentDay : day,
+                    resultData: {}
+                }
+            }).then(function (modal) {
+                modal.element.modal();
+                modal.close.then(function (result) {
+                    //employee[0].employeePassports.splice(0, 0, resultEmployeePassport.data);
+                    //$scope.jalsa.push(result.resultData);
+                    //modal.element.close();
+                    //alert("CLOSE MODAL");
+                    loadJalsa();
+                });
+            });
+        };
 
     }
 ]);

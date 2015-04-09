@@ -2,29 +2,61 @@
     <h3>
         Jalsa
     </h3>
-    <ul class="breadcrumb">
-        <li>
-            <a href="#">Jalsa</a>
-        </li>
-        <li class="active"> Salana </li>
-    </ul>
 </div>
 <!-- page heading end-->
 <!--body wrapper start-->
 <div class="wrapper" >
     <div class="row">
         <div class="col-md-12">
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="/jamat"><i class="fa fa-home">&nbsp;Dashboard </i></a>
+                </li>
+                <li>
+                    <a href="/jamat/jalsa">Jalsa</a>
+                </li>
+                <li> <a href="/jamat/jalsa/"> List </a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
             <section class="panel" data-ng-init="loadJalsa()">
                 <header class="panel-heading">
-                    {{jalsa.jalsaName}}
+                    {{jalsa.jalsaName}} - Summary
+                    <span class="tools pull-right">
+                        <a href="" ng-click="addJalsaDay(day)" class="fa fa-plus">&nbsp;Add New Attendance</a>
+                        <a href="" ng-click="loadJalsa()" class="fa fa-refresh noPrint">&nbsp;Refresh</a>
+                        <a href="" class="fa fa-print noPrint" ng-print print-element-id="dvPrint">&nbsp;Print</a>
+                    </span>
+
                 </header>
                 <div class="panel-body">
-                    <!--{{daysDiff(jalsa.startDate, jalsa.endDate)}}-->
                     <ul>
                         <li ng-repeat="day in totalDays"><i class="fa fa-calendar"></i>&nbsp;&nbsp;<a ng-href="/jamat/jalsa/{{jalsaId}}/{{$index + 1}}">{{day}}</a></li>
                     </ul>
+                    <hr/>
+                    <!--{{daysDiff(jalsa.startDate, jalsa.endDate)}}-->
+                    <div class="adv-table">
+                        <div class="form-group pull-left">
+                            <label class="col-lg-8 control-label">
+                                Record Per Page:
+                            </label>
+                            <div class="col-lg-3">
+                                <select ng-model="recordPage" ng-init="recordPage=10" class="input-sm">
+                                    <option value="10" selected="selected">10</option>
+                                    <option value="15">15</option>
+                                </select>
+                            </div>
+                        </div>
+                        <span class="form-group pull-right">
+                            <input type="text" ng-model="search" class="form-control" placeholder="search here..." />
+                        </span>
+                    </div>
 
-                    <div id="dvPrint">
+                    <div>
                         <table class="display table table-bordered table-striped" id="tblTajneedAll">
                             <thead>
                                 <tr>
@@ -53,20 +85,73 @@
 
                                 <tr ng-repeat="jalsa in jalsaDaysSummary">
                                     <td>{{$index + 1}}</td>
-                                    <td><b>{{jalsa.countryName}}</b></td>
-                                    <td><b>{{jalsa.regionName}}</b></td>
-                                    <td><label class="badge badge-info">{{jalsa.totalAnsar}}</label></td>
-                                    <td><label class="badge badge-warning">{{jalsa.totalKhudam}}</label></td>
-                                    <td><label class="badge badge-success">{{jalsa.totalAtfal}}</label></td>
-                                    <td><label class="badge badge-yellow">{{jalsa.totalNasarat}}</label></td>
-                                    <td><label class="badge badge-important">{{jalsa.totalLajnat}}</label></td>
-                                    <td><label class="badge badge-red">{{jalsa.totalChild}}</label></td>
-                                    <td><label class="badge badge-inverse">{{jalsa.grandTotal}}</label></td>
+                                    <td><b>{{jalsa.countryName1}}</b></td>
+                                    <td><b>{{jalsa.regionName1}}</b></td>
+                                    <td><label class="badge badge-info" ng-show="jalsa.totalAnsar1">{{jalsa.totalAnsar1}}</label></td>
+                                    <td><label class="badge badge-warning" ng-show="jalsa.totalKhudam1">{{jalsa.totalKhudam1}}</label></td>
+                                    <td><label class="badge badge-success" ng-show="jalsa.totalAtfal1">{{jalsa.totalAtfal1}}</label></td>
+                                    <td><label class="badge badge-yellow" ng-show="jalsa.totalNasarat1">{{jalsa.totalNasarat1}}</label></td>
+                                    <td><label class="badge badge-important" ng-show="jalsa.totalLajnat1">{{jalsa.totalLajnat1}}</label></td>
+                                    <td><label class="badge badge-red" ng-show="jalsa.totalChild1">{{jalsa.totalChild1}}</label></td>
+                                    <td><label class="badge badge-inverse" ng-show="jalsa.grandTotal1">{{jalsa.grandTotal1}}</label></td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <tr style="background-color:darkgrey; color:azure;font-size: large;">
                                     <td colspan="3">Totals :</td>
+                                    <td>{{ansars}}</td>
+                                    <td>{{khudams}}</td>
+                                    <td>{{atfals}}</td>
+                                    <td>{{nasarats}}</td>
+                                    <td>{{lajnas}}</td>
+                                    <td>{{childs}}</td>
+                                    <td><label class="badge badge-inverse">{{grands}}</label></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    
+                    <div class="row" id="dvPrint">
+                        <table class="display table table-bordered table-striped" id="tblTajneedAll">
+                            <thead>
+                                <tr>
+                                    <th>Sr.</th>
+                                    <th>Country</th>
+                                    <th>Ansar</th>
+                                    <th>Khuddam</th>
+                                    <th>Atfal</th>
+                                    <th>Nasarat</th>
+                                    <th>Lajna</th>
+                                    <th>Below 7</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="isBusy">
+                                    <td colspan="10">
+                                        <div class="progress progress-striped active">
+                                            <div style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" role="progressbar" class="progress-bar progress-bar-info">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr ng-repeat="jalsa1 in jalsaDaysCountrySummary">
+                                    <td>{{$index + 1}}</td>
+                                    <td><b>{{jalsa1.countryName1}}</b></td>
+                                    <td><label class="badge badge-info" ng-show="jalsa1.totalAnsar1">{{jalsa1.totalAnsar1}}</label></td>
+                                    <td><label class="badge badge-warning" ng-show="jalsa1.totalKhudam1">{{jalsa1.totalKhudam1}}</label></td>
+                                    <td><label class="badge badge-success" ng-show="jalsa1.totalAtfal1">{{jalsa1.totalAtfal1}}</label></td>
+                                    <td><label class="badge badge-yellow" ng-show="jalsa1.totalNasarat1">{{jalsa1.totalNasarat1}}</label></td>
+                                    <td><label class="badge badge-important" ng-show="jalsa1.totalLajnat1">{{jalsa1.totalLajnat1}}</label></td>
+                                    <td><label class="badge badge-red" ng-show="jalsa1.totalChild1">{{jalsa1.totalChild1}}</label></td>
+                                    <td><label class="badge badge-inverse" ng-show="jalsa1.grandTotal1">{{jalsa1.grandTotal1}}</label></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr style="background-color:darkgrey; color:azure;font-size: large;">
+                                    <td colspan="2">Totals :</td>
                                     <td>{{ansars}}</td>
                                     <td>{{khudams}}</td>
                                     <td>{{atfals}}</td>

@@ -1,7 +1,7 @@
 ﻿var jamatModule = angular.module("jamatModule",
     [
         'ngRoute', 'ngResource', 'angularModalService', 'ngAnimate',
-        'angularUtils.directives.dirPagination'
+        'angularUtils.directives.dirPagination', 'angularModalService'
     ])
     .config(function($routeProvider, $locationProvider) {
         console.log('jamat module router call !');
@@ -33,6 +33,12 @@
             .when('/jamat/tajneed/detail/:id', {
                 templateUrl: '/templates/tajneed/tajneed-detail.html',
                 controller: 'TajneedController'
+            });
+
+        $routeProvider
+            .when('/jamat/jalsa/', {
+                templateUrl: '/templates/jalsa/jalsaList.html',
+                controller: 'JalsaController'
             });
 
         $routeProvider

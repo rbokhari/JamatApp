@@ -45,17 +45,45 @@ namespace Jamat.DC
 
         public bool SaveJalsa()
         {
-            return true;
+            try
+            {
+                return _ctx.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+                
+            }
         }
 
-        public bool AddJalsa()
+        public bool AddJalsa(Jalsa newJalsa)
         {
-            return true;
+            try
+            {
+                newJalsa.CreatedBy = 1;
+                newJalsa.CreatedOn = DateTime.Now;
+                _ctx.Jalsas.Add(newJalsa);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public bool AddJalsaDay()
+        public bool AddJalsaDay(JalsaDay newJalsaDay)
         {
-            return true;
+            try
+            {
+                newJalsaDay.CreatedBy = 1;
+                newJalsaDay.CreatedOn = DateTime.Now;
+                _ctx.JalsaDays.Add(newJalsaDay);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
 
@@ -73,9 +101,6 @@ namespace Jamat.DC
             _ctx.Dispose();
         }
 
-
-
-
         public IQueryable GetJalsaSummary(int id) 
         {
             return _ctx.JalsaDays
@@ -83,23 +108,107 @@ namespace Jamat.DC
                 .Include(c=>c.CountryDetail)
                 .Include(c=>c.RegionDetail)
                 //.SelectMany(c=>c.)
-                .GroupBy(x => new { x.CountryId, x.RegionId, x.CountryDetail.CountryName, x.RegionDetail.RegionName})
+                .GroupBy(x => new
+                {
+                    x.CountryId, x.RegionId, x.CountryDetail.CountryName, x.RegionDetail.RegionName, x.FmailyPersonName, x.ContactNo
+                })
                 .Select(g => new
                 {
                     countryID = g.Key.CountryId, 
                     countryName = g.Key.CountryName,
                     regionId= g.Key.RegionId, 
                     regionName = g.Key.RegionName,
-                    totalAnsar = g.Sum(r=>r.Ansar), 
-                    totalKhudam = g.Sum(r=>r.Khuddam),
-                    totalAtfal = g.Sum(r=>r.Atfal),
-                    totalNasarat = g.Sum(r=>r.Nassrat),
-                    totalLajnat = g.Sum(r=>r.Lajnaat),
-                    totalChild = g.Sum(r=>r.Child),
-                    grandTotal = g.Sum(r => r.Ansar) + g.Sum(r => r.Khuddam) + g.Sum(r => r.Atfal) + g.Sum(r => r.Nassrat) + g.Sum(r => r.Lajnaat) + g.Sum(r => r.Child)
+                    totalAnsar = g.Max(r=>r.Ansar),
+                    totalKhudam = g.Max(r => r.Khuddam),
+                    totalAtfal = g.Max(r => r.Atfal),
+                    totalNasarat = g.Max(r => r.Nassrat),
+                    totalLajnat = g.Max(r => r.Lajnaat),
+                    totalChild = g.Max(r => r.Child),
+                    grandTotal = g.Max(r => r.Ansar) + g.Max(r => r.Khuddam) + 
+                                g.Max(r => r.Atfal) + g.Max(r => r.Nassrat) + 
+                                g.Max(r => r.Lajnaat) + g.Max(r => r.Child)
+
+                })
+                .GroupBy(o=> new { o.countryID, o.countryName, o.regionId, o.regionName})
+                .Select(k=> new
+                {
+                    countryId1 = k.Key.countryID,
+                    countryName1 = k.Key.countryName,
+                    regionId1 = k.Key.regionId,
+                    regionName1 = k.Key.regionName,
+                    totalAnsar1 = k.Sum(r=>r.totalAnsar),
+                    totalKhudam1 = k.Sum(r => r.totalKhudam),
+                    totalAtfal1 = k.Sum(r => r.totalAtfal),
+                    totalNasarat1 = k.Sum(r => r.totalNasarat),
+                    totalLajnat1 = k.Sum(r => r.totalLajnat),
+                    totalChild1 = k.Sum(r => r.totalChild),
+                    grandTotal1 = k.Sum(r => r.totalAnsar) + k.Sum(r => r.totalKhudam) +
+                                k.Sum(r => r.totalAtfal) + k.Sum(r => r.totalNasarat) +
+                                k.Sum(r => r.totalLajnat) + k.Sum(r => r.totalChild)
+ 
+                });
+
+
+        }
+
+        public IQueryable GetJalsaSummaryByCountry(int id)
+        {
+            return _ctx.JalsaDays
+                .Where(c => c.JalsaId == id)
+                .Include(c => c.CountryDetail)
+                //.Include(c => c.RegionDetail)
+                //.SelectMany(c=>c.)
+                .GroupBy(x => new
+                {
+                    x.CountryId,
+                    //x.RegionId,
+                    x.CountryDetail.CountryName,
+                    //x.RegionDetail.RegionName,
+                    x.FmailyPersonName,
+                    x.ContactNo
+                })
+                .Select(g => new
+                {
+                    countryID = g.Key.CountryId,
+                    countryName = g.Key.CountryName,
+                    //regionId = g.Key.RegionId,
+                    //regionName = g.Key.RegionName,
+                    totalAnsar = g.Max(r => r.Ansar),
+                    totalKhudam = g.Max(r => r.Khuddam),
+                    totalAtfal = g.Max(r => r.Atfal),
+                    totalNasarat = g.Max(r => r.Nassrat),
+                    totalLajnat = g.Max(r => r.Lajnaat),
+                    totalChild = g.Max(r => r.Child),
+                    grandTotal = g.Max(r => r.Ansar) + g.Max(r => r.Khuddam) +
+                                g.Max(r => r.Atfal) + g.Max(r => r.Nassrat) +
+                                g.Max(r => r.Lajnaat) + g.Max(r => r.Child)
+
+                })
+                .GroupBy(o => new { o.countryID, o.countryName})
+                .Select(k => new
+                {
+                    countryId1 = k.Key.countryID,
+                    countryName1 = k.Key.countryName,
+                    //regionId1 = k.Key.regionId,
+                    //regionName1 = k.Key.regionName,
+                    totalAnsar1 = k.Sum(r => r.totalAnsar),
+                    totalKhudam1 = k.Sum(r => r.totalKhudam),
+                    totalAtfal1 = k.Sum(r => r.totalAtfal),
+                    totalNasarat1 = k.Sum(r => r.totalNasarat),
+                    totalLajnat1 = k.Sum(r => r.totalLajnat),
+                    totalChild1 = k.Sum(r => r.totalChild),
+                    grandTotal1 = k.Sum(r => r.totalAnsar) + k.Sum(r => r.totalKhudam) +
+                                k.Sum(r => r.totalAtfal) + k.Sum(r => r.totalNasarat) +
+                                k.Sum(r => r.totalLajnat) + k.Sum(r => r.totalChild)
 
                 });
 
+
+        }
+
+        public IQueryable<Jalsa> GetJalsaList()
+        {
+            return _ctx.Jalsas;
 
         }
     }

@@ -254,6 +254,7 @@
     <Content Include="js\controller\dashboard\dashboard-controller.js" />
     <Content Include="js\controller\dashboard\dashboard-repository.js" />
     <Content Include="js\controller\jalsa\jalsa-controller.js" />
+    <Content Include="js\controller\jalsa\jalsa-modal-controller.js" />
     <Content Include="js\controller\jalsa\jalsa-repository.js" />
     <Content Include="js\controller\tajneed\tajneed-controller.js" />
     <Content Include="js\controller\tajneed\tajneed-modal-controller.js" />
@@ -486,8 +487,11 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\scripts.js" />
     <Content Include="templates\dashboard.html" />
+    <Content Include="templates\jalsa\jalsa-day-add.html" />
+    <Content Include="templates\jalsa\jalsa-add.html" />
     <Content Include="templates\jalsa\jalsa.html" />
     <Content Include="templates\jalsa\jalsaDays.html" />
+    <Content Include="templates\jalsa\jalsaList.html" />
     <Content Include="templates\tajneed\tajneed-detail.html" />
     <Content Include="templates\tajneed\tajneed-edit.html" />
     <Content Include="templates\tajneed\tajneed-add.html" />

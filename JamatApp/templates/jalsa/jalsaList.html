@@ -1,0 +1,71 @@
+﻿<div class="page-heading">
+    <h3>
+        Jalsa
+    </h3>
+
+</div>
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="/jamat"><i class="fa fa-home">&nbsp;Dashboard </i></a>
+                </li>
+                <li>
+                    <a href="/jamat/jalsa">Jalsa</a>
+                </li>
+                <li class="active"> List </li>
+            </ul>
+
+        </div>
+    </div>
+    <!-- page heading end-->
+    <!--body wrapper start-->
+        <div class="row">
+            <div class="col-md-12">
+                <section class="panel" data-ng-init="JalsaList()">
+                    <header class="panel-heading">
+                        Jalsa Salana List
+                        <span class="tools pull-right">
+                            <a href="" ng-click="addJalsa()" class="fa fa-plus">&nbsp;Add New Jalsa Salana</a>
+                            <a href="" class="fa fa-print noPrint" ng-print print-element-id="dvPrint">&nbsp;Print</a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+
+                        <div id="dvPrint">
+                            <table class="display table table-bordered table-striped" id="tblTajneedAll">
+                                <thead>
+                                    <tr>
+                                        <th>Sr.</th>
+                                        <th>Jalsa Name</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-show="isBusy">
+                                        <td colspan="10">
+                                            <div class="progress progress-striped active">
+                                                <div style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" role="progressbar" class="progress-bar progress-bar-info">
+                                                    <span class="sr-only"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr ng-repeat="jal in jalsa">
+                                        <td>{{$index + 1}}</td>
+                                        <td><b><a ng-href="/jamat/jalsa/{{jal.jalsaId}}"> {{jal.jalsaName}}</a></b></td>
+                                        <td><label class="label label-success">{{jal.startDate | date:'longDate'}}</label></td>
+                                        <td><label class="label label-primary">{{jal.endDate | date:'longDate'}}</label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </div>

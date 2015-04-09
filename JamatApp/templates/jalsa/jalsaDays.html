@@ -2,16 +2,27 @@
     <h3>
         Jalsa
     </h3>
-    <ul class="breadcrumb">
-        <li>
-            <a href="#">Jalsa</a>
-        </li>
-        <li class="active"> Salana </li>
-    </ul>
 </div>
 <!-- page heading end-->
 <!--body wrapper start-->
 <div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="/jamat"><i class="fa fa-home">&nbsp;Dashboard </i></a>
+                </li>
+
+                <li>
+                    <a href="#">Jalsa</a>
+                </li>
+                <li> <a href="/jamat/jalsa"> List </a></li>
+                <li><a href="/jamat/jalsa/{{jalsa.jalsaId}}"> {{jalsa.jalsaName}}</a></li>
+            </ul>
+
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <section class="panel" data-ng-init="loadJalsa()">
@@ -21,8 +32,24 @@
                 <div class="panel-body">
                     <!--{{daysDiff(jalsa.startDate, jalsa.endDate)}}-->
                     <ul>
-                        <li ng-repeat="day in totalDays"><i class="fa fa-calendar"></i>&nbsp;&nbsp;<a ng-href="/jamat/jalsa/{{jalsaId}}/{{$index +1}}">{{day}}</a></li>
+                        <li ng-repeat="day in totalDays" ><i class="fa fa-calendar"></i>&nbsp;&nbsp;<a ng-href="/jamat/jalsa/{{jalsaId}}/{{$index +1}}">{{day}}</a></li>
                     </ul>
+                    <div class="adv-table">
+                        <div class="form-group pull-left">
+                            <label class="col-lg-8 control-label">
+                                Record Per Page:
+                            </label>
+                            <div class="col-lg-3">
+                                <select ng-model="recordPage" ng-init="recordPage=10" class="input-sm">
+                                    <option value="10" selected="selected">10</option>
+                                    <option value="15">15</option>
+                                </select>
+                            </div>
+                        </div>
+                        <span class="form-group pull-right">
+                            <input type="text" ng-model="search" class="form-control" placeholder="search here..." />
+                        </span>
+                    </div>
 
                     <div id="dvPrint">
                         <table class="display table table-bordered table-striped" id="tblTajneedAll">
@@ -30,12 +57,14 @@
                                 <tr>
                                     <th>Sr.</th>
                                     <th>Name</th>
+                                    <th>Phone</th>
                                     <th>Ansar</th>
                                     <th>Khudam</th>
                                     <th>Atfal</th>
                                     <th>Lajnaat</th>
                                     <th>Nasarat</th>
                                     <th>Child</th>
+                                    <th>Total</th>
                                     <th>Country</th>
                                     <th>Region</th>
                                 </tr>
@@ -51,15 +80,17 @@
                                     </td>
                                 </tr>
 
-                                <tr ng-repeat="day in jalsaDays">
+                                <tr dir-paginate="day in jalsaDays | filter:search | itemsPerPage:recordPage">
                                     <td>{{$index + 1}}</td>
-                                    <td><b>{{day.fmailyPersonName}}</b></td>
-                                    <td><b><label class="badge badge-yellow">{{day.ansar}}</label></b></td>
-                                    <td><label class="badge badge-info">{{day.khuddam}}</label></td>
-                                    <td><label class="badge badge-warning">{{day.atfal}}</label></td>
-                                    <td><label class="badge badge-success">{{day.lajnaat}}</label></td>
-                                    <td><label class="badge badge-red">{{day.nassrat}}</label></td>
-                                    <td><label class="badge badge-important">{{day.child}}</label></td>
+                                    <td><b><a href="" ng-click="addJalsaDay(day)"> {{day.fmailyPersonName}}</a></b></td>
+                                    <td>{{day.contactNo}}</td>
+                                    <td><b><label ng-class="{'badge badge-yellow': day.ansar>0}" ng-show="day.ansar">{{day.ansar}}</label></b></td>
+                                    <td><label ng-class="{'badge badge-info': day.khuddam>0}" ng-show="day.khuddam">{{day.khuddam}}</label></td>
+                                    <td><label class="badge badge-warning" ng-show="day.atfal">{{day.atfal}}</label></td>
+                                    <td><label class="badge badge-success" ng-show="day.lajnaat">{{day.lajnaat}}</label></td>
+                                    <td><label class="badge badge-red" ng-show="day.nassrat">{{day.nassrat}}</label></td>
+                                    <td><label class="badge badge-important" ng-show="day.child">{{day.child}}</label></td>
+                                    <td><label class="badge badge-inverse"> {{total=day.ansar + day.khuddam + day.atfal + day.lajnaat + day.nassrat + day.child}}</label></td>
                                     <td>{{day.countryDetail.countryName}}</td>
                                     <td>{{day.regionDetail.regionName}}</td>
                                 </tr>
@@ -67,17 +98,28 @@
                             <tfoot>
                                 <tr style="background-color:darkgrey; color:azure;font-size: large;">
                                     <td colspan="3">Totals :</td>
-                                    <td>{{ansars}}</td>
-                                    <td>{{khudams}}</td>
-                                    <td>{{atfals}}</td>
-                                    <td>{{nasarats}}</td>
-                                    <td>{{lajnas}}</td>
-                                    <td>{{childs}}</td>
-                                    <td><label class="badge badge-inverse">{{grands}}</label></td>
+                                    <td>{{ansars1}}</td>
+                                    <td>{{khudams1}}</td>
+                                    <td>{{atfals1}}</td>
+                                    <td>{{lajnas1}}</td>
+                                    <td>{{nasrats1}}</td>
+                                    <td>{{childs1}}</td>
+                                    <td><label class="badge badge-inverse">{{ansars1 + khudams1 + atfals1 + nasrats1 + lajnas1 + childs1}}</label></td>
+                                    <td colspan="2">&nbsp;</td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
+                    <div style="height:70px;">
+                        <span class="pull-left bottom-left" ng-show="tajneeds.length>0">
+                            Displaying {{ range.lower }} - {{ range.upper }} of {{ range.total }}
+                        </span>
+                        <span class="pull-right" style="margin-right: 15px;">
+                            <dir-pagination-controls template-url="/Scripts/dirPagination/dirPagination.tpl.html"></dir-pagination-controls>
+                        </span>
+
+                    </div>
+
                 </div>
             </section>
         </div>

@@ -8,6 +8,12 @@ jamatModule.controller('DashboardController',
 
         console.log("dashboard controller");
 
+        $('#mnuDashboard').addClass('active');
+        $('#mnuTajneed').removeClass('active');
+        $('#mnuTajneedList').removeClass('active');
+        $('#mnuJalsa').removeClass('active');
+        $('#mnuJalsaList').removeClass('active');
+
         $scope.isBusy = true;
 
         tajneedRepository.getTajneedCount()

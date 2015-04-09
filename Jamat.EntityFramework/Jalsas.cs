@@ -39,7 +39,7 @@ namespace Jamat.EntityFramework
 
         public int DayId { get; set; }
 
-        public DateTime JalsaDate { get; set; }
+        public DateTime? JalsaDate { get; set; }
 
         [StringLength(500)]
         public string FmailyPersonName { get; set; }
