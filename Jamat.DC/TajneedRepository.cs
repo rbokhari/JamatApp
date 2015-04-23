@@ -17,9 +17,9 @@ namespace Jamat.DC
             _ctx = ctx;
         }
 
-        public async Task<IQueryable<EntityFramework.Tajneed>> GetTajneedList()
+        public async Task<IQueryable<Tajneed>> GetTajneedList()
         {
-            return await Task.Run(() => _ctx.Tajneeds.Include(c=>c.AuxilaryDetail).Include(c=>c.RegionDetail));
+            return await Task.Run(() => _ctx.Tajneeds.Include(c=>c.AuxilaryDetail).Include(c=>c.RegionDetail).Include(c=>c.TajneedIncomes.Select(a=>a.TypeName)));
         }
 
         public IQueryable<Tajneed> GetTajneed(int id)

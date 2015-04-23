@@ -28,6 +28,7 @@ jamatModule.controller('TajneedController',
         };
 
 
+
         $scope.loadTajneed = function () {
             $scope.isBusy = true;
             $scope.tajneeds = tajneedRepository.getAllTajneed();
@@ -37,7 +38,29 @@ jamatModule.controller('TajneedController',
             }, function () {
                 //alert("error");
             })
-            .then(function () { $scope.isBusy = false; });
+            .then(function () {
+                getCollectionSheetCount();
+                $scope.isBusy = false;
+            });
+        };
+
+        var getCollectionSheetCount = function () {
+            $scope.chandaMajlis = 0;
+            $scope.chandaIjtima = 0;
+            $scope.chandaTotal = 0;
+
+            $scope.tajneeds.forEach(function (chanda) {
+                //console.log(chanda.tajneedIncomes[0]);
+                //console.log(chanda.tajneedIncomes.length);
+                if (chanda.auxilaryId==2 && chanda.tajneedIncomes.length>0) {
+                    //console.log("inside :" + chanda.tajneedIncomes);
+                    
+                    $scope.chandaMajlis += ((chanda.tajneedIncomes[0].incomeAmount * 12) / 100);
+                    $scope.chandaIjtima += ((chanda.tajneedIncomes[0].incomeAmount * 2.5) / 100);
+
+                    $scope.chandaTotal += ((chanda.tajneedIncomes[0].incomeAmount * 14.5) / 100);
+                }
+            });
         };
 
         $scope.loadAuxilary = function () {

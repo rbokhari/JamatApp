@@ -8,7 +8,7 @@ jamatModule.controller('ValidationController',
         function ($scope, validationRepository, $location, $routeParams) {
 
             console.log("validation controller");
-
+            
             $scope.isBusy = true;
 
             $scope.validationDetails = validationRepository.get();
@@ -38,7 +38,7 @@ jamatModule.controller('ValidationController',
                         });
 
                         console.log("save - Successfully !");
-                        $location.url('/HRMSPortal/validation');
+                        $location.url('/jamatapp/validation');
                     }, function (response) {
                         // failure case
                         console.log("save - Error !");

@@ -46,6 +46,10 @@ namespace Jamat.EntityFramework
 
         public DbSet<JalsaDay> JalsaDays { get; set; }
 
+        public DbSet<FinancialYear> FinancialYears { get; set; }
+
+        public DbSet<FinancialYearBudget> FinancialYearBudgets { get; set; }
+
 
     }
 }

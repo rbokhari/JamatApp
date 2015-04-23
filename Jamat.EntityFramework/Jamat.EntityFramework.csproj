@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FinancialYear.cs" />
     <Compile Include="Chandas.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="DbEntityContext.cs" />

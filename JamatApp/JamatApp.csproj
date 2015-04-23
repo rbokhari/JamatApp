@@ -178,6 +178,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CountryController.cs" />
+    <Compile Include="Controllers\FinanceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JalsaController.cs" />
     <Compile Include="Controllers\RegionController.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\controller\finance\finance-modal-controller.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-reset.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
@@ -249,22 +251,24 @@
     <Content Include="Global.asax" />
     <Content Include="Jamat.html" />
     <Content Include="Jamat1.html" />
-    <Content Include="js\controller\country\country-controller.js" />
-    <Content Include="js\controller\country\country-repository.js" />
-    <Content Include="js\controller\dashboard\dashboard-controller.js" />
-    <Content Include="js\controller\dashboard\dashboard-repository.js" />
-    <Content Include="js\controller\jalsa\jalsa-controller.js" />
-    <Content Include="js\controller\jalsa\jalsa-modal-controller.js" />
-    <Content Include="js\controller\jalsa\jalsa-repository.js" />
-    <Content Include="js\controller\tajneed\tajneed-controller.js" />
-    <Content Include="js\controller\tajneed\tajneed-modal-controller.js" />
-    <Content Include="js\controller\tajneed\tajneed-repository.js" />
-    <Content Include="js\controller\validation\validation-controller.js" />
-    <Content Include="js\controller\validation\validation-repository.js" />
-    <Content Include="js\directive\datepicker.js" />
-    <Content Include="js\directive\onBeforePrint.js" />
-    <Content Include="js\directive\print.js" />
-    <Content Include="js\module\jamat-module.js" />
+    <Content Include="app\controller\country\country-controller.js" />
+    <Content Include="app\controller\country\country-repository.js" />
+    <Content Include="app\controller\dashboard\dashboard-controller.js" />
+    <Content Include="app\controller\dashboard\dashboard-repository.js" />
+    <Content Include="app\controller\finance\finance-controller.js" />
+    <Content Include="app\controller\finance\finance-repository.js" />
+    <Content Include="app\controller\jalsa\jalsa-controller.js" />
+    <Content Include="app\controller\jalsa\jalsa-modal-controller.js" />
+    <Content Include="app\controller\jalsa\jalsa-repository.js" />
+    <Content Include="app\controller\tajneed\tajneed-controller.js" />
+    <Content Include="app\controller\tajneed\tajneed-modal-controller.js" />
+    <Content Include="app\controller\tajneed\tajneed-repository.js" />
+    <Content Include="app\controller\validation\validation-controller.js" />
+    <Content Include="app\controller\validation\validation-repository.js" />
+    <Content Include="app\directive\datepicker.js" />
+    <Content Include="app\directive\onBeforePrint.js" />
+    <Content Include="app\directive\print.js" />
+    <Content Include="app\module\jamat-module.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
@@ -486,6 +490,10 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\scripts.js" />
+    <Content Include="templates\finance\chanda-type.html" />
+    <Content Include="templates\finance\chanda-year-add.html" />
+    <Content Include="templates\finance\chanda-year.html" />
+    <Content Include="templates\finance\collection-sheet-list.html" />
     <Content Include="templates\dashboard.html" />
     <Content Include="templates\jalsa\jalsa-day-add.html" />
     <Content Include="templates\jalsa\jalsa-add.html" />

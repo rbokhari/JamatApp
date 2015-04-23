@@ -1,0 +1,45 @@
+﻿<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="dvModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Add New Finance Year</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Chanda Type :</label>
+                            <div class="col-lg-8">
+                                <select class="form-control" ng-model="year.chandaTypeId" ng-options="chandaType.id as chandaType.nameEn for chandaType in chandaTypes" required></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Start Date :</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="year.startDate" class="form-control col-lg-2" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">End Date :</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="year.endDate" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-4 col-sm-4 control-label">Description :</label>
+                            <div class="col-lg-8">
+                                <input type="text" ng-model="year.description" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="saveFinanceYear(year)">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

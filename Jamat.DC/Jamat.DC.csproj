@@ -46,14 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IJalsaRepository.cs" />
+    <Compile Include="Interface\IFinanceRepository.cs" />
+    <Compile Include="Interface\IJalsaRepository.cs" />
     <Compile Include="JalsaRepository.cs" />
+    <Compile Include="FinanceRepository.cs" />
     <Compile Include="RegionRepository.cs" />
     <Compile Include="CountryRepository.cs" />
-    <Compile Include="IRegionRepository.cs" />
-    <Compile Include="ITajneedRepository.cs" />
-    <Compile Include="ICountryRepository.cs" />
-    <Compile Include="IValidationRepository.cs" />
+    <Compile Include="Interface\IRegionRepository.cs" />
+    <Compile Include="Interface\ITajneedRepository.cs" />
+    <Compile Include="Interface\ICountryRepository.cs" />
+    <Compile Include="Interface\IValidationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TajneedRepository.cs" />
     <Compile Include="ValidationRepository.cs" />

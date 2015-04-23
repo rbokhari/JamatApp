@@ -1,0 +1,111 @@
+﻿<div class="page-heading">
+    <h3>
+        Jalsa
+    </h3>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper" >
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="/jamat"><i class="fa fa-home">&nbsp;Dashboard </i></a>
+                </li>
+                <li>
+                    <a href="/jamat/jalsa">Chandas</a>
+                </li>
+                <li> <a href="/jamat/chanda/"> Collection Sheet </a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel" data-ng-init="loadTajneed()">
+                <header class="panel-heading">
+                    Collection Sheet - List
+                    <span class="tools pull-right">
+                        <a href="" ng-click="loadCollectionSheet()" class="fa fa-refresh noPrint">&nbsp;Refresh</a>
+                        <a href="" class="fa fa-print noPrint" ng-print print-element-id="dvPrint">&nbsp;Print</a>
+                    </span>
+
+                </header>
+                <div class="panel-body">
+                    <ul>
+                        <li ng-repeat="day in totalDays"><i class="fa fa-calendar"></i>&nbsp;&nbsp;<a ng-href="/jamat/jalsa/{{jalsaId}}/{{$index + 1}}">{{day}}</a></li>
+                    </ul>
+                    <hr />
+                    <!--{{daysDiff(jalsa.startDate, jalsa.endDate)}}-->
+                    <div class="adv-table">
+                        <div class="form-group pull-left">
+                            <label class="col-lg-8 control-label">
+                                Record Per Page:
+                            </label>
+                            <div class="col-lg-3">
+                                <select ng-model="recordPage" ng-init="recordPage=10" class="input-sm">
+                                    <option value="10" selected="selected">10</option>
+                                    <option value="15">15</option>
+                                </select>
+                            </div>
+                        </div>
+                        <span class="form-group pull-right">
+                            <input type="text" ng-model="search" class="form-control" placeholder="search here..." />
+                        </span>
+                    </div>
+
+                    <div>
+                        <table class="display table table-bordered table-striped" id="tblTajneedAll">
+                            <thead>
+                                <tr>
+                                    <th>Sr.</th>
+                                    <th>Region</th>
+                                    <th>Person Name</th>
+                                    <th>Father Name</th>
+                                    <th>Income</th>
+                                    <th>Chanda Majlis</th>
+                                    <th>Chanda Ijtema</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="isBusy">
+                                    <td colspan="8">
+                                        <div class="progress progress-striped active">
+                                            <div style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" role="progressbar" class="progress-bar progress-bar-info">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr ng-repeat="tajneed in tajneeds | filter:{auxilaryId:2}">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{tajneed.regionDetail.regionName}}</td>
+                                    <td><b>{{tajneed.firstName}} {{tajneed.middleName}}</b></td>
+                                    <td><b>{{tajneed.fatherName}}</b></td>
+                                    <td><label class="label label-info">{{tajneed.tajneedIncomes[0].incomeAmount | currency:'RO ':3}}</label></td>
+                                    <td><label class="label label-warning" ng-show="tajneed.tajneedIncomes[0].incomeAmount">{{((tajneed.tajneedIncomes[0].incomeAmount * 12)/100) | currency:'RO ':3}}</label></td>
+                                    <td><label class="label label-success" ng-show="tajneed.tajneedIncomes[0].incomeAmount">{{((tajneed.tajneedIncomes[0].incomeAmount * 2.5)/100) | currency:'RO ':3}}</label></td>
+                                    <td><label class="label label-danger" ng-show="tajneed.tajneedIncomes[0].incomeAmount">{{((tajneed.tajneedIncomes[0].incomeAmount * 12)/100) + ((tajneed.tajneedIncomes[0].incomeAmount * 2.5)/100) | currency:'RO ':3}}</label></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr style="background-color:darkgrey; color:azure;font-size: large;">
+                                    <td colspan="4">Totals :</td>
+                                    <td></td>
+                                    <td><label class="label label-warning"> {{chandaMajlis | currency:'RO ':3}}</label></td>
+                                    <td><label class="label label-success">{{chandaIjtima | currency:'RO ':3}}</label></td>
+                                    <td><label class="label label-danger">{{chandaTotal | currency:'RO ':3}}</label></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>

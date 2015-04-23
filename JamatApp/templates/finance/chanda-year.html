@@ -1,0 +1,91 @@
+﻿<div class="page-heading">
+    <h3>
+        Finance - Chanda Year
+    </h3>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="/jamat"><i class="fa fa-home">&nbsp;Dashboard </i></a>
+                </li>
+                <li>
+                    <a href="#">Finance</a>
+                </li>
+                <li> <a href="#"> Chanda Year </a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel" data-ng-init="loadChandaYear()">
+                <header class="panel-heading">
+                    Chanda Years - List
+                    <span class="tools pull-right">
+                        <a href="" ng-click="loadChandaYear()" class="fa fa-refresh noPrint">&nbsp;Refresh</a>
+                        <a href="" class="fa fa-plus" ng-click="addFinanceYear()">&nbsp;Add New Year</a>
+                        <a href="" class="fa fa-print noPrint" ng-print print-element-id="dvPrint">&nbsp;Print</a>
+                    </span>
+
+                </header>
+                <div class="panel-body">
+                    <!--{{daysDiff(jalsa.startDate, jalsa.endDate)}}-->
+                    <div class="adv-table">
+                        <div class="form-group pull-left">
+                            <label class="col-lg-8 control-label">
+                                Record Per Page:
+                            </label>
+                            <div class="col-lg-3">
+                                <select ng-model="recordPage" ng-init="recordPage=10" class="input-sm">
+                                    <option value="10" selected="selected">10</option>
+                                    <option value="15">15</option>
+                                </select>
+                            </div>
+                        </div>
+                        <span class="form-group pull-right">
+                            <input type="text" ng-model="search" class="form-control" placeholder="search here..." />
+                        </span>
+                    </div>
+
+                    <div>
+                        <table class="display table table-bordered table-striped">
+                            <thead>
+                                <tr class="info">
+                                    <th>Sr.</th>
+                                    <th>Chanda Type</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-show="isBusy">
+                                    <td colspan="4">
+                                        <div class="progress progress-striped active">
+                                            <div style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" role="progressbar" class="progress-bar progress-bar-info">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr ng-repeat="chandaYear in chandaYears | filter:search ">
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{chandaYear.chandaTypeDetail.nameEn}}</td>
+                                    <td><label class="label label-success">  {{chandaYear.startDate | date:'dd MMM yyyy'}}</label></td>
+                                    <td><label class="label label-danger">{{chandaYear.endDate | date:'dd MMM yyyy'}}</label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>

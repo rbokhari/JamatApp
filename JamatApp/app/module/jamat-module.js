@@ -3,6 +3,14 @@
         'ngRoute', 'ngResource', 'angularModalService', 'ngAnimate',
         'angularUtils.directives.dirPagination', 'angularModalService'
     ])
+    .constant("VALIDATIONS", {
+        "AUXILARY": "1",
+        "NATIONALITY": "2",
+        "CHANDA_TYPE": "4",
+        "COUNTRY": "5",
+        "TAJNEED_TYPE": "6"
+
+    })
     .config(function($routeProvider, $locationProvider) {
         console.log('jamat module router call !');
 
@@ -52,6 +60,25 @@
                 templateUrl: '/templates/jalsa/jalsaDays.html',
                 controller: 'JalsaController'
             });
+
+    $routeProvider
+        .when('/jamat/chanda/', {
+            templateUrl: '/templates/finance/collection-sheet-list.html',
+            controller: 'TajneedController'
+        });
+
+
+    $routeProvider
+        .when('/jamat/chandatype/', {
+            templateUrl: '/templates/finance/chanda-type.html',
+            controller: 'FinanceController'
+        });
+
+    $routeProvider
+        .when('/jamat/chandayear/', {
+            templateUrl: '/templates/finance/chanda-year.html',
+            controller: 'FinanceController'
+        });
 
         $routeProvider
             .otherwise({ redirectTo: '/jamat' });

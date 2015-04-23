@@ -75,6 +75,7 @@ namespace JamatApp.App_Start
             kernel.Bind<ICountryRepository>().To<CountryRepository>().InRequestScope();
             kernel.Bind<IRegionRepository>().To<RegionRepository>().InRequestScope();
             kernel.Bind<IJalsaRepository>().To<JalsaRepository>().InRequestScope();
+            kernel.Bind<IFinanceRepository>().To<FinanceRepository>().InRequestScope();
 
         }        
     }
