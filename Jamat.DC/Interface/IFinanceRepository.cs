@@ -17,6 +17,14 @@ namespace Jamat.DC
 
         bool AddFinancialYear(FinancialYear newFinancialYear);
 
+        IQueryable GetTajneedAuxilaryIncome(int auxilaryId);
+
+        Task<IQueryable<FinancialYearBudget>> GetFiancialYearBudgets();
+
+        Task<FinancialYearBudget> GetFiancialYearBudget(int id);
+        
+        bool AddFinancialYearBudget(FinancialYearBudget newFinancialYearBudget);
+
 
     }
 }

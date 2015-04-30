@@ -492,6 +492,7 @@
     <Content Include="Scripts\scripts.js" />
     <Content Include="templates\finance\chanda-type.html" />
     <Content Include="templates\finance\chanda-year-add.html" />
+    <Content Include="templates\finance\chanda-year-promise.html" />
     <Content Include="templates\finance\chanda-year.html" />
     <Content Include="templates\finance\collection-sheet-list.html" />
     <Content Include="templates\dashboard.html" />

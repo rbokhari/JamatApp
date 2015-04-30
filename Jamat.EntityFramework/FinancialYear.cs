@@ -11,11 +11,14 @@ namespace Jamat.EntityFramework
     public class FinancialYear : TableStrutcture
     {
         [Key]
+        //[ForeignKey("YearBudget")]
         public int YearId { get; set; }
-
 
         [ForeignKey("ChandaTypeDetail")]
         public int ChandaTypeId { get; set; }
+
+        [ForeignKey("AuxilaryDetail")]
+        public int AuxilaryId { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -23,9 +26,14 @@ namespace Jamat.EntityFramework
 
         public int StatusId { get; set; }
 
+        [MaxLength(500)]
         public string Description { get; set; }
 
         public virtual ValidationDetail ChandaTypeDetail { get; set; }
+
+        public virtual ValidationDetail AuxilaryDetail { get; set; }
+
+        public virtual ICollection<FinancialYearBudget> YearBudget { get; set; }
 
     }
 
@@ -34,22 +42,22 @@ namespace Jamat.EntityFramework
         [Key]
         public int BudgetId { get; set; }
 
-        [ForeignKey("FinancialYearDetail")]
+        //[ForeignKey("FinancialYearDetail")]
+        [Required]
         public int YearId { get; set; }
 
-        public decimal ApprovedAmount { get; set; }
+        public decimal TotalIncome { get; set; }
 
-        public decimal MarkazShare { get; set; }
+        public double ApprovedAmount { get; set; }
 
+        public double MarkazShare { get; set; }
 
-        public decimal LocalShare { get; set; }
+        public double LocalShare { get; set; }
 
+        [MaxLength(500)]
         public string Description { get; set; }
 
-
-        public virtual FinancialYear FinancialYearDetail { get; set; }
-
-
+        //public virtual FinancialYear FinancialYearDetail { get; set; }
     }
 
 }

@@ -80,6 +80,12 @@
             controller: 'FinanceController'
         });
 
+    $routeProvider
+        .when('/jamat/chandayear/promise/:id', {
+            templateUrl: '/templates/finance/chanda-year-promise.html',
+            controller: 'FinanceController'
+        });
+
         $routeProvider
             .otherwise({ redirectTo: '/jamat' });
 

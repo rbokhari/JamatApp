@@ -1,6 +1,6 @@
 ﻿<div class="page-heading">
     <h3>
-        Jalsa
+        Chanda Sheet
     </h3>
 </div>
 <!-- page heading end-->
@@ -27,7 +27,7 @@
                 <header class="panel-heading">
                     Collection Sheet - List
                     <span class="tools pull-right">
-                        <a href="" ng-click="loadCollectionSheet()" class="fa fa-refresh noPrint">&nbsp;Refresh</a>
+                        <a href="" ng-click="loadTajneed()" class="fa fa-refresh noPrint">&nbsp;Refresh</a>
                         <a href="" class="fa fa-print noPrint" ng-print print-element-id="dvPrint">&nbsp;Print</a>
                     </span>
 
@@ -58,7 +58,7 @@
                     <div>
                         <table class="display table table-bordered table-striped" id="tblTajneedAll">
                             <thead>
-                                <tr>
+                                <tr class="info">
                                     <th>Sr.</th>
                                     <th>Region</th>
                                     <th>Person Name</th>
@@ -80,7 +80,7 @@
                                     </td>
                                 </tr>
 
-                                <tr ng-repeat="tajneed in tajneeds | filter:{auxilaryId:2}">
+                                <tr ng-repeat="tajneed in tajneeds | filter:{auxilaryId:2} | filter:search">
                                     <td>{{$index + 1}}</td>
                                     <td>{{tajneed.regionDetail.regionName}}</td>
                                     <td><b>{{tajneed.firstName}} {{tajneed.middleName}}</b></td>
