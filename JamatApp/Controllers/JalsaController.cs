@@ -10,6 +10,7 @@ using Jamat.EntityFramework;
 
 namespace JamatApp.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/jalsa")]
     public class JalsaController : ApiController
     {
@@ -39,7 +40,6 @@ namespace JamatApp.Controllers
         {
             return _repo.GetJalsaById(id);
         }
-
 
         [HttpGet]
         [Route("GetCount")]

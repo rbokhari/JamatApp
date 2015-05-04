@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
 using System.Web.Http;
 using Newtonsoft.Json.Serialization;
 
@@ -37,8 +39,14 @@ namespace JamatApp
                 defaults: new {id = RouteParameter.Optional}
                 );
 
+            config.Formatters.JsonFormatter.SupportedMediaTypes         //tell if any accept : text/html is coming, then return json formatter
+                            .Add(new MediaTypeHeaderValue("text/html"));
 
-            var jsonFormatter = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+            //var jsonFormatter = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            //jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
         }

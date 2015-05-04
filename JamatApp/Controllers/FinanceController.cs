@@ -22,6 +22,7 @@ namespace JamatApp.Controllers
             _repo = repository;
         }
 
+        [Authorize]
         [Route("finance")]
         [HttpGet]
         public async Task<IQueryable<FinancialYear>> Get()
@@ -31,6 +32,8 @@ namespace JamatApp.Controllers
             return await years;
         }
 
+
+        [Authorize]
         [Route("finance/{id}")]
         [HttpGet]
         public async Task<FinancialYear> Get(int id)
@@ -40,6 +43,8 @@ namespace JamatApp.Controllers
             return await year;
         }
 
+
+        [Authorize]
         [Route("finance")]
         public async Task<HttpResponseMessage> Post([FromBody] FinancialYear newYear)
         {
@@ -58,13 +63,14 @@ namespace JamatApp.Controllers
         }
 
 
+        [Authorize]
         [Route("finance/getAuxilaryIncome/{id}")]
         public IQueryable GetAuxilaryIncome(int id)
         {
             return _repo.GetTajneedAuxilaryIncome(id);
         }
 
-
+        [Authorize]
         [Route("finance/setAuxilaryBudget/{yearId}/{notes}")]
         public async Task<HttpResponseMessage> SetAuxilaryBudget(int yearId, string notes)
         {
@@ -98,6 +104,7 @@ namespace JamatApp.Controllers
 
         }
 
+        [Authorize]
         [Route("finance/getBudget/{yearId}")]
         [HttpGet]
         public async Task<FinancialYearBudget> GetBudget(int yearId)

@@ -1,7 +1,7 @@
 ﻿var jamatModule = angular.module("jamatModule",
     [
         'ngRoute', 'ngResource', 'angularModalService', 'ngAnimate',
-        'angularUtils.directives.dirPagination', 'angularModalService'
+        'angularUtils.directives.dirPagination', 'angularModalService', 'LocalStorageModule',
     ])
     .constant("VALIDATIONS", {
         "AUXILARY": "1",
@@ -11,8 +11,15 @@
         "TAJNEED_TYPE": "6"
 
     })
-    .config(function($routeProvider, $locationProvider) {
+    .config(function ($routeProvider, $locationProvider, $httpProvider) {
         console.log('jamat module router call !');
+
+        $httpProvider.interceptors.push('authInterceptorService');
+
+    $routeProvider
+        .when('/', {
+             redirectTo: '/jamat' 
+        });
 
         $routeProvider
             .when('/jamat', {

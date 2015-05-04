@@ -10,12 +10,14 @@ namespace JamatApp.Controllers
     {
         public ICountryRepository _repo;
 
+
         public CountryController(ICountryRepository repository)
         {
             _repo = repository;
         }
 
 
+        [Authorize]
         public async Task<IQueryable<Country>> Get()
         {
             var countries = _repo.GetCountries();

@@ -10,6 +10,7 @@ using Jamat.EntityFramework;
 
 namespace JamatApp.Controllers
 {
+    [Authorize]
     public class TajneedController : ApiController
     {
         public ITajneedRepository _repo;
@@ -42,6 +43,7 @@ namespace JamatApp.Controllers
             return _repo.GetTajneedCount();
         }
 
+        
         [Route("api/tajneed/getTajneedAuxilary")]
         public IQueryable<TajneedCount> GetTajneedAuxilaryCount()
         {
@@ -53,6 +55,7 @@ namespace JamatApp.Controllers
             
         }
 
+        
         [Route("api/tajneed/getTajneedRegion")]
         public IQueryable<TajneedCount> GetTajneedRegionCount()
         {
@@ -64,6 +67,7 @@ namespace JamatApp.Controllers
 
         }
 
+        
         [Route("api/tajneed/getTajneedNationality")]
         public IQueryable<TajneedCount> GetTajneedNationalityCount()
         {
@@ -75,6 +79,7 @@ namespace JamatApp.Controllers
 
         }
 
+        
         [Route("api/tajneed/getTajneedWassiyat")]
         public IQueryable<TajneedCount> GetTajneedWassiyatCount()
         {
@@ -86,6 +91,7 @@ namespace JamatApp.Controllers
 
         }
 
+        
         public IQueryable<Tajneed> Get(int id)
         {
             //IDepartmentsRepository _repo = new DepartmentRepository();
@@ -113,6 +119,7 @@ namespace JamatApp.Controllers
             }
             return null;
         }
+
 
         public HttpResponseMessage Put(int id, [FromBody] Tajneed updateTajneed)
         {

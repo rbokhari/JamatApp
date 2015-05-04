@@ -50,6 +50,7 @@
     <Compile Include="Interface\IJalsaRepository.cs" />
     <Compile Include="JalsaRepository.cs" />
     <Compile Include="FinanceRepository.cs" />
+    <Compile Include="PasswordHash.cs" />
     <Compile Include="RegionRepository.cs" />
     <Compile Include="CountryRepository.cs" />
     <Compile Include="Interface\IRegionRepository.cs" />

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace JamatApp.Controllers
 {
+    [Authorize]
     public class RegionController : ApiController
     {
         public IRegionRepository _repo;
