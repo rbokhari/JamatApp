@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountRepository.cs" />
+    <Compile Include="EncryptionHelper.cs" />
+    <Compile Include="Interface\IAccountRepository.cs" />
     <Compile Include="Interface\IFinanceRepository.cs" />
     <Compile Include="Interface\IJalsaRepository.cs" />
     <Compile Include="JalsaRepository.cs" />

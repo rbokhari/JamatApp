@@ -25,9 +25,11 @@
             <div class="login-wrap">
                 <input type="text" class="form-control" data-ng-model="loginData.userName" placeholder="User ID" autofocus>
                 <input type="password" class="form-control" placeholder="Password" data-ng-model="loginData.password">
+                <div class="alert alert-danger" ng-show="message">{{message}}</div>
                 <button class="btn btn-lg btn-login btn-block" type="submit" ng-click="login()">
                     <i class="fa fa-check"></i>
                 </button>
+                
                 <!--<div class="registration">
                     Not a member yet?
                     <a class="" href="registration.html">

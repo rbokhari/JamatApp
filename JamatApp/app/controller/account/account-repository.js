@@ -8,8 +8,8 @@ jamatModule.factory('accountRepository', ['$resource', function ($resource) {
         return $resource('/api/account/GetUserDetail/?id=' + id).get();
     };
 
-    var _getUserByUserName = function (username) {
-        return $resource('/api/account/GetUserDetailByUserName/?username=' + username).get();
+    var _getUserByUserName = function (username,pass) {
+        return $resource('/api/account/GetUserByUserName/' + username + '/' + pass).get();
     };
 
     var _getRoleById = function (id) {

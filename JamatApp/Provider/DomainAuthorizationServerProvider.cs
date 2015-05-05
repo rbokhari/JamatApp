@@ -1,6 +1,9 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
+using Jamat.DC;
+using JamatApp.Controllers;
 using Microsoft.Owin.Security.OAuth;
+using Jamat.DC.Interface;
 
 namespace JamatApp.Provider
 {
@@ -21,6 +24,7 @@ namespace JamatApp.Provider
             // Also here write authentication through domain user
 
             bool isValid = false;
+
 
             //using (var pc = new PrincipalContext(ContextType.Domain, "mtc.edu.om"))
             //{

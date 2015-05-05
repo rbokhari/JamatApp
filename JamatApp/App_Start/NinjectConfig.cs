@@ -1,4 +1,5 @@
 ﻿
+using Jamat.DC.Interface;
 using Ninject;
 using Jamat.EntityFramework;
 using Jamat.DC;
@@ -19,6 +20,7 @@ namespace JamatApp.App_Start
             kernel.Bind<IRegionRepository>().To<RegionRepository>();
             kernel.Bind<IJalsaRepository>().To<JalsaRepository>();
             kernel.Bind<IFinanceRepository>().To<FinanceRepository>();
+            kernel.Bind<IAccountRepository>().To<AccountRepository>();
 
             return kernel;
         }
