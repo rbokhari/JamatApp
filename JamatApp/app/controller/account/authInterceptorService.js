@@ -16,8 +16,8 @@ jamatModule.factory('authInterceptorService', ['$q', '$location', 'localStorageS
             
             if (customData) {
                 config.headers.userId = customData.userId;
-                config.headers.roleId = customData.roleId;
-                config.headers.roles = customData.role;
+                config.headers.roleId = customData.userRole;
+                //config.headers.roles = customData.role;
             }
         }
 

@@ -21,24 +21,39 @@ namespace Jamat.DC
 
         public User GetUser(string username, string userPass)
         {
-            //return new User()
-            //{
-            //    UserName = username,
-            //    UserPassword = EncryptionHelper.Encrypt(userPass)
-            //};
-
-            //userPass = PasswordHash.CreateHash(userPass);
-
-            var user = _ctx.Users
-                .Single(c => c.UserName.ToLower().Equals(username.ToLower()));
-
-            if (EncryptionHelper.Decrypt(user.UserPassword).Equals(userPass))
+            try
             {
-                user.UserPassword = string.Empty;
-                return user;
-            }
-            else
+                return new User()
+                {
+                    UserName = username,
+                    UserPassword = EncryptionHelper.Encrypt(userPass)
+                };
+
+                //userPass = PasswordHash.CreateHash(userPass);
+
+                var user = _ctx.Users
+                    .Single(c => c.UserName.ToLower().Equals(username.ToLower()));
+
+                if (EncryptionHelper.Decrypt(user.UserPassword).Equals(userPass))
+                {
+                    user.UserPassword = string.Empty;
+                    return user;
+                }
+                else
+                {
+                    user.UserId = 0;
+                    user.UserName = string.Empty;
+                    user.UserPassword = string.Empty;
+                    user.TajneedId = 0;
+                    return user;
+                }
+
                 return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
 

@@ -3,7 +3,7 @@ jamatModule.factory('authRepository', [
     '$http', '$q', 'accountRepository', 'localStorageService',
     function ($http, $q, accountRepository, localStorageService) {
 
-        var serviceBase = 'http://localhost:91/';
+        var serviceBase = 'http://amc.azurewebsites.net/'; //'http://localhost:91/'; 
         var authServiceFactory = {};
 
         var _authentication = {
@@ -62,41 +62,44 @@ jamatModule.factory('authRepository', [
             var deferred = $q.defer();
             console.log(loginData);
 
-
-        accountRepository.getUserByUserName(loginData.userName, loginData.password)
-            .$promise
-            .then(function(res) {
+            accountRepository.getUserByUserName(loginData.userName, loginData.password)
+                .$promise
+                .then(function (res) {
+                console.log(res);
                 if (res.userId) {
+                    //console.log("auth-repository : " + res.userId);
                     $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-                    .success(function(response) {
-                        console.log("token done");
-                        localStorageService.set('authorizationData', { token: response.access_token, userId: res.tajneedId, role: "role" });
-                        localStorageService.set('userData', { userId: res.tajneedId, userRole: 0 });
+                        .success(function(response) {
+                            console.log("token done");
+                            localStorageService.set('authorizationData', { token: response.access_token, userId: res.tajneedId, role: "role" });
+                            localStorageService.set('userData', { userId: res.tajneedId, userRole: 0 });
 
-                        deferred.resolve(res);
+                            deferred.resolve(res);
 
-                    }).error(function(err, status) {
-                        _logOut();
-                        console.log(err);
-                        deferred.reject(err);
-                    });
-            }
-            deferred.resolve(res);
-        }, function(error) {
-                //alert("not done");
-                //$scope.message = "User not allowed to login this system.";
-                deferred.reject(error);
-            });
+                        }).error(function(err, status) {
+                            _logOut();
+                            console.log("inner error " + err + " status " + status);
+                            deferred.reject(err);
+                        });
+                } else {
+                    deferred.reject(res);
+                }
+                //deferred.resolve(res);
+                }, function(error) {
 
-
+                    console.log("error is : " + error);
+                    //alert("not done");
+                    //$scope.message = "User not allowed to login this system.";
+                    deferred.reject(error);
+                });
 
             return deferred.promise;
-
         };
 
         var _logOut = function () {
 
             console.log("logOut from System");
+
 
             localStorageService.remove('authorizationData');
             localStorageService.remove('userData');

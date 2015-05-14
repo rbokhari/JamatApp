@@ -28,9 +28,9 @@ namespace JamatApp.Controllers
             {
                 return _repo.GetUser(username, userpass);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
             
         }
