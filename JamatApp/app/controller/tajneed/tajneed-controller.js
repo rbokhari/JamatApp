@@ -91,7 +91,9 @@ jamatModule.controller('TajneedController',
             $scope.isBusy = false;
             $scope.tajneed = tajneedRepository.getTajneedById($routeParams.id);
             $scope.tajneed.$promise
-                .then(function () { }, function () { })
+                .then(function () {
+                    $scope.loadRegionsByCountryId($scope.tajneed[0].countryId);
+                }, function () { })
                 .then(function () { $scope.isBusy = true; });
         }
 
@@ -153,7 +155,9 @@ jamatModule.controller('TajneedController',
         $scope.save = function(tajneed) {
             $scope.errors = [];
 
-            tajneedRepository.addTajneed(tajneed).$promise.then(
+            tajneedRepository.addTajneed(tajneed)
+                .$promise
+                .then(
                 function (response) {
 
                     //appRepository.showSuccessGritterNotification();

@@ -21,9 +21,11 @@ namespace JamatApp.Controllers
         }
 
 
-        public async Task<IQueryable<Region>> Get(int id)
+        [Route("api/region")]
+        [HttpGet]
+        public async Task<IQueryable<Region>> Get()
         {
-            var regions = _repo.GetRegions(id);
+            var regions = _repo.GetRegions(1);
 
             return await regions;
         }

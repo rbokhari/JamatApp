@@ -3,7 +3,7 @@ jamatModule.factory('authRepository', [
     '$http', '$q', 'accountRepository', 'localStorageService',
     function ($http, $q, accountRepository, localStorageService) {
 
-        var serviceBase = 'http://amc.azurewebsites.net/'; //'http://localhost:91/'; 
+        var serviceBase =  'http://localhost:91/';    //'http://amc.azurewebsites.net/';
         var authServiceFactory = {};
 
         var _authentication = {
@@ -68,7 +68,7 @@ jamatModule.factory('authRepository', [
                 console.log(res);
                 if (res.userId) {
                     //console.log("auth-repository : " + res.userId);
-                    $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                    $http.post('token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                         .success(function(response) {
                             console.log("token done");
                             localStorageService.set('authorizationData', { token: response.access_token, userId: res.tajneedId, role: "role" });

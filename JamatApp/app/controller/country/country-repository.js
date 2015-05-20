@@ -8,7 +8,7 @@ jamatModule.factory('countryRepository', ['$resource', '$http', function ($resou
     };
 
     var _getCountryById = function (id) {
-        return $resource('/api/tajneed/' + id).get();
+        return $resource('/api/country/' + id).get();
     };
 
     var _addCountry = function (country) {

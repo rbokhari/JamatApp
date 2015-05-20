@@ -11,6 +11,16 @@ namespace Jamat.DC
     {
         Task<IQueryable<Tajneed>> GetTajneedList();
 
+        Task<IQueryable<Tajneed>> GetTajneedListByAuxilaryId(int id);
+
+        Task<IQueryable<Tajneed>> GetTajneedListByNationalityId(int id);
+
+        Task<IQueryable<Tajneed>> GetTajneedListByRegionId(int id);
+
+        Task<IQueryable<Tajneed>> GetTajneedListByMosi();
+
+        Task<IQueryable<Tajneed>> GetTajneedSearch(string firstname);
+
         Task<Int32> GetTajneedCount();
 
         IQueryable<TajneedCount> GetTajneedAuxilaryCount();

@@ -40,7 +40,7 @@
             });
         $routeProvider
             .when('/jamat/tajneed/edit/:id', {
-                templateUrl: '/templates/tajneed/department-edit.html',
+                templateUrl: '/templates/tajneed/tajneed-edit.html',
                 controller: 'TajneedController'
             });
 

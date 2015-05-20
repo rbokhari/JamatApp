@@ -22,6 +22,62 @@ namespace Jamat.DC
             return await Task.Run(() => _ctx.Tajneeds.Include(c=>c.AuxilaryDetail).Include(c=>c.RegionDetail).Include(c=>c.TajneedIncomes.Select(a=>a.TypeName)));
         }
 
+        public async Task<IQueryable<Tajneed>> GetTajneedListByAuxilaryId(int id)
+        {
+            return await Task.Run(() => 
+                _ctx.Tajneeds
+                .Where(c=>c.AuxilaryId == id)
+                .Include(c => c.AuxilaryDetail)
+                .Include(c => c.RegionDetail)
+                .Include(c => c.NationalityDetail)
+                .Include(c => c.TajneedIncomes.Select(a => a.TypeName)));
+        }
+
+        public async Task<IQueryable<Tajneed>> GetTajneedListByNationalityId(int id)
+        {
+            return await Task.Run(() =>
+                _ctx.Tajneeds
+                .Where(c => c.NationalityId == id)
+                .Include(c => c.AuxilaryDetail)
+                .Include(c => c.RegionDetail)
+                .Include(c => c.NationalityDetail)
+                .Include(c => c.TajneedIncomes.Select(a => a.TypeName)));
+
+        }
+
+        public async Task<IQueryable<Tajneed>> GetTajneedListByRegionId(int id)
+        {
+            return await Task.Run(() =>
+                _ctx.Tajneeds
+                .Where(c => c.RegionId == id)
+                .Include(c => c.AuxilaryDetail)
+                .Include(c => c.RegionDetail)
+                .Include(c=>c.NationalityDetail)
+                .Include(c => c.TajneedIncomes.Select(a => a.TypeName)));
+        }
+
+        public async Task<IQueryable<Tajneed>> GetTajneedListByMosi()
+        {
+            return await Task.Run(() =>
+                _ctx.Tajneeds
+                .Where(c => c.IsMosi == 1)
+                .Include(c => c.AuxilaryDetail)
+                .Include(c => c.RegionDetail)
+                .Include(c => c.NationalityDetail)
+                .Include(c => c.TajneedIncomes.Select(a => a.TypeName)));
+        }
+
+        public async Task<IQueryable<Tajneed>> GetTajneedSearch(string firstname)
+        {
+            return await Task.Run(() =>
+                _ctx.Tajneeds
+                    .Where(c => c.FirstName.ToLower().Contains(firstname.ToLower()))
+                    .Include(c => c.AuxilaryDetail)
+                    .Include(c => c.RegionDetail)
+                    .Include(c => c.NationalityDetail)
+                    .Include(c => c.TajneedIncomes.Select(a => a.TypeName)));
+        }
+
         public IQueryable<Tajneed> GetTajneed(int id)
         {
             return _ctx.Tajneeds.Where(r => r.Id == id)
@@ -29,6 +85,7 @@ namespace Jamat.DC
                 .Include(c=>c.AuxilaryDetail)
                 .Include(c=>c.CountryDetail)
                 .Include(c=>c.RegionDetail)
+                .Include(c => c.NationalityDetail)
                 .Include(c=>c.TajneedIncomes.Select(a=>a.TypeName));
         }
 
@@ -49,8 +106,6 @@ namespace Jamat.DC
         {
             try
             {
-                newTajneed.CreatedBy = 1;
-                newTajneed.CreatedOn = DateTime.Now;
                 _ctx.Tajneeds.Add(newTajneed);
                 return true;
             }
@@ -76,13 +131,10 @@ namespace Jamat.DC
         }
 
 
-
         public bool AddIncome(TajneedIncome newIncome)
         {
             try
             {
-                newIncome.CreatedBy = 1;
-                newIncome.CreatedOn = DateTime.Now;
                 _ctx.TajneedIncomes.Add(newIncome);
                 return true;
             }
@@ -173,5 +225,7 @@ namespace Jamat.DC
                     CountName = c.Key.IsMosi == 1 ? "YES" : "NO"
                 });
         }
+
+
     }
 }

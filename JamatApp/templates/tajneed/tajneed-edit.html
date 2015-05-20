@@ -1,9 +1,177 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
+﻿<div class="page-heading">
+    <h3>
+        Tajneed
+    </h3>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Tajneed</a>
+        </li>
+        <li>
+            <a href="/jamat/tajneed"> Listing </a>
+        </li>
+        <li class="active">Update</li>
+    </ul>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Update Tajneed
+                </header>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="frmTajneed" name="frmTajneed" novalidate role="form" ng-submit="save(tajneed[0])">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tFirstName" class="col-lg-4 col-sm-4 control-label">Salutation :</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="tajneed[0].salutation" id="tSalutation" name="tSalutation" required>
+                                        <option value="Mr">Mr</option>
+                                        <option value="Mrs">Mrs</option>
+                                    </select>
+                                    <div class="help-block" ng-show="frmTajneed.tSalutation.$error.required && frmTajneed.tSalutation.$dirty">*</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tFirstName" class="col-lg-4 col-sm-4 control-label">First Name :</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].firstName" id="tFirstName" name="tFirstName" required>
+                                    <input type="hidden" ng-model="tajneed[0].id"/>
+                                    <div class="help-block" ng-show="frmTajneed.txtCode.$error.required && frmTajneed.txtCode.$dirty">Please enter code !</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tLastName" class="col-lg-4 col-sm-4 control-label">Middle Name :</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].middleName" id="tMiddleName" name="tMiddleName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tLastName" class="col-lg-4 col-sm-4 control-label">Last Name :</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].lastName" id="tLastName" name="tLastName" required>
+                                    <div class="help-block" ng-show="frmTajneed.txtCode.$error.required && frmTajneed.txtCode.$dirty">Please enter code !</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cCountryId" class="col-lg-4 col-sm-4 control-label">Country :</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="tajneed[0].countryId" id="cCountryId" name="cCountryId" ng-init="loadCountry()" ng-options="Country.countryId as Country.countryName for Country in Countries" ng-change="loadRegionsByCountryId(tajneed[0].countryId)" required></select>
+                                </div>
+                            </div>
 
-</body>
-</html>
+                            <div class="form-group">
+                                <label for="cAuxilary" class="col-lg-4 col-sm-4 control-label">Auxilary :</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control" id="cAuxilary" ng-model="tajneed[0].auxilaryId" name="cAuxilary" ng-model="employeeDef.postedTo" ng-init="loadAuxilary()" ng-options="Auxilary.id as Auxilary.nameEn for Auxilary in Auxilaries" required></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tResidentNo" class="col-lg-4 col-sm-4 control-label">Resident No :</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].residentNumber" id=" tresidentno" name="tResidentNo">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tMobile" class="col-lg-4 col-sm-4 control-label">Mobile Phone :</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].mobileNumber" id=" tmobile" name="tMobile">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tCurrentAddress" class="col-lg-4 col-sm-4 control-label">Current Address :</label>
+                                <div class="col-lg-6">
+                                    <textarea class="form-control" ng-model="tajneed[0].currentAddress" id=" tcurrentaddress" name="tCurrentAddress"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="chkMosi" class="col-lg-4 col-sm-4 control-label">Is Mosi :</label>
+                                <div class="col-lg-6 slide-toggle">
+                                    <input type="checkbox" class="js-switch" ng-model="tajneed[0].isMosi" id=" chkmosi" name="chkMosi" ng-true-value="1" ng-false-value="0" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tFatherName" class="col-lg-4 col-sm-4 control-label">Father Name:</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].fatherName" id=" tfathername" name="tFatherName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tFatherName" class="col-lg-4 col-sm-4 control-label">Husband Name:</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].husbandName" id=" thusbandname" name="thusbandname">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tdob" class="col-lg-4 col-sm-4 control-label">DOB :</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].birthDate" id="tdob" name="tdob" required="">
+                                    <div class="help-block" ng-show="frmTajneed.txtCode.$error.required && frmTajneed.txtCode.$dirty">Please enter code !</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cNationality" class="col-lg-4 col-sm-4 control-label">Nationality :</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="tajneed[0].nationalityId" id=" cnationality" name="cNationality" ng-init="loadNationality()" ng-options="Nationality.id as Nationality.nameEn for Nationality in Nationalities" required></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cRegionId" class="col-lg-4 col-sm-4 control-label">Region :</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control" ng-model="tajneed[0].regionId" id="cRegionId" name="cRegionId" ng-options="Region.regionId as Region.regionName for Region in Regions" required></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tPassportNo" class="col-lg-4 col-sm-4 control-label">Passport No :</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].passportNumber" id=" tpassportno" name="tPassportNo">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tHomePhone" class="col-lg-4 col-sm-4 control-label">Home Phone :</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].homeNumber" id=" thomephone" name="tHomePhone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tBusinessPhone" class="col-lg-4 col-sm-4 control-label">Business Phone :</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].businessNumber" id=" tbusinessphone" name="tBusinessPhone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tPermanentAddress" class="col-lg-4 col-sm-4 control-label">Permanent Address :</label>
+                                <div class="col-lg-6">
+                                    <textarea class="form-control" ng-model="tajneed[0].permanentAddress" id=" tpermanentaddress" name="tPermanentAddress"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tWassiyatNo" class="col-lg-4 col-sm-4 control-label">Wassiyat No :</label>
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].wassiyatNumber" id=" twassiyatno" name="tWassiyatNo">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-actions">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>  Update</button>
+                                <button class="btn btn-primary"><i class="fa fa-undo"></i> Cancel</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</div>

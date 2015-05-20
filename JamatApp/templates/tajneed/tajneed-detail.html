@@ -60,10 +60,10 @@
                         <div class="col-md-3">
                             <div class="text-center profile-pic">
                                 <img src="/Content/img/profile-pic.jpg" ng-show="!employee[0].empPicture" style="height: 220px; width: 220px;" width="220px" height="220px" />
-                                <img ng-show="employee[0].empPicture" src="data:image/jpeg;base64,{{employee[0].empPicture}}" style="height: 220px; width: 220px;" width="220px" height="220px" alt="">
+                                <img ng-show="employee[0].empPicture" src="data:image/jpeg;base64,{{tajneed[0].empPicture}}" style="height: 220px; width: 220px;" width="220px" height="220px" alt="">
                             </div>
                             <ul class="nav nav-stacked">
-                                <li><i class="fa fa-hand-o-right"><a ng-href="/HRMSPortal/employee/edit/{{tajneed[0].id}}"><i class="icon-save"></i> Update</a></i></li>
+                                <li><i class="fa fa-hand-o-right"><a ng-href="/jamat/tajneed/edit/{{tajneed[0].id}}"><i class="icon-save"></i> Update</a></i></li>
                                 <li><i class="fa fa-hand-o-right"><a href="" ng-click="showIncome(tajneed[0].id)"><i class="icon-external-link"></i> Add Monthly Chanda</a></i></li>
                                 <li><i class="fa fa-hand-o-right"><a href="" ng-click="showPassport(tajneed[0].id)"><i class="icon-external-link"></i> Add Tehrik Jadid</a></i></li>
                                 <li><i class="fa fa-hand-o-right"><a href="" ng-click="showPassport(tajneed[0].id)"><i class="icon-external-link"></i> Add Waqf Jadid</a></i></li>
@@ -169,7 +169,7 @@
                                 </address>
                             </div>
                             <hr />
-                            <a ng-href="/hrmsportal/employee/edit/{{employee[0].id}}" class="btn btn-info">
+                            <a ng-href="/jamat/tajneed/edit/{{tajneed[0].id}}" class="btn btn-info">
                                 <i class="icon-save"></i>
                                 Update
                             </a>

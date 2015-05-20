@@ -33,6 +33,73 @@ namespace JamatApp.Controllers
             return tajneeds;
         }
 
+
+        [Route("api/tajneed/GetTajneedByAuxilary/{id}")]
+        [HttpGet]
+        public Task<IQueryable<Tajneed>> GetTajneedByAuxilary(int id)
+        {
+            // IQueryable filter data inside sql query and on database side get specified filter results only, 
+            //where as IEnumerable get all data from databse and filter it on client side
+
+            //System.Threading.Thread.Sleep(1000);
+            var tajneeds = _repo.GetTajneedListByAuxilaryId(id);
+
+            return tajneeds;
+        }
+
+        [Route("api/tajneed/GetTajneedByNationality/{id}")]
+        [HttpGet]
+        public Task<IQueryable<Tajneed>> TajneedByNationality(int id)
+        {
+            // IQueryable filter data inside sql query and on database side get specified filter results only, 
+            //where as IEnumerable get all data from databse and filter it on client side
+
+            //System.Threading.Thread.Sleep(1000);
+            var tajneeds = _repo.GetTajneedListByNationalityId(id);
+
+            return tajneeds;
+        }
+
+        [Route("api/tajneed/GetTajneedByRegion/{id}")]
+        [HttpGet]
+        public Task<IQueryable<Tajneed>> TajneedByRegion(int id)
+        {
+            // IQueryable filter data inside sql query and on database side get specified filter results only, 
+            //where as IEnumerable get all data from databse and filter it on client side
+
+            //System.Threading.Thread.Sleep(1000);
+            var tajneeds = _repo.GetTajneedListByRegionId(id);
+
+            return tajneeds;
+        }
+
+        [Route("api/tajneed/GetTajneedByMosi")]
+        [HttpGet]
+        public Task<IQueryable<Tajneed>> TajneedByMosi()
+        {
+            // IQueryable filter data inside sql query and on database side get specified filter results only, 
+            //where as IEnumerable get all data from databse and filter it on client side
+
+            //System.Threading.Thread.Sleep(1000);
+            var tajneeds = _repo.GetTajneedListByMosi();
+
+            return tajneeds;
+        }
+
+        [Route("api/tajneed/GetTajneedSearch/")]
+        [HttpGet]
+        public Task<IQueryable<Tajneed>> TajneedBySearch()
+        {
+            // IQueryable filter data inside sql query and on database side get specified filter results only, 
+            //where as IEnumerable get all data from databse and filter it on client side
+
+            //System.Threading.Thread.Sleep(1000);
+            var tajneeds = _repo.GetTajneedSearch("ra");
+
+            return tajneeds;
+        }
+
+
         [Route("api/tajneed/getTajneedCount")]
         public Task<Int32> GetTajneedCount()
         {
@@ -110,11 +177,34 @@ namespace JamatApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_repo.AddTajneed(newTajneed) && _repo.Save())
+                if (newTajneed.Id == 0)
                 {
-                    return Request.CreateResponse(HttpStatusCode.Created, newTajneed);
-                    //return new HttpResponseMessage(HttpStatusCode.OK);
+                    if (Request.Headers.Contains("userId"))
+                    {
+                        newTajneed.CreatedBy = Convert.ToInt32(Request.Headers.GetValues("userId").First());
+                    }
+                    newTajneed.CreatedOn = DateTime.Now;
+
+                    if (_repo.AddTajneed(newTajneed) && _repo.Save())
+                    {
+                        return Request.CreateResponse(HttpStatusCode.Created, newTajneed);
+                        //return new HttpResponseMessage(HttpStatusCode.OK);
+                    }
                 }
+                else
+                {
+                    if (Request.Headers.Contains("userId"))
+                    {
+                        newTajneed.ModifiedBy = Convert.ToInt32(Request.Headers.GetValues("userId").First());
+                    }
+                    newTajneed.ModifiedOn = DateTime.Now;
+
+                    if (_repo.UpdateTajneed(newTajneed) && _repo.Save())
+                    {
+                        return Request.CreateResponse(HttpStatusCode.Created, newTajneed);
+                    }
+                }
+
                 return Request.CreateResponse(HttpStatusCode.BadRequest, GetErrorMessages());
             }
             return null;
