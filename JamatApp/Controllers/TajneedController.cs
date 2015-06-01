@@ -88,13 +88,13 @@ namespace JamatApp.Controllers
 
         [Route("api/tajneed/GetTajneedSearch/")]
         [HttpGet]
-        public Task<IQueryable<Tajneed>> TajneedBySearch()
+        public Task<IQueryable<Tajneed>> TajneedBySearch([FromUri]Tajneed search)
         {
             // IQueryable filter data inside sql query and on database side get specified filter results only, 
             //where as IEnumerable get all data from databse and filter it on client side
 
             //System.Threading.Thread.Sleep(1000);
-            var tajneeds = _repo.GetTajneedSearch("ra");
+            var tajneeds = _repo.GetTajneedSearch(search);
 
             return tajneeds;
         }

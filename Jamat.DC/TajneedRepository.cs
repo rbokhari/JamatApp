@@ -67,11 +67,17 @@ namespace Jamat.DC
                 .Include(c => c.TajneedIncomes.Select(a => a.TypeName)));
         }
 
-        public async Task<IQueryable<Tajneed>> GetTajneedSearch(string firstname)
+        public async Task<IQueryable<Tajneed>> GetTajneedSearch(Tajneed search)
         {
             return await Task.Run(() =>
                 _ctx.Tajneeds
-                    .Where(c => c.FirstName.ToLower().Contains(firstname.ToLower()))
+                    .Where(c => 
+                        c.FirstName.ToLower().Contains(search.FirstName.ToLower()) || 
+                        c.FatherName.ToLower().Contains(search.FatherName.ToLower()) ||
+                        c.HusbandName.ToLower().Contains(search.HusbandName.ToLower()) ||
+                        c.MobileNumber.Contains(search.MobileNumber) ||
+                        c.WassiyatNumber.Contains(search.WassiyatNumber) ||
+                        c.ResidentNumber.Contains(search.ResidentNumber))
                     .Include(c => c.AuxilaryDetail)
                     .Include(c => c.RegionDetail)
                     .Include(c => c.NationalityDetail)

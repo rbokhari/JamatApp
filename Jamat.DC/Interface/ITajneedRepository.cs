@@ -19,7 +19,7 @@ namespace Jamat.DC
 
         Task<IQueryable<Tajneed>> GetTajneedListByMosi();
 
-        Task<IQueryable<Tajneed>> GetTajneedSearch(string firstname);
+        Task<IQueryable<Tajneed>> GetTajneedSearch(Tajneed search);
 
         Task<Int32> GetTajneedCount();
 

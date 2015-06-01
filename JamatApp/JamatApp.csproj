@@ -523,6 +523,8 @@
     <Content Include="Scripts\angularFileUpload\angular-file-upload.min.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <None Include="Properties\PublishProfiles\amc - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\amc - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\amc.pubxml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
