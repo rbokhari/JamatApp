@@ -35,7 +35,9 @@ namespace Jamat.DC
             return await Task.Run(() => 
                 _ctx.FinancialYears
                 .Include(a=>a.ChandaTypeDetail)
-                .Include(a=>a.AuxilaryDetail));
+                .Include(a=>a.AuxilaryDetail)
+                .Include(a=>a.YearBudget
+                        .Select(c=>c.FinancialYearBudgetSub)));
         }
 
         public async Task<FinancialYear> GetFiancialYear(int id)
@@ -45,6 +47,7 @@ namespace Jamat.DC
                 .Include(a => a.ChandaTypeDetail)
                 .Include(a => a.AuxilaryDetail)
                 .Include(c => c.YearBudget)
+                .Include(a=>a.YearBudget.Select(c=>c.FinancialYearBudgetSub))
                 .FirstOrDefaultAsync();
         }
 
@@ -104,7 +107,6 @@ namespace Jamat.DC
             {
                 return false;
             }
-
         }
 
 
@@ -120,6 +122,34 @@ namespace Jamat.DC
             return await _ctx.FinancialYearBudgets
                 .Where(c => c.YearId == yearId)
                 .FirstOrDefaultAsync();
+        }
+
+
+        public bool AddFinancialBudgetSub(FinancialYearBudgetSub newBudgetSub)
+        {
+            try
+            {
+                newBudgetSub.CreatedBy = 1;
+                newBudgetSub.CreatedOn = DateTime.UtcNow;
+                _ctx.FinancialYearBudgetSubs.Add(newBudgetSub);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<IQueryable<FinancialYearBudgetSub>> GetFiancialYearBudgetSubs(int budgetId)
+        {
+            return await Task.Run(() => _ctx.FinancialYearBudgetSubs.Where(c => c.BudgetId == budgetId));
+        }
+
+
+        public async Task<FinancialYearBudgetSub> GetFiancialYearBudgetSubsBySubId(int subBudgetId)
+        {
+            return await Task.Run(() => _ctx.FinancialYearBudgetSubs.Where(c => c.BudgetSubId == subBudgetId).SingleOrDefaultAsync());
         }
     }
 

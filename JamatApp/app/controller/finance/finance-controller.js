@@ -9,6 +9,7 @@ jamatModule.controller('FinanceController',
         console.log("finance controller");
         $scope.isBusy = false;
         $scope.finance = "";
+        $scope.subHeadReady = false;
 
         $scope.loadChandaType = function() {
             $scope.isBusy = true;
@@ -47,7 +48,7 @@ jamatModule.controller('FinanceController',
                 .then(function (response) {
                     //alert("success" + response.yearBudget.length);
                     $scope.chandaYearPromise.notes = "";
-                    if (response.yearBudget.length == 0) {
+                    if (response.yearBudget.length === 0) {
                         console.log("calculate income");
                         $scope.getAuxilaryIncome = financeRepository.getAuxilaryIncome(response.auxilaryId);
                         $scope.getAuxilaryIncome.$promise.then(function() {
@@ -61,13 +62,15 @@ jamatModule.controller('FinanceController',
                         //alert(response.yearBudget[0].totalIncome);
                         $scope.chandaYearPromise.notes = response.yearBudget[0].description;
                         $scope.income = response.yearBudget[0].totalIncome;
-            }
+                    }
+                    console.log("<<<<<<<<<<>>>>>>>>>>>>");
+                    console.log($scope.chandaYearPromise);
                 }, function () {
                 //alert("error");
             })
-                .then(function () {
-                    $scope.isBusy = false;
-                });
+            .then(function () {
+                $scope.isBusy = false;
+            });
         };
 
 
@@ -93,23 +96,30 @@ jamatModule.controller('FinanceController',
             });
         };
 
-        $scope.saveFinanceBudget = function (finance) {
-            //console.log(finance);
+
+        $scope.saveFinanceBudget = function(finance) {
+            console.log(finance);
             financeRepository.addAuxilaryBudget(finance.yearId, finance.notes)
                 .$promise
                 .then(
-                    function (resultJalsa) {
-                        $scope.resultData = resultJalsa;
+                    function(result) {
+
+                        $scope.resultData = result;
                         $scope.visible = true;
+                        $scope.subHeadReady = true;
+
+                        console.log("---->", $scope.subHeadReady);
                         //appRepository.showErrorGritterNotification();
-                    }, function (response) {
+                    }, function(error) {
+
                         console.log("finance year save - Error !");
+                        console.log("error", error);
                         //appRepository.showErrorGritterNotification();
-                        $scope.errors = response.data;
+                        $scope.errors = error.data;
                     }
                 );
-            
         };
+
 
         $scope.getFinanceBudget = function () {
             //console.log(finance);
@@ -130,6 +140,32 @@ jamatModule.controller('FinanceController',
                 );
 
         };
+
+        $scope.saveFinanceBudgetSub = function (id, sub) {
+            
+            sub.budgetId = id;
+            console.log(sub);
+            if (id === 0 || sub.subTitle === "" || sub.subAmount === "" || sub.subAmount === "0") return false;
+            
+            financeRepository.addFinanceBudgetSub(sub)
+                .$promise
+                .then(
+                    function (result) {
+                        $scope.chandaYearPromise.yearBudget[0].financialYearBudgetSub.push(result);
+                        sub.subTitle = "";
+                        sub.subAmount = 0;
+                        $scope.resultData = result;
+                    }, function (error) {
+
+                        
+                        console.log("finance budget sub save - Error !");
+                        console.log("error", error);
+                        //appRepository.showErrorGritterNotification();
+                        $scope.errors = error.data;
+                    }
+                );
+        };
+
 
     }
 ]);

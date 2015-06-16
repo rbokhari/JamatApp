@@ -154,7 +154,7 @@ jamatModule.controller('TajneedController',
 
         $scope.save = function(tajneed) {
             $scope.errors = [];
-
+            tajneed.statusId = 1;
             tajneedRepository.addTajneed(tajneed)
                 .$promise
                 .then(

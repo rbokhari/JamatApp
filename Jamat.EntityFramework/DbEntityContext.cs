@@ -50,6 +50,8 @@ namespace Jamat.EntityFramework
 
         public DbSet<FinancialYearBudget> FinancialYearBudgets { get; set; }
 
+        public DbSet<FinancialYearBudgetSub> FinancialYearBudgetSubs { get; set; }
+
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
 

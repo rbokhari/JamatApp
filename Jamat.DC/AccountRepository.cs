@@ -23,11 +23,11 @@ namespace Jamat.DC
         {
             try
             {
-                return new User()
-                {
-                    UserName = username,
-                    UserPassword = EncryptionHelper.Encrypt(userPass)
-                };
+                //return new User()
+                //{
+                //    UserName = username,
+                //    UserPassword = EncryptionHelper.Encrypt(userPass)
+                //};
 
                 //userPass = PasswordHash.CreateHash(userPass);
 

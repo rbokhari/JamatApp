@@ -121,6 +121,24 @@ namespace JamatApp.Controllers
             return ModelState.Values.SelectMany(x => x.Errors.Select(e => e.ErrorMessage));
         }
 
+        [Authorize]
+        [Route("finance/budgetSub")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> PostBudgetSub([FromBody] FinancialYearBudgetSub newSub)
+        {
+            if (ModelState.IsValid)
+            {
+                if (newSub.BudgetSubId == 0)
+                {
+                    if (_repo.AddFinancialBudgetSub(newSub) && _repo.Save())
+                    {
+                        newSub = await _repo.GetFiancialYearBudgetSubsBySubId(newSub.BudgetSubId);
+                        return Request.CreateResponse(HttpStatusCode.Created, newSub);
+                    }
+                }
+            }
+            return Request.CreateResponse(HttpStatusCode.BadRequest, GetErrorMessages());
+        }
 
     }
 }

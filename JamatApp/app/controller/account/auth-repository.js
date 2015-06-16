@@ -60,7 +60,6 @@ jamatModule.factory('authRepository', [
             var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
 
             var deferred = $q.defer();
-            console.log(loginData);
 
             accountRepository.getUserByUserName(loginData.userName, loginData.password)
                 .$promise

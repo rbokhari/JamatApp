@@ -29,6 +29,10 @@ jamatModule.factory('financeRepository',
             return $resource('/api/finance/getBudget/' + yearId).get();
         };
 
+        var _addFinanceBudgetSub = function (sub) {
+            return $resource('/api/finance/budgetSub').save(sub);
+        };
+
 
         return{
             getAllChandaYear: _getAllChandaYear,
@@ -36,7 +40,8 @@ jamatModule.factory('financeRepository',
             getAuxilaryIncome:_getAuxilaryIncome,
             addFinanceYear: _addFinanceYear,
             addAuxilaryBudget: _addAuxilaryBudget,
-            getAuxilaryBudget: _getAuxilaryBudget
+            getAuxilaryBudget: _getAuxilaryBudget,
+            addFinanceBudgetSub: _addFinanceBudgetSub
 
         };
 

@@ -17,13 +17,12 @@ jamatModule.controller('DashboardController',
         $scope.isBusy = true;
 
         tajneedRepository.getTajneedCount()
-        .then(function (response) {
+            .then(function (response) {
             //console.log(response.data);
             //alert("yes " + response);
-            $scope.totalTajneed = response.data;
+                $scope.totalTajneed = response.data;
         });
         
-
         tajneedRepository.getCountByAuxilary()
         .$promise.then(function (response) {
             $scope.countTajneedAuxilary = response;

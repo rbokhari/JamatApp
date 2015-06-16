@@ -33,40 +33,40 @@
                     Chanda Year - Promise
                     <span class="tools pull-right">
                         <a href="" class="fa fa-print noPrint" ng-print print-element-id="dvPrint">&nbsp;Print</a>
-                        <a href="" class="fa fa-plus-circle  red" ng-show="chandaYearPromise.yearBudget.length || visible">&nbsp;Add Sub Expense</a>
                     </span>
 
                 </header>
                 <div class="panel-body">
-                    <form class="form-horizontal" id="frm" name="frm" novalidate role="form">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-lg-4 col-sm-4 control-label">Chanda Type :</label>
-                                    <div class="col-lg-6">
-                                        <label class="form-control" ng-bind="chandaYearPromise.chandaTypeDetail.nameEn"></label>
-                                        <input type="hidden" ng-model="chandaYearPromise.yearId" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="col-lg-4 col-sm-4 control-label">Chanda Period :</label>
-                                    <div class="col-lg-6">
-                                        <label class="label label-success">{{chandaYearPromise.startDate | date:'dd MMM yyyy'}}</label>
-                                        <label class="label label-danger">{{chandaYearPromise.endDate | date:'dd MMM yyyy'}}</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    &nbsp;
-                                </div>
-                                <div class="form-group">
-                                    &nbsp;
-                                </div>
 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label">Chanda Type :</label>
+                                <div class="col-lg-6">
+                                    <label class="form-control" ng-bind="chandaYearPromise.chandaTypeDetail.nameEn"></label>
+                                    <input type="hidden" ng-model="chandaYearPromise.yearId"/>
+                                </div>
                             </div>
                         </div>
-                            <div class="col-md-12">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-lg-4 col-sm-4 control-label">Chanda Period :</label>
+                                <div class="col-lg-6">
+                                    <label class="label label-success">{{chandaYearPromise.startDate | date:'dd MMM yyyy'}}</label>
+                                    <label class="label label-danger">{{chandaYearPromise.endDate | date:'dd MMM yyyy'}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                &nbsp;
+                            </div>
+                            <div class="form-group">
+                                &nbsp;
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <form class="form-horizontal" id="frm" name="frm" novalidate role="form">
                                 <div class="alert alert-info">
                                     <div class="form-group">
                                         <label class="col-lg-4 col-sm-4 control-label">Chanda Majlis :</label>
@@ -104,32 +104,187 @@
                                     <div class="form-group">
                                         <label class="col-lg-4 col-sm-4 control-label">Total :</label>
                                         <div class="col-lg-6">
-                                            <label class="form-control">{{((((income * 12) / 100) * 30) /100) + ((((income * 12) / 100) * 30) /100)  | number:3}}</label>
+                                            <label class="form-control">{{((((income * 12) / 100) * 30) /100) + ((((income * 12) / 100) * 30) /100) | number:3}}</label>
                                         </div>
                                     </div>
                                 </div>
-                                
-                            </div>
-                        
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="tNote" class="col-lg-2 col-sm-2 control-label">Notes :</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" ng-model="chandaYearPromise.notes" id="tNote" name="tNote">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="tNote" class="col-lg-2 col-sm-2 control-label">Notes :</label>
+                                            <div class="col-lg-8">
+                                                <input type="text" class="form-control" ng-model="chandaYearPromise.notes" id="tNote" name="tNote">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row" ng-hide="chandaYearPromise.yearBudget.length || visible">
+                                    <div class="form-actions">
+                                        <div id="dvSave" class="col-md-10 col-lg-offset-2">
+                                            <span class="btn btn-success">
+                                                <i class="fa fa-save"></i>&nbsp;
+                                                <button type="button" ng-click="saveFinanceBudget(chandaYearPromise)" style="background-color: transparent; border: none;">Save</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" ng-show="chandaYearPromise.yearBudget[0].statusId == 1">
+                                    <div class="form-actions">
+                                        <div class="col-md-10 col-lg-offset-2">
+                                            <span class="btn btn-info">
+                                                <i class="fa fa-mail-forward"></i>&nbsp;
+                                                <button type="button" ng-click="" style="background-color: transparent; border: none;">Send for Approval</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="row" ng-hide="chandaYearPromise.yearBudget.length || visible">
-                            <div class="form-actions">
-                                <div id="dvSave" class="col-md-10 col-lg-offset-2">
-                                    <span class="btn btn-success"><i class="fa fa-save"></i>&nbsp;<button type="button" ng-click="saveFinanceBudget(chandaYearPromise)" style="background-color: transparent; border: none;">Save</button></span>
+
+                        <div class="col-lg-6">
+                            <div class="alert" ng-if="chandaYearPromise.yearBudget.length || subHeadReady">
+                                <div class="row-fluid">
+                                    <h4>Expense Detail <span class="pull-right">500</span></h4>
+                                    <hr/>
+                                    <div class="form-inline" ng-hide="chandaYearPromise.yearBudget[0].statusId >1">
+                                        <form id="frmSub" name="frmSub" novalidate role="form">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <div class="form-group">
+                                                <label for="tExpenseHead">Expense Head :</label>
+                                                <input type="text" class="form-control" id="tExpenseHead" ng-model="sub.subTitle"/>
+                                                <div class="help-block" ng-show="frmSub.tExpenseHead.$error.required && frmSub.tExpenseHead.$dirty">*</div>
+                                            </div>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <div class="form-group">
+                                                <label for="tExpenseAmount">Amount : </label>&nbsp;&nbsp;
+                                                <input type="text" class="form-control" id="tExpenseAmount" ng-model="sub.subAmount"/>
+                                                <div class="help-block" ng-show="frmSub.tExpenseAmount.$error.required && frmSub.tExpenseAmount.$dirty">*</div>
+                                            </div>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <button type="submit" class="btn btn-primary" ng-disabled="frmSub.$invalid" ng-click="saveFinanceBudgetSub(chandaYearPromise.yearBudget[0].budgetId, sub)">+ Add</button>
+
+                                        </form>
+                                        <hr/>
+                                    </div>
+
+                                </div>
+                                <br/>
+                                <div class="row-fluid">
+                                    <table class="table table-bordered table-advance">
+                                        <thead>
+                                        <tr class="info">
+                                            <th>Sr.</th>
+                                            <th>Expense Type</th>
+                                            <th>Amount</th>
+                                            <th ng-hide="chandaYearPromise.yearBudget[0].statusId >1">Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="budgetsub in chandaYearPromise.yearBudget[0].financialYearBudgetSub">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{budgetsub.subTitle}}</td>
+                                            <td>{{budgetsub.subAmount | number:3}}</td>
+                                            <td ng-hide="chandaYearPromise.yearBudget[0].statusId >1"><i class="fa fa-trash-o"></i></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
+
                 </div>
+                <hr/>
+
+                <header class="panel-heading" ng-show="chandaYearPromise.yearBudget[0].statusId > 1">
+                    <h4>Second Level Approval</h4>
+                </header>
+                <div class="panel-body" ng-show="chandaYearPromise.yearBudget[0].statusId > 1">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form class="form-horizontal" id="frmSecondLevel" novalidate role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-sm-4 control-label">Approved By :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="tSecondLevelApprovalBy" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-sm-4 control-label">Approved Date :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="tSecondLevelApprovalOn" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-sm-4 control-label">Remarks :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="tSecondLevelRemarks" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <i class="fa fa-paperclip"></i><a href="" class="col-lg-4 col-sm-4 control-label">Add Attachment :</a>
+                                    <div class="col-lg-6">
+
+                                    </div>
+                                </div>
+                                <div class="form-actions" ng-hide="chandaYearPromise.yearBudget[0].statusId >2">
+                                    <div class="col-lg-offset-4 col-lg-10">
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>  Approve</button>
+                                        <button class="btn btn-danger"><i class="fa fa-undo"></i> Reject</button>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <header class="panel-heading" ng-show="chandaYearPromise.yearBudget[0].statusId > 2">
+                    <h4>Last Level Approval</h4>
+                </header>
+                <div class="panel-body" ng-show="chandaYearPromise.yearBudget[0].statusId > 2">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form class="form-horizontal" id="frmSecondLevel" novalidate role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-sm-4 control-label">Approved By :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="tSecondLevelApprovalBy" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-sm-4 control-label">Approved Date :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="tSecondLevelApprovalOn" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-sm-4 control-label">Remarks :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" id="tSecondLevelRemarks" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <i class="fa fa-paperclip"></i><a href="" class="col-lg-4 col-sm-4 control-label">Add Attachment :</a>
+                                    <div class="col-lg-6">
+
+                                    </div>
+                                </div>
+                                <div class="form-actions" ng-hide="chandaYearPromise.yearBudget[0].statusId >3">
+                                    <div class="col-lg-offset-4 col-lg-10">
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i>  Approve</button>
+                                        <button class="btn btn-danger"><i class="fa fa-undo"></i> Reject</button>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             </section>
         </div>
     </div>
