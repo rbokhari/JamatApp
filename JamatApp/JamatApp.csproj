@@ -523,6 +523,7 @@
     <Content Include="Scripts\angularFileUpload\angular-file-upload.min.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <None Include="Properties\PublishProfiles\amc %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\amc - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\amc - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\amc.pubxml" />
@@ -624,6 +625,10 @@
     <ProjectReference Include="..\Jamat.EntityFramework\Jamat.EntityFramework.csproj">
       <Project>{a4c87b2d-43d3-4a00-b07c-b359bfa1a6b2}</Project>
       <Name>Jamat.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jamat.GLobalVariables\Jamat.GLobalVariables.csproj">
+      <Project>{7fd80f65-c868-4f36-ac15-a6804e92ebce}</Project>
+      <Name>Jamat.GLobalVariables</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

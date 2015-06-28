@@ -71,26 +71,32 @@
                             <div class="form-group">
                                 <label for="tResidentNo" class="col-lg-4 col-sm-4 control-label">Resident No :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed[0].residentNumber" id=" tresidentno" name="tResidentNo">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].residentNumber" id=" tResidentNo" name="tResidentNo">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="tMobile" class="col-lg-4 col-sm-4 control-label">Mobile Phone :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed[0].mobileNumber" id=" tmobile" name="tMobile">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].mobileNumber" id="tMobile" name="tMobile">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tCurrentAddress" class="col-lg-4 col-sm-4 control-label">Current Address :</label>
                                 <div class="col-lg-6">
-                                    <textarea class="form-control" ng-model="tajneed[0].currentAddress" id=" tcurrentaddress" name="tCurrentAddress"></textarea>
+                                    <textarea class="form-control" ng-model="tajneed[0].currentAddress" id=" tCurrentAddress" name="tCurrentAddress"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="chkMosi" class="col-lg-4 col-sm-4 control-label">Is Mosi :</label>
                                 <div class="col-lg-6 slide-toggle">
-                                    <input type="checkbox" class="js-switch" ng-model="tajneed[0].isMosi" id=" chkmosi" name="chkMosi" ng-true-value="1" ng-false-value="0" />
+                                    <input type="checkbox" class="js-switch" ng-model="tajneed[0].isMosi" id=" chkMosi" name="chkMosi" ng-true-value="1" ng-false-value="0" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cStatusId" class="col-lg-4 col-sm-4 control-label">Status :</label>
+                                <div class="col-lg-6 slide-toggle">
+                                    <select class="form-control" ng-model="tajneed[0].statusId" id="cStatusId" name="cStatusId" ng-init="loadStatus()" ng-options="status.id as status.nameEn for status in statuses" required></select>
                                 </div>
                             </div>
 

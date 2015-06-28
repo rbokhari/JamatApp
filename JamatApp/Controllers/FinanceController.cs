@@ -140,5 +140,16 @@ namespace JamatApp.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest, GetErrorMessages());
         }
 
+
+        public async Task<HttpResponseMessage> PostBudgetApproval([FromBody] FinancialYearBudget financialYearBudget,
+            int levelId)
+        {
+            if (ModelState.IsValid)
+            {
+                //if (_repo.AddFinancialBudgetSub())
+            }
+            return Request.CreateResponse(HttpStatusCode.Accepted);
+        }
+
     }
 }

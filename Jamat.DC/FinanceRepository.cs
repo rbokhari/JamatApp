@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Jamat.EntityFramework;
+using Jamat.GLobalVariables;
 
 namespace Jamat.DC
 {
@@ -150,6 +151,55 @@ namespace Jamat.DC
         public async Task<FinancialYearBudgetSub> GetFiancialYearBudgetSubsBySubId(int subBudgetId)
         {
             return await Task.Run(() => _ctx.FinancialYearBudgetSubs.Where(c => c.BudgetSubId == subBudgetId).SingleOrDefaultAsync());
+        }
+
+
+        public bool SendForApproval(int id)
+        {
+            var budget = _ctx.FinancialYearBudgets.Single(c => c.BudgetId == id);
+
+            budget.StatusId = (Int32)ApplicationPreferences.Validation_Details.CHANDA_BUDGET_STATUS_INITIATE;
+
+            _ctx.Entry(budget).State = EntityState.Modified;
+
+            return true;
+        }
+
+        public bool NextLevelApproval(FinancialYearBudget financialYearBudget, int levelId)
+        {
+            var budget = _ctx.FinancialYearBudgets.Single(c => c.BudgetId == financialYearBudget.BudgetId);
+
+            switch (levelId)
+            {
+                case (Int32)ApplicationPreferences.Validation_Details.CHANDA_BUDGET_STATUS_INITIATE:
+                    budget.ApprovalByStep1 = 1;
+                    budget.ApprovalByStep1Date = financialYearBudget.ApprovalByStep1Date;
+                    budget.ApprovalByStep1Remarks = financialYearBudget.ApprovalByStep1Remarks;
+
+                    break;
+                case (Int32)ApplicationPreferences.Validation_Details.CHANDA_BUDGET_STATUS_FIRST_APPROVAL:
+                    budget.ApprovalByStep2 = 2;
+                    budget.ApprovalByStep2Date = financialYearBudget.ApprovalByStep2Date;
+                    budget.ApprovalByStep2Remarks = financialYearBudget.ApprovalByStep2Remarks;
+
+                    break;
+                case (Int32)ApplicationPreferences.Validation_Details.CHANDA_BUDGET_STATUS_SECOND_APPROVAL:
+                    budget.ApprovalByStep3 = 3;
+                    budget.ApprovalByStep3Date = financialYearBudget.ApprovalByStep3Date;
+                    budget.ApprovalByStep3Remarks = financialYearBudget.ApprovalByStep3Remarks;
+
+                    break;
+
+                case (Int32)ApplicationPreferences.Validation_Details.CHANDA_BUDGET_STATUS_APPROVED:
+
+                    break;
+
+            }
+
+            _ctx.Entry(budget).State = EntityState.Modified;
+
+
+            return true;
         }
     }
 

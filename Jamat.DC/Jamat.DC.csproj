@@ -69,6 +69,10 @@
       <Project>{a4c87b2d-43d3-4a00-b07c-b359bfa1a6b2}</Project>
       <Name>Jamat.EntityFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Jamat.GLobalVariables\Jamat.GLobalVariables.csproj">
+      <Project>{7fd80f65-c868-4f36-ac15-a6804e92ebce}</Project>
+      <Name>Jamat.GLobalVariables</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

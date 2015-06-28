@@ -92,6 +92,12 @@
                                     <input type="checkbox" class="js-switch" ng-model="tajneed.isMosi" id=" chkmosi" name="chkMosi" ng-true-value="1" ng-false-value="0" />
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="cStatusId" class="col-lg-4 col-sm-4 control-label">Status :</label>
+                                <div class="col-lg-6 slide-toggle">
+                                    <select class="form-control" ng-model="tajneed[0].statusId" id="cStatusId" name="cStatusId" ng-init="loadStatus()" ng-options="status.id as status.nameEn for status in statuses" required></select>
+                                </div>
+                            </div>
 
                         </div>
                         <div class="col-md-6">

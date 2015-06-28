@@ -83,6 +83,19 @@ jamatModule.controller('TajneedController',
             .then(function () { $scope.isBusy = false; });
         };
 
+        $scope.loadStatus = function () {
+            $scope.isBusy = true;
+            $scope.statuses = validationRepository.getAllTajneedStatus();
+
+            $scope.statuses.$promise.then(function () {
+                //alert("success");
+            }, function () {
+                //alert("error");
+            })
+            .then(function () { $scope.isBusy = false; });
+        };
+
+
         $scope.loadRegionsByCountryId = function (id) {
             $scope.Regions = countryRepository.getAllRegionsByCountryId(id);
         };

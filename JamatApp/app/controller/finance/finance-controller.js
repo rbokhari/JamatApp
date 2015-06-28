@@ -3,8 +3,8 @@
 
 jamatModule.controller('FinanceController',
 [
-    '$scope', '$routeParams', 'validationRepository', 'financeRepository', 'ModalService',
-    function ($scope, $routeParams, validationRepository, financeRepository, ModalService) {
+    '$scope', '$routeParams', 'validationRepository', 'financeRepository', 'ModalService', 'VALIDATION_DETAILS',
+    function ($scope, $routeParams, validationRepository, financeRepository, ModalService, VALIDATION_DETAILS) {
 
         console.log("finance controller");
         $scope.isBusy = false;
@@ -164,7 +164,26 @@ jamatModule.controller('FinanceController',
                         $scope.errors = error.data;
                     }
                 );
+            return true;
         };
+
+
+        $scope.sendForApproval = function(id) {
+
+        };
+
+        $scope.sendForFirstApproval = function (budget, id) {
+
+        };
+
+        $scope.sendForSecondApproval = function (budget, id) {
+
+        };
+
+        $scope.sendForApproved = function (budget, id) {
+
+        };
+
 
 
     }

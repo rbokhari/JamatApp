@@ -33,5 +33,9 @@ namespace Jamat.DC
         Task<FinancialYearBudgetSub> GetFiancialYearBudgetSubsBySubId(int subBudgetId);
 
 
+        bool SendForApproval(int id);
+
+        bool NextLevelApproval(FinancialYearBudget financialYearBudget, int levelId);
+
     }
 }

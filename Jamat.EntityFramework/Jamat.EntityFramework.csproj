@@ -63,6 +63,12 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jamat.GLobalVariables\Jamat.GLobalVariables.csproj">
+      <Project>{7fd80f65-c868-4f36-ac15-a6804e92ebce}</Project>
+      <Name>Jamat.GLobalVariables</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
