@@ -168,6 +168,7 @@ jamatModule.controller('JalsaController',
                 inputs: {
                     title: "Add New Jalsa",
                     parentId: 0,
+                    parentDay:0,
                     resultData: {}
                 }
             }).then(function (modal) {

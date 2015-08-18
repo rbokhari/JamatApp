@@ -41,6 +41,10 @@ jamatModule.factory('validationRepository', ['$resource', 'VALIDATIONS', functio
         return $resource('/api/validation/' + VALIDATIONS.TAJNEED_STATUS + '/GetValidationDetailByValidationId').query();
     };
 
+    var _getAllMonths = function () {
+        return $resource('/api/validation/' + VALIDATIONS.MONTHS + '/GetValidationDetailByValidationId').query();
+    };
+
     return {
 
         getAllDetailsByValidationId: _getAllDetailsByValidationId,
@@ -50,7 +54,8 @@ jamatModule.factory('validationRepository', ['$resource', 'VALIDATIONS', functio
         getAllChandaType: _getAllChandaType,
         getAllCountry: _getAllCountry,
         getAllTajneedType: _getAllTajneedType,
-        getAllTajneedStatus: _getAllTajneedStatus
+        getAllTajneedStatus: _getAllTajneedStatus,
+        getAllMonths: _getAllMonths
 
         //    get: function() {
         //        return $resource('/api/validation').query(); // can use get() instead of query(), but using query() because it except to return back array of objects

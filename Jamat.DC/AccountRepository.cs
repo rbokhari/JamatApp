@@ -34,6 +34,8 @@ namespace Jamat.DC
                 var user = _ctx.Users
                     .Single(c => c.UserName.ToLower().Equals(username.ToLower()));
 
+                //return user;
+
                 if (EncryptionHelper.Decrypt(user.UserPassword).Equals(userPass))
                 {
                     user.UserPassword = string.Empty;

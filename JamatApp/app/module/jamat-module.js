@@ -10,7 +10,8 @@
         "COUNTRY": "5",
         "TAJNEED_TYPE": "6",
         "CHANDA_BUDGET_STATUS": 7,
-        "TAJNEED_STATUS": 8
+        "TAJNEED_STATUS": 8,
+        "MONTHS": 9
 
     })
     .constant("VALIDATION_DETAILS", {
@@ -99,6 +100,12 @@
             .when('/jamat/chandayear/promise/:id', {
                 templateUrl: '/templates/finance/chanda-year-promise.html',
                 controller: 'FinanceController'
+            });
+
+        $routeProvider
+            .when('/jamat/chandapaid/add/', {
+                templateUrl: '/templates/finance/chanda-paid-add.html',
+                controller: 'ChandaController'
             });
 
         $routeProvider

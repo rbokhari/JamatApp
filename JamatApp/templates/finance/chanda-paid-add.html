@@ -1,0 +1,150 @@
+﻿<div class="page-heading">
+    <h3>
+        Chanda Pay - Add New
+    </h3>
+</div>
+<!-- page heading end-->
+<!--body wrapper start-->
+<div class="wrapper" data-ng-init="loadChandaPaidDef()">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="breadcrumb panel">
+                <li>
+                    <a href="/jamat"><i class="fa fa-home">&nbsp;Dashboard </i></a>
+                </li>
+                <li>
+                    <a href="#">Finance</a>
+                </li>
+                <li> <a href="#"> Chanda  </a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Chanda Add
+                </header>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="frmTajneed" name="frm" novalidate role="form">
+                        <div class="container-fluid">
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="tComputerNo" class="col-lg-4 col-sm-4 control-label">Computer No :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" ng-model="chanda.computerNo" id="tComputerNo" name="tComputerNo" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tReceipt" class="col-lg-4 col-sm-4 control-label">Receipt No :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" ng-model="chanda.receiptNo" id="tReceipt" name="tReceipt" required>
+                                        <div class="help-block" ng-show="frm.tReceipt.$error.required && frm.tReceipt.$dirty">Please enter code !</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="tBookId" class="col-lg-4 col-sm-4 control-label">Book Id :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" ng-model="chanda.bookId" id="tBookId" name="tBookId" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tRecepitDate" class="col-lg-4 col-sm-4 control-label">Receipt Date :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" ng-model="chanda.receiptDate" id="tRecepitDate" name="tRecepitDate" required />
+                                        <div class="help-block" ng-show="frm.tRecepitDate.$error.required && frm.tRecepitDate.$dirty">Please enter code !</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-lg-2 col-sm-2 control-label">Tajneed Name :</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="chanda.tajneedName"/>
+                                        <input type="text" class="form-control" ng-model="chanda.tajneedId" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="loadTajneed()"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr />
+                            Chanda Detail Length :  {{ chanda.chandaDetail.length }}
+                            <table class="table table-hovered">
+                                <thead>
+                                    <tr>
+                                        <th>SN</th>
+                                        <th>Year</th>
+                                        <th>Month</th>
+                                        <th>Chanda Type</th>
+                                        <th>Sub Type</th>
+                                        <th>Amount</th>
+                                        <th><button class="btn btn-sm btn-primary" ng-click="addDetail()"><i class="fa fa-plus-circle"></i>&nbsp;add </button></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="chanda in chanda.chandaDetail track by $index">
+                                        <td>{{$index+1}}</td>
+                                        <td>
+                                            <select class="form-control" ng-model="year.chandaYearId" ng-options="chandaYear.id as chandaYear.description for chandaYear in chandaYears" required></select>
+                                        </td>
+                                        <td>
+                                            <select class="form-control" ng-model="year.monthId" ng-options="month.id as month.nameEn for month in months" required></select>
+                                        </td>
+                                        <td>
+                                            <select class="form-control" ng-model="year.chandaTypeId" ng-options="chandaType.id as chandaType.nameEn for chandaType in chandaTypes" required></select>
+                                        </td>
+                                        <td>
+                                            <select class="form-control" ng-model="year.chandaSubTypeId" ng-options="chandaType.id as chandaType.nameEn for chandaType in chandaTypes" required></select>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" ng-model="year.chandaAmount" type="text" />
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-sm btn-danger" ng-click="removeDetail(chanda)"><i class="fa fa-minus-circle"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr/>
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-sm-4 control-label">Issued By :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" required/>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-sm-4 control-label">Total Amount :</label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+
+                            <div class="form-actions">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <button type="submit" class="btn btn-primary" ng-click="saveChanda()"><i class="fa fa-save"></i> Save</button>
+                                    <button class="btn btn-primary"><i class="fa fa-undo"></i> Cancel</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>

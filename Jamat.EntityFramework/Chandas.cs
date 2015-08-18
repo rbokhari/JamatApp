@@ -15,7 +15,7 @@ namespace Jamat.EntityFramework
 
         public int TajneedId { get; set; }
 
-        public int PeriodId { get; set; }
+        public int PeriodId { get; set; }       // yearid
 
         public int BookId { get; set; }
 
@@ -44,6 +44,22 @@ namespace Jamat.EntityFramework
         public decimal ChandaAmount { get; set; }
 
         public DateTime PaidDate { get; set; }
+
+    }
+
+
+    public class ChandaSubHead : TableStrutcture
+    {
+        [Key]
+        public int SubHeadId { get; set; }
+
+        public int ChandaHeadId  { get; set; } // Coming from ValidationDetail Id
+
+        public string SubHeadName { get; set; }
+
+        public String Description { get; set; }
+
+        public int StatusId { get; set; }
 
     }
 

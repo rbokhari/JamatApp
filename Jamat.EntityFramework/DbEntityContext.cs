@@ -38,6 +38,8 @@ namespace Jamat.EntityFramework
 
         public DbSet<ChandaDetail> ChandaDetails { get; set; }
 
+        public DbSet<ChandaSubHead> ChandaSubHeads { get; set; }
+
         public DbSet<Country> Countries { get; set; }
 
         public DbSet<Region> Regions { get; set; }
@@ -51,6 +53,10 @@ namespace Jamat.EntityFramework
         public DbSet<FinancialYearBudget> FinancialYearBudgets { get; set; }
 
         public DbSet<FinancialYearBudgetSub> FinancialYearBudgetSubs { get; set; }
+
+        public DbSet<FinancialYearTajneedBudget> FinancialYearTajneedBudgets { get; set; }
+
+        public DbSet<FinancialYearTajneedPaid> FinancialYearTajneedPaids { get; set; }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }

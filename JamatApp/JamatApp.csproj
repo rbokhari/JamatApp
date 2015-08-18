@@ -22,6 +22,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -237,7 +238,9 @@
     <Content Include="app\controller\account\account-repository.js" />
     <Content Include="app\controller\account\auth-repository.js" />
     <Content Include="app\controller\account\authInterceptorService.js" />
+    <Content Include="app\controller\chanda\chanda-controller.js" />
     <Content Include="app\controller\finance\finance-modal-controller.js" />
+    <Content Include="app\controller\tajneed\tajneed-lookup-modal-controller.js" />
     <Content Include="app\provider\common.js" />
     <Content Include="app\provider\localStorageService.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -554,12 +557,14 @@
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="templates\finance\chanda-paid-add.html" />
     <Content Include="templates\finance\chanda-type.html" />
     <Content Include="templates\finance\chanda-year-add.html" />
     <Content Include="templates\finance\chanda-year-promise.html" />
     <Content Include="templates\finance\chanda-year.html" />
     <Content Include="templates\finance\collection-sheet-list.html" />
     <Content Include="templates\dashboard.html" />
+    <Content Include="templates\finance\tajneed-paid.html" />
     <Content Include="templates\jalsa\jalsa-day-add.html" />
     <Content Include="templates\jalsa\jalsa-add.html" />
     <Content Include="templates\jalsa\jalsa.html" />
@@ -570,6 +575,7 @@
     <Content Include="templates\tajneed\tajneed-add.html" />
     <Content Include="templates\tajneed\tajneed-income.html" />
     <Content Include="templates\tajneed\tajneed-list.html" />
+    <Content Include="templates\tajneed\tajneed-lookup.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
