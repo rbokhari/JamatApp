@@ -47,12 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountRepository.cs" />
+    <Compile Include="ChandaRepository.cs" />
     <Compile Include="EncryptionHelper.cs" />
     <Compile Include="Interface\IAccountRepository.cs" />
+    <Compile Include="Interface\IChandaRepository.cs" />
     <Compile Include="Interface\IFinanceRepository.cs" />
     <Compile Include="Interface\IJalsaRepository.cs" />
+    <Compile Include="Interface\IJamatRepository.cs" />
     <Compile Include="JalsaRepository.cs" />
     <Compile Include="FinanceRepository.cs" />
+    <Compile Include="JamatRepository.cs" />
     <Compile Include="PasswordHash.cs" />
     <Compile Include="RegionRepository.cs" />
     <Compile Include="CountryRepository.cs" />

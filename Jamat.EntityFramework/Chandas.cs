@@ -13,6 +13,8 @@ namespace Jamat.EntityFramework
         [Key]
         public int ChandaId { get; set; }
 
+        public String ComputerCode { get; set; }
+
         public int TajneedId { get; set; }
 
         public int PeriodId { get; set; }       // yearid
@@ -29,6 +31,8 @@ namespace Jamat.EntityFramework
 
         public string Description { get; set; }
 
+        public virtual ICollection<ChandaDetail> ChandaDetails { get; set; }
+
     }
 
     public class ChandaDetail : TableStrutcture
@@ -39,11 +43,15 @@ namespace Jamat.EntityFramework
 
         public int ChandaId { get; set; }
 
-        public int ChandaTypeId { get; set; }
+        public int YearId { get; set; }
+
+        public int MonthId { get; set; }
+
+        public int TypeId { get; set; }
+
+        public int SubTypeId { get; set; }
 
         public decimal ChandaAmount { get; set; }
-
-        public DateTime PaidDate { get; set; }
 
     }
 

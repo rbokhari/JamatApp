@@ -11,8 +11,6 @@ jamatModule.factory('authRepository', [
             tajneedId: 0,
             userName: "",
             fullName: "",
-            departmentName: "",
-            departmentId: 0,
             empPicture: "",
             email: "",
             phone: "",
@@ -20,12 +18,7 @@ jamatModule.factory('authRepository', [
             roleId: "",
             moduleId: "",
             isHRMSModule: false,
-            isINVModule: false,
-            isSystemAdmin: false,
-            isHRMSAdmin: false,
-            isHRMSUser: false,
-            isINVAdmin: false,
-            isINVUser: false
+            isINVModule: false
         };
 
         //var _saveRegistration = function (registration) {
@@ -66,7 +59,6 @@ jamatModule.factory('authRepository', [
                 .then(function (res) {
                 console.log(res);
                 if (res.userId) {
-                    //console.log("auth-repository : " + res.userId);
                     $http.post('token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                         .success(function(response) {
                             console.log("token done");
@@ -114,43 +106,19 @@ jamatModule.factory('authRepository', [
             var authData = localStorageService.get('authorizationData');
 
             if (authData != null) {
-                $http.get('/api/tajneed/GetEmployeeByUserName/?userName=' + authData.userName)
+                $http.get('/api/tajneed/' + authData.userId)
                     .success(function (response) {
-
+                        console.log("fillAuthData response", response);
                         _authentication.isAuth = true;
-                        _authentication.userName = response.userName;
-                        _authentication.fullName = response.employeeName;
-                        _authentication.employeeId = response.id;
-                        _authentication.departmentName = response.postedTo;
-                        _authentication.empPicture = response.empPicture;
-                        _authentication.email = response.email;
-                        _authentication.phone = response.phone;
+                        //_authentication.userName = response.userName;
+                        _authentication.tajneedId = response.id;
+                        _authentication.fullName = response.firstName + ' ' + response.lastName;
+                        //_authentication.employeeId = response.id;
+                        //_authentication.departmentName = response.postedTo;
+                        //_authentication.empPicture = response.empPicture;
+                        //_authentication.email = response.email;
+                        _authentication.phone = response.mobileNumber;
 
-                        //accountRepository.getUserById(response.id)
-                        //    .$promise
-                        //    .then(function (res) {
-                        //        _authentication.moduleId = res.moduleId;
-                        //        accountRepository.getRoleById(res.roleId)
-                        //            .$promise
-                        //            .then(function (response1) {
-                        //                _authentication.roles = response1.roleName;
-                        //                _authentication.roleId = response1.roleId;
-
-                        //                _authentication.isHRMSModule = _authentication.moduleId == appModules.HRMS_Module;
-                        //                _authentication.isINVModule = _authentication.moduleId == appModules.INV_Module;
-                        //                _authentication.isSystemAdmin = _authentication.roleId == appRoles.ADMIN;
-                        //                _authentication.isHRMSAdmin = _authentication.roleId == appRoles.HRMS_ADMIN;
-                        //                _authentication.isHRMSUser = _authentication.roleId == appRoles.HRMS_USER;
-                        //                _authentication.isINVAdmin = _authentication.roleId == appRoles.INV_ADMIN;
-                        //                _authentication.isINVUser = _authentication.roleId == appRoles.INV_USER;
-
-                        //                localStorageService.set('userData', { userName: authData.userName, userId: response.id, role: _authentication.roles, roleId: _authentication.roleId });
-                        //                deferred.resolve(response);
-                        //            });
-                        //    }, function (error) {
-                        //        _logOut();
-                        //        deferred.reject(response);
-                        //    });
                     }).error(function (err, status) {
                         //_logOut();
                         console.log(err);
@@ -161,17 +129,6 @@ jamatModule.factory('authRepository', [
             }
             return deferred.promise;
 
-
-            //var authData = localStorageService.get('authorizationData');
-
-            //if (authData) {
-            //    //console.log("authData.yes :(" + authData + ")");
-            //    //var employeeData = employeeRepository.getEmployeeDetailByUserName(authData.userName);
-            //    employeeDataPost(authData.userName);
-            //    //console.log(_authentication);
-
-            //    //_authentication.isAuth = true;
-            //}
         };
 
         function employeeDataPost(userName) {
@@ -261,7 +218,6 @@ jamatModule.factory('authRepository', [
         }
 
         var _isHRMSModule = function () {
-            //alert("hrmsmodule ");
             return true;// $scope.authentication.moduleId == appModules.HRMS_Module;
         };
 

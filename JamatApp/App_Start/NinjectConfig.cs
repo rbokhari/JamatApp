@@ -21,6 +21,7 @@ namespace JamatApp.App_Start
             kernel.Bind<IJalsaRepository>().To<JalsaRepository>();
             kernel.Bind<IFinanceRepository>().To<FinanceRepository>();
             kernel.Bind<IAccountRepository>().To<AccountRepository>();
+            kernel.Bind<IChandaRepository>().To<ChandaRepository>();
 
             return kernel;
         }

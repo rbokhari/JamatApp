@@ -25,6 +25,8 @@ namespace Jamat.EntityFramework
             base.OnModelCreating(modelBuilder);
         }
 
+        public DbSet<AutoSetting> AutoSettings { get; set; }
+
         public DbSet<Validation> Validations { get; set; }
         public DbSet<ValidationDetail> ValidationDetails { get; set; }
 

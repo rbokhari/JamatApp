@@ -1,12 +1,14 @@
 ﻿'use strict';
 jamatModule.controller('ChandaController',
 [
-    '$scope', '$location', '$routeParams', 'validationRepository', 'financeRepository', 'ModalService',
-    function ($scope, $location, $routeParams, validationRepository, financeRepository, ModalService) {
+    '$scope', '$location', '$routeParams', 'validationRepository', 'financeRepository', 'chandaRepository', 'ModalService',
+    function ($scope, $location, $routeParams, validationRepository, financeRepository, chandaRepository, ModalService) {
 
         console.log("chanda controller");
 
         $scope.isBusy = false;
+
+        console.log("tajneedata",$scope.tajneedData);
 
         var cDetail = {
             'chandaId': 0,
@@ -17,10 +19,8 @@ jamatModule.controller('ChandaController',
 
         $scope.chanda = {
             id:0,
-            chandaDetail: [cDetail]
+            chandaDetails: [cDetail]
         };
-
-        console.log("Chanda Detail length : " + $scope.chanda.chandaDetail.length);
 
         $scope.loadChandaPaidDef = function () {
             $scope.chandaTypes = validationRepository.getAllChandaType();
@@ -37,19 +37,34 @@ jamatModule.controller('ChandaController',
 
         };
 
+        $scope.getSubHead = function(id) {
+            $scope.chandaSubs = chandaRepository.getSubHeadsById(id);
+            $scope.chandaSubs.$promise
+                .then(function () { }, function () { });
+        }
+
         $scope.addDetail = function () {
             console.log("addDetail");
-            $scope.chanda.chandaDetail.push({});
+            $scope.chanda.chandaDetails.push({});
         };
 
         $scope.removeDetail = function (detail) {
             console.log("removeDetail");
-            $scope.chanda.chandaDetail.pop(detail);
+            $scope.chanda.chandaDetails.pop(detail);
         };
 
-        $scope.saveChanda = function (country) {
+        $scope.saveChanda = function (chanda) {
             $scope.errors = [];
            
+            chandaRepository.addChanda(chanda)
+                .$promise
+                .then(function (result) {
+
+                    $location.url('/jamat');
+
+                }, function (error) {
+                    
+                });
         };
 
         $scope.loadTajneed = function () {
@@ -66,19 +81,15 @@ jamatModule.controller('ChandaController',
                 modal.element.modal();
                 modal.close.then(function (result) {
                     console.log("result", result.resultData);
-                    $scope.chanda.tajneedName = result.resultData.firstName + " " + result.resultData.lastName + " / " + result.resultData.fatherName;
                     $scope.chanda.tajneedId = result.resultData.id;
+                    $scope.chanda.gsmNo = result.resultData.mobileNumber;
+                    $scope.chanda.tajneedName = result.resultData.firstName + " " + result.resultData.lastName + " / " + result.resultData.fatherName;
+                    
                     //$scope.tajneed[0].tajneedIncomes.push(result.resultData);
                 });
 
             });
         }
-
-        $scope.saveRegion = function (chanda) {
-            $scope.errors = [];
-
-            
-        };
 
     }
 ]);

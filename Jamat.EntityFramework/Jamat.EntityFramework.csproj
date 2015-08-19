@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoSetting.cs" />
     <Compile Include="FinancialYearTajneedBudget.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="User.cs" />
