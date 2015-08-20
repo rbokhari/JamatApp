@@ -72,7 +72,9 @@ namespace Jamat.EntityFramework
 
         public virtual ValidationDetail NationalityDetail { get; set; }
 
-        public virtual ICollection<TajneedIncome> TajneedIncomes { get; set; } 
+        public virtual ICollection<TajneedIncome> TajneedIncomes { get; set; }
+
+        public virtual ICollection<Chanda> Chandas { get; set; }
 
     }
 

@@ -232,130 +232,42 @@
                         <i class="fa fa-angle-double-right"></i>  <strong>Chandas</strong>
                         <span class="pull-right"><a href="" ng-click="showPassport(employee[0].id)"><i class="fa fa-external-link-square"></i> Add Chanda</a></span>
                         
-                        <div class="panel-group" id="accordion1">
+                        <div class="panel-group">
                             <div class="panel">
-                                <div class="panel-heading dark">
-                                    <a class="panel-title" ng-class="{collapsed:!collapseOne}" ng-click="collapseOne=!collapseOne">
-                                        Monthly Chandas
-                                    </a>
-                                </div>
-                                <div class="panel-collapse" ng-class="{collapse:collapseOne}">
+                                
+                                <div class="panel-collapse" >
                                     <div class="panel-body">
-                                        <table class="table table-striped table-bordered table-advance table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Date</th>
-                                                    <th>Book No</th>
-                                                    <th>Receipt No</th>
-                                                    <th>Total Amount</th>
-                                                    <th>Received By</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>12-Dec-2014</td>
-                                                    <td>BK-001</td>
-                                                    <td>10012</td>
-                                                    <td>120 OMR</td>
-                                                    <td>Mr. Bashir</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-heading dark">
-                                    <a class="panel-title" ng-class="{collapsed:!collapseTwo}" ng-click="collapseTwo=!collapseTwo; collapseOne=1 ">
-                                        Auxilary Chandas
-                                    </a>
-                                </div>
-                                <div class="panel-collapse collapse" ng-class="{collapse:collapseTwo}">
-                                    <div class="panel-body">
-                                        <table class="table table-striped table-bordered table-advance table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Auxilary Type</th>
-                                                    <th>Date</th>
-                                                    <th>Book No</th>
-                                                    <th>Receipt No</th>
-                                                    <th>Total Amount</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Khuddam</td>
-                                                    <td>12-Dec-2014</td>
-                                                    <td>BK-001</td>
-                                                    <td>10021</td>
-                                                    <td>60 OMR</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+
+                                        <div class="row" ng-repeat="chanda in tajneed[0].chandas">
+                                            <i class="fa fa-hand-o-right"></i> <label class="label label-success">  {{chanda.computerCode}} - {{chanda.receiptNo}} - {{chanda.issuedOn | date:'longDate' }}</label>
+
+                                            <table class="table table-striped table-bordered table-advance table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Year</th>
+                                                        <th>Month</th>
+                                                        <th>Type</th>
+                                                        <th>Sub Type</th>
+                                                        <th>Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="detail in chanda.chandaDetails">
+                                                        <td>{{detail.yearDetail.description}}</td>
+                                                        <td>{{detail.monthDetail.nameEn}}</td>
+                                                        <td>{{detail.typeDetail.nameEn}}</td>
+                                                        <td>{{detail.subTypeDetail.subHeadName}}</td>
+                                                        <td>{{detail.chandaAmount | currency:'RO.  '}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
 
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel">
-                                <div class="panel-heading dark">
-                                    <a class="panel-title" ng-class="{collapsed:!collapseThree}" ng-click="collapseThree=!collapseThree">
-                                        Tehrik Jadid Chandas
-                                    </a>
-                                </div>
-                                <div class="panel-collapse collapse" ng-class="{collapse:collapseThree}">
-                                    <div class="panel-body">
-                                        <table class="table table-striped table-bordered table-advance table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Date</th>
-                                                    <th>Book No</th>
-                                                    <th>Receipt No</th>
-                                                    <th>Total Amount</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>12-Dec-2014</td>
-                                                    <td>BK-001</td>
-                                                    <td>10021</td>
-                                                    <td>25 OMR</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="panel-heading dark">
-                                    <a class="panel-title" ng-class="{collapsed:!collapseFour}" ng-click="collapseFour=!collapseFour">
-                                        Waqf Jadid Chandas
-                                    </a>
-                                </div>
-                                <div class="panel-collapse collapse" ng-class="{collapse:collapseFour}">
-                                    <div class="panel-body">
-                                        <table class="table table-striped table-bordered table-advance table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Date</th>
-                                                    <th>Book No</th>
-                                                    <th>Receipt No</th>
-                                                    <th>Total Amount</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>12-Dec-2014</td>
-                                                    <td>BK-001</td>
-                                                    <td>10021</td>
-                                                    <td>20 OMR</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
- 
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
 
                     </div>

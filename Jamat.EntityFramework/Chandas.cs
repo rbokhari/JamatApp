@@ -37,21 +37,34 @@ namespace Jamat.EntityFramework
 
     public class ChandaDetail : TableStrutcture
     {
+        public ChandaDetail()
+        {
+            
+        }
 
         [Key]
         public int ChandaDetailId { get; set; }
 
         public int ChandaId { get; set; }
 
+        [ForeignKey("YearDetail")]
         public int YearId { get; set; }
 
+        [ForeignKey("MonthDetail")]
         public int MonthId { get; set; }
 
+        [ForeignKey("TypeDetail")]
         public int TypeId { get; set; }
 
+        [ForeignKey("SubTypeDetail")]
         public int SubTypeId { get; set; }
 
         public decimal ChandaAmount { get; set; }
+
+        public virtual FinancialYear YearDetail { get; set; }
+        public virtual ValidationDetail MonthDetail { get; set; }
+        public virtual ValidationDetail TypeDetail { get; set; }
+        public virtual ChandaSubHead SubTypeDetail { get; set; }
 
     }
 

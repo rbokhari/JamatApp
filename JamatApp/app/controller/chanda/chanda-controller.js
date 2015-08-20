@@ -8,7 +8,7 @@ jamatModule.controller('ChandaController',
 
         $scope.isBusy = false;
 
-        console.log("tajneedata",$scope.tajneedData);
+        //console.log("tajneedata",$scope.tajneedData[0].firstName);
 
         var cDetail = {
             'chandaId': 0,
@@ -18,9 +18,25 @@ jamatModule.controller('ChandaController',
         };
 
         $scope.chanda = {
-            id:0,
-            chandaDetails: [cDetail]
+            id: 0,
+            issuedBy: $scope.tajneedData[0].id,
+            issuedByName: $scope.tajneedData[0].firstName,
+            chandaDetails: [cDetail],
+            totalAmount: 0
         };
+
+        $scope.calculateTotal = function () {
+            var valTotal = 0;
+            console.log($scope.chanda.chandaDetails.length);
+            angular.forEach($scope.chanda.chandaDetails, function (value, key) {
+                console.log(value.chandaAmount);
+                //if (key === 'chandaAmount') {
+                    valTotal += Number(value.chandaAmount);
+                //}
+            });
+            $scope.chanda.totalAmount = valTotal;
+            //return valTotal;
+        }
 
         $scope.loadChandaPaidDef = function () {
             $scope.chandaTypes = validationRepository.getAllChandaType();
@@ -51,6 +67,7 @@ jamatModule.controller('ChandaController',
         $scope.removeDetail = function (detail) {
             console.log("removeDetail");
             $scope.chanda.chandaDetails.pop(detail);
+            $scope.calculateTotal();
         };
 
         $scope.saveChanda = function (chanda) {

@@ -87,12 +87,16 @@ namespace Jamat.DC
         public IQueryable<Tajneed> GetTajneed(int id)
         {
             return _ctx.Tajneeds.Where(r => r.Id == id)
-                .Include(c=>c.NationalityDetail)
-                .Include(c=>c.AuxilaryDetail)
-                .Include(c=>c.CountryDetail)
-                .Include(c=>c.RegionDetail)
                 .Include(c => c.NationalityDetail)
-                .Include(c=>c.TajneedIncomes.Select(a=>a.TypeName));
+                .Include(c => c.AuxilaryDetail)
+                .Include(c => c.CountryDetail)
+                .Include(c => c.RegionDetail)
+                .Include(c => c.NationalityDetail)
+                .Include(c => c.Chandas.Select(a => a.ChandaDetails.Select(b => b.YearDetail)))
+                .Include(c => c.Chandas.Select(a => a.ChandaDetails.Select(b => b.MonthDetail)))
+                .Include(c => c.Chandas.Select(a => a.ChandaDetails.Select(b => b.TypeDetail)))
+                .Include(c => c.Chandas.Select(a => a.ChandaDetails.Select(b => b.SubTypeDetail)))
+                .Include(c => c.TajneedIncomes.Select(a => a.TypeName));
         }
 
         public bool Save()
