@@ -47,6 +47,10 @@
 </head>
 
 <body class="sticky-header" data-ng-controller="AccountController">
+    <div class="submit-progress hidden">
+        <label><i class="icon icon-2x icon-spinner icon-spin"></i> Please wait while processing ....</label>
+    </div>
+
     <section>
         <!-- left side start-->
         <div class="left-side sticky-left-side">
@@ -69,7 +73,7 @@
                         <img alt="" src="/Content/img/avatar-mini.png" class="media-object">
                         <div class="media-body">
                             <h4><a href="#">{{fullName}}</a></h4>
-                            <span>"Hello There..."</span>
+                            <span>"..."</span>
                         </div>
                     </div>
 
@@ -300,8 +304,9 @@
     <!-- Angular Module, Controller and directives -->
     <script src="/app/module/jamat-module.js" type="text/javascript"></script>
 
-    <script src="/Scripts/dirPagination/dirPagination.js" type="text/javascript"></script>
+<script src="/Scripts/dirPagination/dirPagination.js" type="text/javascript"></script>
 
+    <script src="/app/controller/app/app-repository.js" type="text/javascript"></script>
     <script src="/app/controller/account/authInterceptorService.js" type="text/javascript"></script>
     <script src="/app/controller/account/auth-repository.js" type="text/javascript"></script>
     <script src="/app/controller/account/account-repository.js" type="text/javascript"></script>

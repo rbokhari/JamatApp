@@ -1,14 +1,15 @@
 ﻿'use strict';
 jamatModule.controller('ChandaController',
 [
-    '$scope', '$location', '$routeParams', 'validationRepository', 'financeRepository', 'chandaRepository', 'ModalService',
-    function ($scope, $location, $routeParams, validationRepository, financeRepository, chandaRepository, ModalService) {
+    '$scope', '$location', '$routeParams', 'appRepository', 'validationRepository', 'financeRepository', 'chandaRepository', 'ModalService',
+    function ($scope, $location, $routeParams, appRepository, validationRepository, financeRepository, chandaRepository, ModalService) {
 
         console.log("chanda controller");
 
         $scope.isBusy = false;
 
         //console.log("tajneedata",$scope.tajneedData[0].firstName);
+        //appRepository.showPageBusyNotification();
 
         var cDetail = {
             'chandaId': 0,
@@ -27,7 +28,7 @@ jamatModule.controller('ChandaController',
 
         $scope.calculateTotal = function () {
             var valTotal = 0;
-            console.log($scope.chanda.chandaDetails.length);
+            //console.log($scope.chanda.chandaDetails.length);
             angular.forEach($scope.chanda.chandaDetails, function (value, key) {
                 console.log(value.chandaAmount);
                 //if (key === 'chandaAmount') {
@@ -77,7 +78,7 @@ jamatModule.controller('ChandaController',
                 .$promise
                 .then(function (result) {
 
-                    $location.url('/jamat');
+                    $location.url('/jamat/tajneed/detail/' + chanda.tajneedId);
 
                 }, function (error) {
                     

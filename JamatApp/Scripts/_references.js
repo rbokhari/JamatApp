@@ -52,6 +52,7 @@
 /// <reference path="modal/angular-modal-service.js" />
 /// <reference path="modernizr-2.8.3.js" />
 /// <reference path="moment.js" />
+/// <reference path="moment-with-locales.min.js" />
 /// <reference path="morris-chart/morris.init.js" />
 /// <reference path="morris-chart/morris.js" />
 /// <reference path="morris-chart/raphael-min.js" />

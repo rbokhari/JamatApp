@@ -21,7 +21,7 @@ namespace Jamat.EntityFramework
 
         public int BookId { get; set; }
 
-        public int ReceiptNo { get; set; }
+        public string ReceiptNo { get; set; }
 
         public decimal TotalAmount { get; set; }
 
@@ -57,7 +57,7 @@ namespace Jamat.EntityFramework
         public int TypeId { get; set; }
 
         [ForeignKey("SubTypeDetail")]
-        public int SubTypeId { get; set; }
+        public int? SubTypeId { get; set; }
 
         public decimal ChandaAmount { get; set; }
 

@@ -3,14 +3,16 @@
 'use strict';
 jamatModule.controller('TajneedController',
 [
-    '$scope', '$location', '$routeParams', 'tajneedRepository', 'validationRepository', 'countryRepository','ModalService',
-    function ($scope, $location, $routeParams, tajneedRepository, validationRepository, countryRepository, ModalService) {
+    '$scope', '$location', '$routeParams', 'appRepository', 'tajneedRepository', 'validationRepository', 'countryRepository', 'ModalService',
+    function ($scope, $location, $routeParams, appRepository, tajneedRepository, validationRepository, countryRepository, ModalService) {
 
         console.log("tajneed controller");
 
         $('#mnuDashboard').removeClass('active');
         $('#mnuTajneed').addClass('active');
         $('#mnuTajneedList').addClass('active');
+
+        //appRepository.showPageBusyNotification();
 
         $scope.isBusy = false;
 
@@ -39,8 +41,10 @@ jamatModule.controller('TajneedController',
                 //alert("error");
             })
             .then(function () {
+                //appRepository.hidePageBusyNotification();
                 getCollectionSheetCount();
                 $scope.isBusy = false;
+                
             });
         };
 

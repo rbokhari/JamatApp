@@ -28,7 +28,7 @@
                     Chanda Add
                 </header>
                 <div class="panel-body">
-                    <form class="form-horizontal" id="frmTajneed" name="frm" novalidate role="form">
+                    <form class="form-horizontal" id="frm" name="frm" novalidate role="form">
                         <div class="container-fluid">
                             <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
                                 <div class="form-group">
@@ -109,7 +109,7 @@
                                             <select class="form-control" ng-model="chanda.typeId" ng-options="chandaType.id as chandaType.nameEn for chandaType in chandaTypes" ng-change="getSubHead(chanda.typeId)" required></select>
                                         </td>
                                         <td>
-                                            <select class="form-control" ng-model="chanda.subTypeId" ng-options="sub.subHeadId as sub.subHeadName for sub in chandaSubs" required></select>
+                                            <select class="form-control" ng-model="chanda.subTypeId" ng-options="sub.subHeadId as sub.subHeadName for sub in chandaSubs"></select>
                                         </td>
                                         <td>
                                             <input class="form-control" ng-model="chanda.chandaAmount" ng-change="calculateTotal()" type="text"  />

@@ -557,7 +557,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modal\angular-modal-service.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\morris-chart\morris.css" />
     <Content Include="Scripts\morris-chart\morris.init.js" />
     <Content Include="Scripts\morris-chart\morris.js" />

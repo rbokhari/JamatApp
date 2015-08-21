@@ -22,6 +22,11 @@ namespace Jamat.EntityFramework
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            //modelBuilder.Entity<ChandaDetail>()
+            //    .HasOptional(p => p.SubTypeDetail)
+            //    .WithOptionalDependent().Map(a=>a.MapKey("SubTypeId"));
+
             base.OnModelCreating(modelBuilder);
         }
 
