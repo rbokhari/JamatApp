@@ -53,10 +53,10 @@ jamatModule.controller('ChandaController',
                 .then(function () {}, function () {});
 
         };
-
-        $scope.getSubHead = function(id) {
-            $scope.chandaSubs = chandaRepository.getSubHeadsById(id);
-            $scope.chandaSubs.$promise
+        $scope.chandaSubs = [];
+        $scope.getSubHead = function(id, index) {
+            $scope.chandaSubs[index] = chandaRepository.getSubHeadsById(id);
+            $scope.chandaSubs[index].$promise
                 .then(function () { }, function () { });
         }
 

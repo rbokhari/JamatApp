@@ -44,12 +44,12 @@
                         <table class="display table table-bordered table-striped" id="tblTajneedAll">
                             <thead>
                                 <tr class="info">
-                                    <th>Sr.</th>
+                                    <th class="hidden-xs hidden-sm">Sr.</th>
                                     <th>Name</th>
                                     <th>Father / Husband Name</th>
                                     <th>Mobile</th>
-                                    <th>Auxilary</th>
-                                    <th>Region</th>
+                                    <th class="hidden-xs hidden-sm">Auxilary</th>
+                                    <th class="hidden-xs hidden-sm">Region</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,12 +64,12 @@
                                 </tr>
 
                                 <tr dir-paginate="tajneed in tajneeds | filter:tajneedSearch | itemsPerPage:recordPage">
-                                    <td><label class="badge badge-info">{{$index+1}}</label> </td>
+                                    <td class="hidden-xs hidden-sm"><label class="badge badge-info">{{$index+1}}</label> </td>
                                     <td><a class="noPrint" ng-href="/jamat/tajneed/detail/{{ tajneed.id }}">{{tajneed.firstName}} {{tajneed.lastName}}</a> <label class="onlyScreen">{{tajneed.firstName}} {{tajneed.lastName}}</label> </td>
                                     <td>{{tajneed.fatherName}}</td>
                                     <td>{{tajneed.mobileNumber}}</td>
-                                    <td>{{tajneed.auxilaryDetail.nameEn}}</td>
-                                    <td>{{tajneed.regionDetail.regionName}}</td>
+                                    <td class="hidden-xs hidden-sm">{{tajneed.auxilaryDetail.nameEn}}</td>
+                                    <td class="hidden-xs hidden-sm">{{tajneed.regionDetail.regionName}}</td>
                                 </tr>
                             </tbody>
                         </table>
