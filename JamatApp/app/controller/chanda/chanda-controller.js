@@ -1,15 +1,17 @@
 ﻿'use strict';
 jamatModule.controller('ChandaController',
 [
-    '$scope', '$location', '$routeParams', 'appRepository', 'validationRepository', 'financeRepository', 'chandaRepository', 'ModalService',
-    function ($scope, $location, $routeParams, appRepository, validationRepository, financeRepository, chandaRepository, ModalService) {
+    '$scope', '$location', '$routeParams', 'appRepository', 'validationRepository', 'financeRepository', 'chandaRepository', 'ModalService', 'localStorageService',
+    function ($scope, $location, $routeParams, appRepository, validationRepository, financeRepository, chandaRepository, ModalService, localStorageService) {
 
-        console.log("chanda controller");
+        //console.log("chanda controller");
 
         $scope.isBusy = false;
 
         //console.log("tajneedata",$scope.tajneedData[0].firstName);
         //appRepository.showPageBusyNotification();
+
+        var userDetail = localStorageService.get('userDetail');
 
         var cDetail = {
             'chandaId': 0,
@@ -20,11 +22,83 @@ jamatModule.controller('ChandaController',
 
         $scope.chanda = {
             id: 0,
-            issuedBy: $scope.tajneedData[0].id,
-            issuedByName: $scope.tajneedData[0].firstName,
+            issuedBy: userDetail.id, // $scope.tajneedData[0].id,
+            issuedByName: userDetail.fullName,
             chandaDetails: [cDetail],
             totalAmount: 0
         };
+
+        var cChandaHeadDetail = {
+            subHeadId: 0,
+            ChandaHeadId: 0,
+            subHeadName: '',
+            description: '',
+            statusId:1
+        }
+
+        $scope.chandaType = {
+            id: 0,
+            validationId: 4,
+            nameEn: '',
+            nameAr: '',
+            description: '',
+            isActive: 1,
+            subTypeDetails: [cChandaHeadDetail]
+        }
+
+        $scope.loadChandaType = function () {
+            $scope.isBusy = true;
+            $scope.chandaTypes = validationRepository.getAllChandaType();
+            $scope.chandaTypes.$promise.then(function () {
+                //alert("success");
+            }, function () {
+                //alert("error");
+            })
+                .then(function () {
+                    $scope.isBusy = false;
+                });
+        };
+
+        $scope.getChandaType = function() {
+            $scope.isBusy = true;
+
+            $scope.chandaType = validationRepository.getSingleDetailByValidationId($routeParams.id);
+            $scope.chandaType.$promise.then(function (response) {
+                //alert("success");
+                chandaRepository.getSubHeadsById($routeParams.id).$promise
+                    .then(function (res) {
+                        $scope.chandaType.subTypeDetails = res;
+                    }, function (err) {
+
+                    });
+            }, function () {
+                //alert("error");
+            })
+                .then(function () {
+                    $scope.isBusy = false;
+                });
+        }
+
+        $scope.addChandaSubType = function () {
+            $scope.chandaType.subTypeDetails.push({});
+        };
+
+        $scope.addChandaType = function (chandaType) {
+            validationRepository.addValidation(chandaType)
+                .$promise
+                .then(function (res) {
+                    console.log(res);
+                    $location.url('/jamat/chandatype/');
+            }, function (err) { });
+        }
+
+        $scope.updateChandaType = function(chandaType) {
+            validationRepository.editValidation(chandaType)
+                .$promise
+                .then(function (res) {
+                    $location.url('/jamat/chandatype/');
+                }, function (err) { });
+        }
 
         $scope.calculateTotal = function () {
             var valTotal = 0;
@@ -61,12 +135,12 @@ jamatModule.controller('ChandaController',
         }
 
         $scope.addDetail = function () {
-            console.log("addDetail");
+            
             $scope.chanda.chandaDetails.push({});
         };
 
         $scope.removeDetail = function (detail) {
-            console.log("removeDetail");
+            
             $scope.chanda.chandaDetails.pop(detail);
             $scope.calculateTotal();
         };

@@ -11,18 +11,18 @@ jamatModule.controller('FinanceController',
         $scope.finance = "";
         $scope.subHeadReady = false;
 
-        $scope.loadChandaType = function() {
-            $scope.isBusy = true;
-            $scope.chandaTypes = validationRepository.getAllChandaType();
-            $scope.chandaTypes.$promise.then(function() {
-                    //alert("success");
-                }, function() {
-                    //alert("error");
-                })
-                .then(function() {
-                    $scope.isBusy = false;
-                });
-        };
+        //$scope.loadChandaType = function() {
+        //    $scope.isBusy = true;
+        //    $scope.chandaTypes = validationRepository.getAllChandaType();
+        //    $scope.chandaTypes.$promise.then(function() {
+        //            //alert("success");
+        //        }, function() {
+        //            //alert("error");
+        //        })
+        //        .then(function() {
+        //            $scope.isBusy = false;
+        //        });
+        //};
 
  
 

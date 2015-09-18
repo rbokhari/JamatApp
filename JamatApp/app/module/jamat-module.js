@@ -21,7 +21,6 @@
         "CHANDA_BUDGET_STATUS_APPROVED": 27
     })
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
-        console.log('jamat module router call !');
 
         $httpProvider.interceptors.push('authInterceptorService');
 
@@ -86,8 +85,18 @@
 
         $routeProvider
             .when('/jamat/chandatype/', {
-                templateUrl: '/templates/finance/chanda-type.html',
-                controller: 'FinanceController'
+                templateUrl: '/templates/chanda/chanda-type.html',
+                controller: 'ChandaController'
+            });
+        $routeProvider
+            .when('/jamat/chandatype/add', {
+                templateUrl: '/templates/chanda/chanda-type-add.html',
+                controller: 'ChandaController'
+            });
+        $routeProvider
+            .when('/jamat/chandatype/edit/:id', {
+                templateUrl: '/templates/chanda/chanda-type-edit.html',
+                controller: 'ChandaController'
             });
 
         $routeProvider

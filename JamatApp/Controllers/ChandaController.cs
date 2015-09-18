@@ -51,7 +51,7 @@ namespace JamatApp.Controllers
                 CreatedOn = DateTime.UtcNow
             };
 
-            List<ChandaDetail> items =  chanda.ChandaDetails as List<ChandaDetail>; // new List<DistributionItem>();
+            List<ChandaDetail> items =  chanda.ChandaDetails as List<ChandaDetail>; 
 
             items?.ForEach(
                 c =>

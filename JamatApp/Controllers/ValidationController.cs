@@ -6,9 +6,11 @@ using System.Net.Http;
 using System.Web.Http;
 using Jamat.DC;
 using Jamat.EntityFramework;
+using Jamat.Models;
 
 namespace JamatApp.Controllers
 {
+    [RoutePrefix("api/validation")]
     public class ValidationController : ApiController
     {
         public IValidationRepository _repo;
@@ -20,6 +22,7 @@ namespace JamatApp.Controllers
 
         [ActionName("GetValidationDetailByValidationId")]
         [HttpGet]
+        [Route("{id}/GetValidationDetailByValidationId")]
         public IQueryable<ValidationDetail> ValiationDetailsByValidationId(int id)
         {
             //IDepartmentsRepository _repo = new DepartmentRepository();
@@ -28,11 +31,9 @@ namespace JamatApp.Controllers
             return validationDetails;
         }
 
-        public ValidationDetail Get(int vId)
+        public ValidationDetail Get(int id)
         {
-            //IDepartmentsRepository _repo = new DepartmentRepository();
-            var validationDetail = _repo.GetValidationDetail(vId);
-
+            var validationDetail = _repo.GetValidationDetail(id);
             if (validationDetail == null)
             {
                 //Request.CreateErrorResponse(HttpStatusCode.BadRequest)
@@ -40,11 +41,41 @@ namespace JamatApp.Controllers
             return validationDetail;
         }
 
-        public HttpResponseMessage Post([FromBody] ValidationDetail newValidationDetail)
+        public HttpResponseMessage Post([FromBody] ValidationDetailModel newValidationDetail)
         {
             if (ModelState.IsValid)
             {
-                if (_repo.AddValidationDetail(newValidationDetail) && _repo.Save())
+                var validationDetail = new ValidationDetail
+                {
+                    ValidationId = newValidationDetail.ValidationId,
+                    NameEn = newValidationDetail.NameEn,
+                    NameAr = newValidationDetail.NameAr,
+                    Description = newValidationDetail.Description,
+                    IsActive = newValidationDetail.IsActive,
+                    MachineName = "",
+                    MachineUser = "",
+                    CreatedBy = Convert.ToInt32(Request.Headers.GetValues("userId").First()),
+                    CreatedOn = DateTime.Now
+                };
+
+                List<ChandaSubHead> chandaSubHeadList = null;
+                if (newValidationDetail.SubTypeDetails!=null || newValidationDetail.SubTypeDetails?.Count> 0)
+                {
+                    chandaSubHeadList = newValidationDetail.SubTypeDetails.Select(sub => new ChandaSubHead
+                    {
+                        ChandaHeadId = 0,
+                        SubHeadName = sub.SubHeadName,
+                        Description = "",
+                        StatusId = sub.StatusId,
+                        MachineName = "",
+                        MachineUser = "",
+                        CreatedBy = Convert.ToInt32(Request.Headers.GetValues("userId").First()),
+                        CreatedOn = DateTime.Now
+
+                    }).ToList();
+                }
+
+                if (_repo.AddValidationDetail(validationDetail, chandaSubHeadList) && _repo.Save())
                 {
                     return Request.CreateResponse(HttpStatusCode.Created, newValidationDetail);
                     //return new HttpResponseMessage(HttpStatusCode.OK);
@@ -54,16 +85,51 @@ namespace JamatApp.Controllers
             return null;
         }
 
-        public HttpResponseMessage Put(int id, [FromBody] ValidationDetail updateValidationDetail)
+        public HttpResponseMessage Put([FromBody] ValidationDetailModel updateValidationDetail)
         {
             //return Request.CreateResponse(HttpStatusCode.OK);
             if (ModelState.IsValid)
             {
-                //if (_repo(updateDepartment) && _repo.Save())
-                //{
-                //    return Request.CreateResponse(HttpStatusCode.Created, updateDepartment);
-                //    //return new HttpResponseMessage(HttpStatusCode.OK);
-                //}
+                var validationDetail = new ValidationDetail
+                {
+                    Id = updateValidationDetail.Id,
+                    ValidationId = updateValidationDetail.ValidationId,
+                    NameEn = updateValidationDetail.NameEn,
+                    NameAr = updateValidationDetail.NameAr,
+                    Description = updateValidationDetail.Description,
+                    IsActive = updateValidationDetail.IsActive,
+                    MachineName = "",
+                    MachineUser = "",
+                    ModifiedBy = Convert.ToInt32(Request.Headers.GetValues("userId").First()),
+                    ModifiedOn = DateTime.Now
+                };
+
+                List<ChandaSubHead> chandaSubHeadList = null;
+                if (updateValidationDetail.SubTypeDetails != null || updateValidationDetail.SubTypeDetails?.Count > 0)
+                {
+                    chandaSubHeadList = updateValidationDetail.SubTypeDetails.Select(sub => new ChandaSubHead
+                    {
+                        SubHeadId = sub.SubHeadId,
+                        ChandaHeadId = sub.ChandaHeadId,
+                        SubHeadName = sub.SubHeadName,
+                        Description = sub.Description,
+                        StatusId = sub.StatusId,
+                        MachineName = "",
+                        MachineUser = "",
+                        CreatedBy = sub.CreatedBy,
+                        CreatedOn = sub.CreatedOn, 
+                        ModifiedBy = Convert.ToInt32(Request.Headers.GetValues("userId").First()),
+                        ModifiedOn = DateTime.Now
+
+                    }).ToList();
+                }
+
+                if (_repo.UpdateValidationDetail(validationDetail, chandaSubHeadList) && _repo.Save())
+                {
+                    return Request.CreateResponse(HttpStatusCode.Created, validationDetail);
+                    //return new HttpResponseMessage(HttpStatusCode.OK);
+                }
+
                 return Request.CreateResponse(HttpStatusCode.BadRequest, GetErrorMessages());
             }
             return null;

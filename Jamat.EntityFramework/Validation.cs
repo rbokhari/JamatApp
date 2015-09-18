@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace Jamat.EntityFramework
 
     public class ValidationDetail : TableStrutcture
     {
+        //[Key]
         public int Id { get; set; }
 
         public int ValidationId { get; set; }
@@ -37,6 +39,8 @@ namespace Jamat.EntityFramework
         public string Description { get; set; }
 
         public int IsActive { get; set; }
+
+        //public virtual ICollection<ChandaSubHead> SubTypeDetails { get; set; }
 
     }
 }

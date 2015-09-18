@@ -15,6 +15,9 @@ namespace Jamat.DC
 
         bool Save();
 
-        bool AddValidationDetail(ValidationDetail newValidationDetail);
+        bool AddValidationDetail(ValidationDetail newValidationDetail, List<ChandaSubHead> chandaSubHeads);
+
+        bool UpdateValidationDetail(ValidationDetail updateValidationDetail, List<ChandaSubHead> chandaSubHeads);
+
     }
 }

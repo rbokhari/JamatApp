@@ -1,0 +1,86 @@
+﻿<div class="page-heading">
+    <h3>
+        Chanda Type
+    </h3>
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Chanda</a>
+        </li>
+        <li>
+            <a href="/jamat/chandatype"> Listing </a>
+        </li>
+        <li class="active">Update</li>
+    </ul>
+</div>
+
+<div class="wrapper" data-ng-init="getChandaType()">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" id="frmChandaType" name="frmChandaType" novalidate role="form" ng-submit="save(chandaType)">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Update Chanda Type
+                        <span class="tools pull-right">
+                            <a href="/jamat/chandatype" class="fa fa-times"></a>
+                        </span>
+                    </header>
+                    <div class="panel-body">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tFirstName" class="col-lg-4 col-md-4 col-sm-3 col-xs-4 control-label">Type Name :</label>
+                                <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">
+                                    <input type="text" class="form-control" ng-model="chandaType.nameEn" id="tTypeName" name="tFirstName" required>
+                                    <div class="help-block" ng-show="frmTajneed.txtCode.$error.required && frmTajneed.txtCode.$dirty">Please enter code !</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tFirstName" class="col-lg-4 col-md-4 col-sm-3 col-xs-4 control-label">Description :</label>
+                                <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">
+                                    <textarea type="text" class="form-control" ng-model="chandaType.description" id="tFirstName" name="tFirstName" required></textarea>
+                                    <div class="help-block" ng-show="frmTajneed.txtCode.$error.required && frmTajneed.txtCode.$dirty">Please enter code !</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="chkActive" class="col-lg-4 col-md-4 col-sm-3 col-xs-4 control-label">Is Active :</label>
+                                <div class="col-lg-6 col-md-8 col-sm-8 col-xs-8 slide-toggle">
+                                    <input type="checkbox" class="js-switch" ng-model="chandaType.isActive" id="chkActive" name="chkActive" ng-true-value="1" ng-false-value="0" />
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <table class="table table-hovered">
+                            <thead>
+                            <tr>
+                                <th class="col-lg-2">SN</th>
+                                <th class="col-lg-6">Sub Type Name</th>
+                                <th class="col-lg-2">Is Active</th>
+                                <th class="col-lg-2"><button class="btn btn-sm btn-primary" ng-click="addChandaSubType()"><i class="fa fa-plus-circle"></i>&nbsp;add </button></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="sub in chandaType.subTypeDetails">
+                                <td>{{$index+1}}</td>
+                                <td><input type="text" class="form-control" ng-model="sub.subHeadName"/></td>
+                                <td><input type="checkbox" class="js-switch" ng-model="sub.statusId" id="chkSubActive" name="chkSubActive" ng-true-value="1" ng-false-value="0"/></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <hr/>
+                        <div class="form-actions">
+                            <div class="col-lg-offset-2 col-lg-10 col-md-offset-2 col-md-10 col-sm-offset-3 col-sm-8 col-xs-offset-2 col-xs-10">
+                                <button type="submit" class="btn btn-primary" ng-click="updateChandaType(chandaType)"><i class="fa fa-save"></i> Update</button>
+                                <a class="btn btn-default" href="/jamat/chandatype"><i class="fa fa-undo"></i> Cancel</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+</div>
+

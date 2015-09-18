@@ -572,8 +572,10 @@
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="templates\chanda\chanda-type-add.html" />
+    <Content Include="templates\chanda\chanda-type-edit.html" />
     <Content Include="templates\finance\chanda-paid-add.html" />
-    <Content Include="templates\finance\chanda-type.html" />
+    <Content Include="templates\chanda\chanda-type.html" />
     <Content Include="templates\finance\chanda-year-add.html" />
     <Content Include="templates\finance\chanda-year-promise.html" />
     <Content Include="templates\finance\chanda-year.html" />
@@ -591,7 +593,9 @@
     <Content Include="templates\tajneed\tajneed-income.html" />
     <Content Include="templates\tajneed\tajneed-list.html" />
     <Content Include="templates\tajneed\tajneed-lookup.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -650,6 +654,10 @@
     <ProjectReference Include="..\Jamat.GLobalVariables\Jamat.GLobalVariables.csproj">
       <Project>{7fd80f65-c868-4f36-ac15-a6804e92ebce}</Project>
       <Name>Jamat.GLobalVariables</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Jamat.Models\Jamat.Models.csproj">
+      <Project>{1631e01a-d3be-4641-9ef8-7d88d21de51c}</Project>
+      <Name>Jamat.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

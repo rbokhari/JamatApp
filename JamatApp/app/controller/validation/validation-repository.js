@@ -3,14 +3,14 @@
 
 'use strict';
 
-jamatModule.factory('validationRepository', ['$resource', 'VALIDATIONS', function ($resource, VALIDATIONS) {
+jamatModule.factory('validationRepository', ['$resource', '$http', 'VALIDATIONS', function ($resource, $http, VALIDATIONS) {
 
     var _getAllDetailsByValidationId = function (id) {
         return $resource('/api/validation/' + id + '/GetValidationDetailByValidationId').query();
     };
 
-    var _getSingleDetailByValidationId = function (vid) {
-        return $resource('/api/validation/' + vid).get();
+    var _getSingleDetailByValidationId = function (id) {
+        return $resource('/api/validation/' + id).get();
     };
 
     var _getAllAuxilary = function () {
@@ -45,6 +45,14 @@ jamatModule.factory('validationRepository', ['$resource', 'VALIDATIONS', functio
         return $resource('/api/validation/' + VALIDATIONS.MONTHS + '/GetValidationDetailByValidationId').query();
     };
 
+    var _addValidation = function (validationType) {
+        return $resource('/api/validation/').save(validationType);
+    };
+
+    var _editValidation = function (validationType) {
+        return $http.put('/api/validation/', validationType);
+    };
+
     return {
 
         getAllDetailsByValidationId: _getAllDetailsByValidationId,
@@ -55,7 +63,9 @@ jamatModule.factory('validationRepository', ['$resource', 'VALIDATIONS', functio
         getAllCountry: _getAllCountry,
         getAllTajneedType: _getAllTajneedType,
         getAllTajneedStatus: _getAllTajneedStatus,
-        getAllMonths: _getAllMonths
+        getAllMonths: _getAllMonths,
+        addValidation: _addValidation,
+        editValidation: _editValidation
 
         //    get: function() {
         //        return $resource('/api/validation').query(); // can use get() instead of query(), but using query() because it except to return back array of objects

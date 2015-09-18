@@ -88,9 +88,50 @@
                                 </div>
                                 <hr/>
                             </div>
-                            
-                                <h4>Chanda Detail</h4>
-                                <table class="table table-hovered">
+
+                            <h4>Chanda Detail</h4>
+
+                            <!--<div class="row">
+                                <span class="col-lg-1 col-md-1 col-sm-1">SN</span>
+                                <span class="col-lg-1 col-md-1 col-sm-1">Year</span>
+                                <span class="col-lg-2 col-md-2 col-sm-2">Month</span>
+                                <span class="col-lg-2 col-md-2 col-sm-2">Chanda Type</span>
+                                <span class="col-lg-2 col-md-2 col-sm-2">Sub Type</span>
+                                <span class="col-lg-2 col-md-2 col-sm-2">Notes</span>
+                                <span class="col-lg-1 col-md-1 col-sm-1">Amount</span>
+                                <span class="col-lg-1 col-md-1 col-sm-1">
+                                    <button class="btn btn-sm btn-primary" ng-click="addDetail()"><i class="fa fa-plus-circle"></i>&nbsp;add </button>
+                                </span>
+                            </div>
+                            <hr/>
+                            <div class="row" ng-repeat="chanda in chanda.chandaDetails track by $index">
+                                <span class="col-lg-1 col-md-1 col-sm-1">{{$index+1}}</span>
+                                <span class="col-lg-1 col-md-1 col-sm-1">
+                                    <select class="form-control" ng-model="chanda.yearId" ng-options="chandaYear.yearId as chandaYear.description for chandaYear in chandaYears" required></select>
+                                </span>
+                                <span class="col-lg-2 col-md-2 col-sm-2">
+                                    <select class="form-control" ng-model="chanda.monthId" ng-options="month.id as month.nameEn for month in months" required></select>
+                                </span>
+                                <span class="col-lg-2 col-md-2 col-sm-2">
+                                    <select class="form-control" ng-model="chanda.typeId" ng-options="chandaType.id as chandaType.nameEn for chandaType in chandaTypes" ng-change="getSubHead(chanda.typeId, $index)" required></select>
+                                </span>
+                                <span class="col-lg-2 col-md-2 col-sm-2">
+                                    <select class="form-control" ng-model="chanda.subTypeId" ng-options="sub.subHeadId as sub.subHeadName for sub in chandaSubs[$index]"></select>
+                                </span>
+                                <span class="col-lg-2 col-md-2 col-sm-2">
+                                    <input type="text" class="form-control" />
+                                </span>
+                                <span class="col-lg-1 col-md-1 col-sm-1">
+                                    <input class="form-control text-right" ng-model="chanda.chandaAmount" ng-change="calculateTotal()" type="text" />
+                                </span>
+                                <span class="col-lg-1 col-md-1 col-sm-1">
+                                    <button class="btn btn-sm btn-danger" ng-click="removeDetail(chanda)"><i class="fa fa-minus-circle"></i></button>
+                                </span>
+                                
+                            </div>-->
+
+
+                            <table class="table table-hovered">
                                     <thead>
                                         <tr>
                                             <th>SN</th>

@@ -108,16 +108,17 @@ jamatModule.factory('authRepository', [
             if (authData != null) {
                 $http.get('/api/tajneed/' + authData.userId)
                     .success(function (response) {
-                        console.log("fillAuthData response", response);
                         _authentication.isAuth = true;
                         //_authentication.userName = response.userName;
-                        _authentication.tajneedId = response.id;
-                        _authentication.fullName = response.firstName + ' ' + response.lastName;
+                        _authentication.tajneedId = response[0].id;
+                        _authentication.fullName = response[0].firstName;
                         //_authentication.employeeId = response.id;
                         //_authentication.departmentName = response.postedTo;
                         //_authentication.empPicture = response.empPicture;
                         //_authentication.email = response.email;
                         _authentication.phone = response.mobileNumber;
+
+                        localStorageService.set('userDetail', { id: _authentication.tajneedId, fullName: _authentication.fullName });
 
                     }).error(function (err, status) {
                         //_logOut();
