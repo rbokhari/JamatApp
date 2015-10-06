@@ -11,7 +11,27 @@ jamatModule.controller('TajneedLookupModalController',
         $scope.title = title;
         $scope.parentId = parentId;
 
-        $scope.tajneeds = tajneedRepository.getAllTajneed();
+        //$scope.tajneeds = tajneedRepository.getAllTajneed();
+
+        tajneedRepository.getAllTajneed()
+                .then(function (res) {
+                    $scope.tajneeds = res;
+                }, function (err) { })
+            .then(function () {
+                $scope.isBusy = false;
+            });
+
+        $scope.forceTajneedRefresh = function () {
+            $scope.tajneeds = [];
+            $scope.isBusy = true;
+            tajneedRepository.getAllTajneed(true)
+                .then(function (res) {
+                    $scope.tajneeds = res;
+                }, function (err) { })
+                .then(function () {
+                    $scope.isBusy = false;
+                });
+        };
 
         $scope.selectTajneed = function (tajneed) {
             $scope.resultData = tajneed;

@@ -57,7 +57,7 @@ jamatModule.factory('authRepository', [
             accountRepository.getUserByUserName(loginData.userName, loginData.password)
                 .$promise
                 .then(function (res) {
-                console.log(res);
+                //console.log(res);
                 if (res.userId) {
                     $http.post('token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                         .success(function(response) {

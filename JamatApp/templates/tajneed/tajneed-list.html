@@ -18,9 +18,10 @@
                 <header class="panel-heading">
                     Tajneed Listing
                     <span class="tools pull-right">
-                        <a href="/jamat/tajneed/add" class="fa fa-plus">&nbsp;Add New Tajneed</a>
-                        <a href="" class="fa fa-print noPrint" ng-print print-element-id="dvPrint">&nbsp;Print</a>
-                        <a href="javascript:;" class="fa fa-times"></a>
+                        <a href="/jamat/tajneed/add" class="fa fa-plus" title="Add New Tajneed"></a>
+                        <a href="" class="fa fa-print noPrint" ng-print print-element-id="dvPrint" title="Print List"></a>
+                        <a href="javascript:;" ng-click="forceTajneedRefresh()" class="fa fa-refresh" title="Refresh Data from Server"></a>
+                        <a href="/jamat" class="fa fa-times" title="Close"></a>
                     </span>
                 </header>
                 <div class="panel-body">
@@ -40,6 +41,7 @@
                             <input type="text" ng-model="tajneedSearch" class="form-control" placeholder="search here..." />
                         </span>
                     </div>
+                    {{isBusy}}
                     <div id="dvPrint">
                         <table class="display table table-bordered table-striped" id="tblTajneedAll">
                             <thead>
@@ -63,8 +65,8 @@
                                     </td>
                                 </tr>
 
-                                <tr dir-paginate="tajneed in tajneeds | filter:tajneedSearch | itemsPerPage:recordPage">
-                                    <td class="hidden-xs hidden-sm"><label class="badge badge-info">{{$index+1}}</label> </td>
+                                <tr ng-show="!isBusy" dir-paginate="tajneed in tajneeds | filter:tajneedSearch | itemsPerPage:recordPage">
+                                    <td class="hidden-xs hidden-sm"><label class="badge badge-info">{{$index+1}}</label></td>
                                     <td><a class="noPrint" ng-href="/jamat/tajneed/detail/{{ tajneed.id }}">{{tajneed.firstName}} {{tajneed.lastName}}</a> <label class="onlyScreen">{{tajneed.firstName}} {{tajneed.lastName}}</label> </td>
                                     <td>{{tajneed.fatherName}}</td>
                                     <td>{{tajneed.mobileNumber}}</td>
@@ -74,7 +76,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div style="height:70px;">
+                    <div style="height:70px;" ng-show="!isBusy">
                         <span class="pull-left bottom-left" ng-show="tajneeds.length>0">
                             Displaying {{ range.lower }} - {{ range.upper }} of {{ range.total }}
                         </span>

@@ -31,14 +31,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-if="!tajneeds.$resolved">
+                        <tr ng-if="tajneeds.length==0">
                             <td colspan="4">
                                 <div class="progress progress-striped active">
-                                    <div style="width: 100%;" class="bar"></div>
+                                    <div style="width: 100%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" role="progressbar" class="progress-bar progress-bar-info">
+                                        <span class="sr-only"></span>
+                                    </div>
                                 </div>
                             </td>
                         </tr>
-                        <tr ng-if="tajneeds.$resolved" dir-paginate="tajneed in tajneeds | filter:search | itemsPerPage: recordPage">
+                        <tr ng-if="tajneeds.length>0" dir-paginate="tajneed in tajneeds | filter:search | itemsPerPage: recordPage">
                             <td>{{$index+1}}</td>
                             <td><a href="" ng-click="selectTajneed(tajneed)">{{tajneed.firstName}} {{tajneed.lastName}}</a></td>
                             <td>{{tajneed.fatherName}}</td>
@@ -48,7 +50,8 @@
                 </table>
                 <div style="height:40px;">
                     <span class="pull-left bottom" ng-show="tajneeds.length>0">
-                        Displaying {{ range.lower }} - {{ range.upper }} of {{ range.total }}
+                        Displaying {{ range.lower }} - {{ range.upper }} of {{ range.total }}<br />
+                        <Button type="button" ng-click="forceTajneedRefresh()" class="btn btn-sm" title="Refresh Data from Server"><i class="fa fa-refresh"></i>&nbsp; </Button>
                     </span>
                     <span class="pull-right">
                         <dir-pagination-controls template-url="/Scripts/dirPagination/dirPagination.tpl.html"></dir-pagination-controls>

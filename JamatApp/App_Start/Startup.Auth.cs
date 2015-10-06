@@ -22,10 +22,9 @@ namespace JamatApp
 
             var oAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
-
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(3),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(36),
                 Provider = new DomainAuthorizationServerProvider()  // see post
             };
 

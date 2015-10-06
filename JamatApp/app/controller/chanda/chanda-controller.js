@@ -14,10 +14,15 @@ jamatModule.controller('ChandaController',
         var userDetail = localStorageService.get('userDetail');
 
         var cDetail = {
-            'chandaId': 0,
-            'chandaTypeId': 0,
-            'chandaAmount': 0,
-            'paidDate': 0
+            //'chandaId': 0,
+            //'chandaTypeId': 0,
+            //'chandaAmount': 0,
+            //'paidDate': 0
+            'yearId': 0,
+            'monthId': 0,
+            'typeId': 0,
+            'subTypeId': 0,
+            'chandaAmount': 0
         };
 
         $scope.chanda = {

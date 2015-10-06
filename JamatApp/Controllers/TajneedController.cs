@@ -27,7 +27,7 @@ namespace JamatApp.Controllers
             // IQueryable filter data inside sql query and on database side get specified filter results only, 
             //where as IEnumerable get all data from databse and filter it on client side
 
-            //System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(2000);
             var tajneeds = _repo.GetTajneedList();
 
             return tajneeds;

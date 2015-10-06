@@ -29,22 +29,25 @@ jamatModule.controller('TajneedController',
             return this.tab === checkTab;
         };
 
-
-
         $scope.loadTajneed = function () {
             $scope.isBusy = true;
-            $scope.tajneeds = tajneedRepository.getAllTajneed();
-
-            $scope.tajneeds.$promise.then(function () {
-                //alert("success");
-            }, function () {
-                //alert("error");
-            })
-            .then(function () {
-                //appRepository.hidePageBusyNotification();
-                getCollectionSheetCount();
+            tajneedRepository.getAllTajneed()
+                .then(function (res) {
+                $scope.tajneeds = res;
+            }, function(err) { })
+            .then(function() {
                 $scope.isBusy = false;
-                
+            });
+        };
+
+        $scope.forceTajneedRefresh = function () {
+            $scope.isBusy = true;
+            var data = tajneedRepository.getAllTajneed(true);
+            data.then(function (res) {
+                $scope.tajneeds = res;
+            }, function (err) { })
+            .then(function () {
+                $scope.isBusy = false;
             });
         };
 
