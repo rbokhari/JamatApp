@@ -49,8 +49,6 @@ namespace Jamat.DC
                     user.TajneedId = 0;
                     return user;
                 }
-
-                return null;
             }
             catch (Exception ex)
             {

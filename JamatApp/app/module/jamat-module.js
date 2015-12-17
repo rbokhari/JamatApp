@@ -1,8 +1,11 @@
 ﻿var jamatModule = angular.module("jamatModule",
     [
         'ngRoute', 'ngResource', 'angularModalService', 'ngAnimate',
-        'angularUtils.directives.dirPagination', 'angularModalService', 'LocalStorageModule',
+        'angularUtils.directives.dirPagination', 'angularModalService', 'LocalStorageModule'
     ])
+    .constant("_", 
+        window._
+    )
     .constant("VALIDATIONS", {
         "AUXILARY": "1",
         "NATIONALITY": "2",

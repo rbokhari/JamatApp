@@ -3,8 +3,8 @@
 'use strict';
 jamatModule.controller('TajneedController',
 [
-    '$scope', '$location', '$routeParams', 'appRepository', 'tajneedRepository', 'validationRepository', 'countryRepository', 'ModalService',
-    function ($scope, $location, $routeParams, appRepository, tajneedRepository, validationRepository, countryRepository, ModalService) {
+    '$scope', '$location', '$routeParams', 'appRepository', 'tajneedRepository', 'validationRepository', 'countryRepository', 'ModalService', '_',
+    function ($scope, $location, $routeParams, appRepository, tajneedRepository, validationRepository, countryRepository, ModalService, _) {
 
         console.log("tajneed controller");
 
@@ -29,11 +29,57 @@ jamatModule.controller('TajneedController',
             return this.tab === checkTab;
         };
 
+        $scope.filter = {
+            regionId: 0,
+            nationalityId: 0,
+            auxilaryId: 0,
+            isMosi: 0
+        };
+
+        $scope.searchTajneed = function (filter) {
+            //$scope.loadTajneed();
+            tajneedRepository.getAllTajneed()
+                .then(function (res) {
+                    $scope.tajneeds = _.filter(res, function (data) {
+                        if (filter.regionId == 0 && filter.nationalityId == 0 && filter.auxilaryId == 0 && filter.isMosi == 0) return true;
+                        var result = true;
+                        if (filter.regionId !== 0) {
+                            result = (data.regionId == filter.regionId) && result;
+                        }
+                        if (filter.nationalityId !== 0) {
+                            result = (data.nationalityId == filter.nationalityId) && result;
+                        }
+                        if (filter.auxilaryId !== 0) {
+                            result = (data.auxilaryId == filter.auxilaryId) && result;
+                        }
+                        if (filter.isMosi !== 0) {
+                            result = (data.isMosi == 1) && result;
+                        }
+                        return result;
+                    });
+
+                }, function (err) { });
+
+        };
+
+        $scope.clearSearch = function () {
+            $scope.filter = {
+                regionId: 0,
+                nationalityId: 0,
+                auxilaryId: 0,
+                isMosi: 0
+            };
+            tajneedRepository.getAllTajneed()
+                .then(function (res) {
+                    $scope.tajneeds = res;
+                }, function (err) { });
+        };
+
         $scope.loadTajneed = function () {
             $scope.isBusy = true;
             tajneedRepository.getAllTajneed()
                 .then(function (res) {
-                $scope.tajneeds = res;
+                    $scope.tajneeds = res;
             }, function(err) { })
             .then(function() {
                 $scope.isBusy = false;
@@ -174,7 +220,6 @@ jamatModule.controller('TajneedController',
 
         $scope.save = function(tajneed) {
             $scope.errors = [];
-            tajneed.statusId = 1;
             tajneedRepository.addTajneed(tajneed)
                 .$promise
                 .then(

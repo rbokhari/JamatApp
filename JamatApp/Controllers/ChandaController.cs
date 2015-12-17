@@ -51,11 +51,12 @@ namespace JamatApp.Controllers
                 CreatedOn = DateTime.UtcNow
             };
 
-            List<ChandaDetail> items =  chanda.ChandaDetails as List<ChandaDetail>; 
-
+            List<ChandaDetail> items =  chanda.ChandaDetails as List<ChandaDetail>;
+            int? nullValue = null;
             items?.ForEach(
                 c =>
                 {
+                    c.SubTypeId = c.SubTypeId == 0 ? nullValue : c.SubTypeId;
                     c.CreatedOn = DateTime.UtcNow;
                     c.CreatedBy = Convert.ToInt32(Request.Headers.GetValues("userId").First());
                 });

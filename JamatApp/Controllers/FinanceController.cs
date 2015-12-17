@@ -141,7 +141,7 @@ namespace JamatApp.Controllers
         }
 
 
-        public async Task<HttpResponseMessage> PostBudgetApproval([FromBody] FinancialYearBudget financialYearBudget,
+        public HttpResponseMessage PostBudgetApproval([FromBody] FinancialYearBudget financialYearBudget,
             int levelId)
         {
             if (ModelState.IsValid)

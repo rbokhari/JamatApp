@@ -65,13 +65,13 @@
                             <div class="form-group">
                                 <label for="cAuxilary" class="col-lg-4 col-sm-4 control-label">Auxilary :</label>
                                 <div class="col-lg-6">
-                                    <select class="form-control" id="cAuxilary" ng-model="tajneed[0].auxilaryId" name="cAuxilary" ng-model="employeeDef.postedTo" ng-init="loadAuxilary()" ng-options="Auxilary.id as Auxilary.nameEn for Auxilary in Auxilaries" required></select>
+                                    <select class="form-control" id="cAuxilary" ng-model="tajneed[0].auxilaryId" name="cAuxilary" ng-init="loadAuxilary()" ng-options="Auxilary.id as Auxilary.nameEn for Auxilary in Auxilaries" required></select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tResidentNo" class="col-lg-4 col-sm-4 control-label">Resident No :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed[0].residentNumber" id=" tResidentNo" name="tResidentNo">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].residentNumber" id="tResidentNo" name="tResidentNo">
                                 </div>
                             </div>
 
@@ -84,13 +84,13 @@
                             <div class="form-group">
                                 <label for="tCurrentAddress" class="col-lg-4 col-sm-4 control-label">Current Address :</label>
                                 <div class="col-lg-6">
-                                    <textarea class="form-control" ng-model="tajneed[0].currentAddress" id=" tCurrentAddress" name="tCurrentAddress"></textarea>
+                                    <textarea class="form-control" ng-model="tajneed[0].currentAddress" id="tCurrentAddress" name="tCurrentAddress"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="chkMosi" class="col-lg-4 col-sm-4 control-label">Is Mosi :</label>
                                 <div class="col-lg-6 slide-toggle">
-                                    <input type="checkbox" class="js-switch" ng-model="tajneed[0].isMosi" id=" chkMosi" name="chkMosi" ng-true-value="1" ng-false-value="0" />
+                                    <input type="checkbox" class="js-switch" ng-model="tajneed[0].isMosi" id="chkMosi" name="chkMosi" ng-true-value="1" ng-false-value="0" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -105,13 +105,13 @@
                             <div class="form-group">
                                 <label for="tFatherName" class="col-lg-4 col-sm-4 control-label">Father Name:</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed[0].fatherName" id=" tfathername" name="tFatherName">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].fatherName" id="tfathername" name="tFatherName">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tFatherName" class="col-lg-4 col-sm-4 control-label">Husband Name:</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed[0].husbandName" id=" thusbandname" name="thusbandname">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].husbandName" id="thusbandname" name="thusbandname">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -124,7 +124,7 @@
                             <div class="form-group">
                                 <label for="cNationality" class="col-lg-4 col-sm-4 control-label">Nationality :</label>
                                 <div class="col-lg-6">
-                                    <select class="form-control" ng-model="tajneed[0].nationalityId" id=" cnationality" name="cNationality" ng-init="loadNationality()" ng-options="Nationality.id as Nationality.nameEn for Nationality in Nationalities" required></select>
+                                    <select class="form-control" ng-model="tajneed[0].nationalityId" id="cnationality" name="cNationality" ng-init="loadNationality()" ng-options="Nationality.id as Nationality.nameEn for Nationality in Nationalities" required></select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -136,31 +136,31 @@
                             <div class="form-group">
                                 <label for="tPassportNo" class="col-lg-4 col-sm-4 control-label">Passport No :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed[0].passportNumber" id=" tpassportno" name="tPassportNo">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].passportNumber" id="tpassportno" name="tPassportNo">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tHomePhone" class="col-lg-4 col-sm-4 control-label">Home Phone :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed[0].homeNumber" id=" thomephone" name="tHomePhone">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].homeNumber" id="thomephone" name="tHomePhone">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tBusinessPhone" class="col-lg-4 col-sm-4 control-label">Business Phone :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed[0].businessNumber" id=" tbusinessphone" name="tBusinessPhone">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].businessNumber" id="tbusinessphone" name="tBusinessPhone">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tPermanentAddress" class="col-lg-4 col-sm-4 control-label">Permanent Address :</label>
                                 <div class="col-lg-6">
-                                    <textarea class="form-control" ng-model="tajneed[0].permanentAddress" id=" tpermanentaddress" name="tPermanentAddress"></textarea>
+                                    <textarea class="form-control" ng-model="tajneed[0].permanentAddress" id="tpermanentaddress" name="tPermanentAddress"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="tWassiyatNo" class="col-lg-4 col-sm-4 control-label">Wassiyat No :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed[0].wassiyatNumber" id=" twassiyatno" name="tWassiyatNo">
+                                    <input type="text" class="form-control" ng-model="tajneed[0].wassiyatNumber" id="twassiyatno" name="tWassiyatNo">
                                 </div>
                             </div>
 
@@ -168,7 +168,7 @@
                         <div class="form-actions">
                             <div class="col-lg-offset-2 col-lg-10">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>  Update</button>
-                                <button class="btn btn-primary"><i class="fa fa-undo"></i> Cancel</button>
+                                <button class="btn btn-default"><i class="fa fa-undo"></i> Cancel</button>
                             </div>
 
                         </div>

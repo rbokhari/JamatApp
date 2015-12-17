@@ -19,7 +19,13 @@ namespace Jamat.DC
 
         public async Task<IQueryable<Tajneed>> GetTajneedList()
         {
-            return await Task.Run(() => _ctx.Tajneeds.Include(c=>c.AuxilaryDetail).Include(c=>c.RegionDetail).Include(c=>c.TajneedIncomes.Select(a=>a.TypeName)));
+            return await Task.Run(() => 
+                _ctx.Tajneeds
+                .Include(c=>c.AuxilaryDetail)
+                .Include(c=>c.RegionDetail)
+                .Include(c=>c.NationalityDetail)
+                .Include(c=>c.TajneedIncomes.Select(a=>a.TypeName))
+                .OrderBy(x=>x.FirstName));
         }
 
         public async Task<IQueryable<Tajneed>> GetTajneedListByAuxilaryId(int id)
@@ -130,7 +136,10 @@ namespace Jamat.DC
         {
             try
             {
-                _ctx.Entry(updateTajneed).State = EntityState.Modified;
+                var tajneedFetch = GetTajneed(updateTajneed.Id).FirstOrDefault();
+                var attachTajneed = _ctx.Entry(tajneedFetch);
+                attachTajneed.CurrentValues.SetValues(updateTajneed);
+                //_ctx.Entry(updateTajneed).State = EntityState.Modified;
                 return true;
             }
             catch (Exception ex)
@@ -145,6 +154,7 @@ namespace Jamat.DC
         {
             try
             {
+
                 _ctx.TajneedIncomes.Add(newIncome);
                 return true;
             }
