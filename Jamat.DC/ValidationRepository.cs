@@ -33,7 +33,7 @@ namespace Jamat.DC
             {
                 return _ctx.SaveChanges() > 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -68,7 +68,7 @@ namespace Jamat.DC
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

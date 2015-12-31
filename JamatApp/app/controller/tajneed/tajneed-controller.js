@@ -38,6 +38,7 @@ jamatModule.controller('TajneedController',
 
         $scope.searchTajneed = function (filter) {
             //$scope.loadTajneed();
+            $scope.isBusy = true;
             tajneedRepository.getAllTajneed()
                 .then(function (res) {
                     $scope.tajneeds = _.filter(res, function (data) {
@@ -57,7 +58,7 @@ jamatModule.controller('TajneedController',
                         }
                         return result;
                     });
-
+                    $scope.isBusy = false;
                 }, function (err) { });
 
         };
@@ -236,6 +237,58 @@ jamatModule.controller('TajneedController',
                     $scope.errors = response.data;
                 }
             );
+        };
+
+        $scope.getFile = function (type, item) {
+            console.log(type);
+            tajneedRepository.getPdfFile(type, item)
+                .then(function (response) {
+                    console.log("response come");
+                    var file = new Blob([response], {
+                        type: 'application/csv'
+                    });
+                    var fileURL = URL.createObjectURL(file);
+                    var a = document.createElement('a');
+                    a.href = fileURL;
+                    a.target = '_blank';
+                    a.download = 'TajneedList.' + type;
+                    document.body.appendChild(a);
+                    a.click();
+                }, function (error) {
+                    console.log("error", error);
+                });
+        };
+
+        $scope.showDocumentForm = function (id, typeId) {
+
+            ModalService.showModal({
+                templateUrl: "/templates/tajneed/tajneed-document.html",
+                controller: "TajneedModalController",
+                inputs: {
+                    title: "Update Document",
+                    parentId: id,
+                    documentTypeId: typeId,
+                    tajneedIncome: {},
+                    resultData: {}
+                }
+            }).then(function (modal) {
+                modal.element.modal();
+                modal.close.then(function (result) {
+                    console.log("result", result);
+                    if (typeId == 56) {
+                        $("#imgPassport1").attr('src', 'data:image/png;base64,'+result.resultData.cardImage);
+                    }else if (typeId == 57) {
+                        $("#imgPassport2").attr('src', 'data:image/png;base64,' + result.resultData.cardImage);
+                    }else if (typeId == 58) {
+                        $("#imgCard1").attr('src', 'data:image/png;base64,' + result.resultData.cardImage);
+                    }else if (typeId == 59) {
+                        $("#imgCard2").attr('src', 'data:image/png;base64,' + result.resultData.cardImage);
+                    }
+                    //$scope.employee[0].empPicture = result.resultData.empPicture;
+                });
+
+            });
+
         };
 
     }

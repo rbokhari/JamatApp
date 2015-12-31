@@ -1,7 +1,7 @@
 ﻿var jamatModule = angular.module("jamatModule",
     [
         'ngRoute', 'ngResource', 'angularModalService', 'ngAnimate',
-        'angularUtils.directives.dirPagination', 'angularModalService', 'LocalStorageModule'
+        'angularUtils.directives.dirPagination', 'angularModalService', 'LocalStorageModule', 'ui.bootstrap', 'angularFileUpload'
     ])
     .constant("_", 
         window._
@@ -14,7 +14,8 @@
         "TAJNEED_TYPE": "6",
         "CHANDA_BUDGET_STATUS": 7,
         "TAJNEED_STATUS": 8,
-        "MONTHS": 9
+        "MONTHS": 9,
+        "TAJNEED_DOCUMENT_TYPE": 10
 
     })
     .constant("VALIDATION_DETAILS", {

@@ -117,7 +117,7 @@
                             <div class="form-group">
                                 <label for="tdob" class="col-lg-4 col-sm-4 control-label">DOB :</label>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control" ng-model="tajneed[0].birthDate" id="tdob" name="tdob" required="">
+                                    <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="tajneed[0].birthDate" id="tdob" name="tdob" required="">
                                     <div class="help-block" ng-show="frmTajneed.txtCode.$error.required && frmTajneed.txtCode.$dirty">Please enter code !</div>
                                 </div>
                             </div>

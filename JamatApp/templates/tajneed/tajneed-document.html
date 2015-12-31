@@ -1,0 +1,21 @@
+﻿<div id="dvImage" class="modal fade" role="dialog" aria-hidden="true" aria-labelledby="Add Document">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel1">{{title}}</h4>
+			</div>
+			<div class="modal-body row">
+				<form id="frm">
+					<div class="col-md-9" style="margin-bottom: 40px">
+						<input type="file" ng-file-select="onFileSelect(parentId, $files)" />
+						<!--ng-file-select="onFileSelect(parentId, $files)" multiple-->
+
+						<label ng-show="isUpload">Uploading.......</label>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>

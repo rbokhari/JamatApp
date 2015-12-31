@@ -2,10 +2,10 @@
 jamatModule.controller('TajneedModalController',
 [
     '$scope', 'tajneedRepository', 'validationRepository', 'title', 'close',
-    'parentId', 'resultData', '$timeout', 'tajneedIncome',
+    'parentId', 'documentTypeId', 'resultData', '$timeout', 'tajneedIncome', '$upload', 
 
     function ($scope, tajneedRepository, validationRepository, title, close,
-        parentId, resultData, $timeout, tajneedIncome) {
+        parentId, documentTypeId, resultData, $timeout, tajneedIncome, $upload) {
 
         $scope.resultData = {};
         $scope.title = title;
@@ -48,17 +48,21 @@ jamatModule.controller('TajneedModalController',
         $scope.upload = [];
         //$scope.fileUploadObj = { testString1: "Test string 1", testString2: "Test string 2" };
 
+        $scope.isUpload = false;
         $scope.onFileSelect = function (parentId, $files) {
             console.log(parentId);
-            console.log($files[0]);
+            //$scope.isUpload = true;
             //$files: an array of files selected, each file has name, size, and type.
             for (var i = 0; i < $files.length; i++) {
                 var $file = $files[i];
                 (function (index) {
                     $scope.upload[index] = $upload.upload({
-                        url: "/api/employee/upload", // webapi url
+                        url: "/api/tajneed/upload", // webapi url
                         method: "POST",
-                        data: { parentId1: parentId },
+                        data: {
+                            parentId: parentId,
+                            typeId: documentTypeId
+                        },
                         file: $file
                     }).progress(function (evt) {
                         // get upload percentage
@@ -66,14 +70,16 @@ jamatModule.controller('TajneedModalController',
                     }).success(function (data, status, headers, config) {
                         // file is uploaded successfully
                         $scope.resultData = data;
-                        appRepository.showAddSuccessGritterNotification();
+                        //appRepository.showAddSuccessGritterNotification();
+                        $scope.isUpload = false;
                         $scope.close();
-                        $('#dvImage1').modal('hide');
+                        $('#dvImage').modal('hide');
                         //$scope.employee[0].empPicture = data.empPicture;
                         console.log(data);
                     }).error(function (data, status, headers, config) {
                         // file failed to upload
-                        appRepository.showErrorGritterNotification();
+                        //appRepository.showErrorGritterNotification();
+                        $scope.isUpload = false;
                         console.log(data);
                     });
                 })(i);

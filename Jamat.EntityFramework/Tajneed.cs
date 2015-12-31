@@ -76,6 +76,9 @@ namespace Jamat.EntityFramework
 
         public virtual ICollection<Chanda> Chandas { get; set; }
 
+
+        public virtual ICollection<TajneedCard> Cards { get; set; }
+
     }
 
     public class TajneedIncome : TableStrutcture
@@ -108,13 +111,11 @@ namespace Jamat.EntityFramework
 
         public int TajneedId { get; set; }
 
-        public int CardTypeId { get; set; }
+        public int CardTypeId { get; set; } // e.g. Picture, passport , id card etc
 
-        public string CardNo { get; set; }
+        [Column(TypeName = "image")]
+        public byte[] CardImage { get; set; }
 
-        public DateTime StartDate { get; set; }
-
-        public DateTime EndDate { get; set; }
 
         public int StatusId { get; set; }
 

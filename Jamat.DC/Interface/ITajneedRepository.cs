@@ -42,6 +42,8 @@ namespace Jamat.DC
 
         bool UpdateIncome(TajneedIncome updateIncome);
 
+        bool UpdateDocuments(TajneedCard tajneedCard);
+
     }
 
     public class TajneedCount

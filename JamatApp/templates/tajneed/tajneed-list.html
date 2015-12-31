@@ -64,10 +64,10 @@
                 <header class="panel-heading">
                     Tajneed Listing
                     <span class="tools pull-right">
-                        <a href="/jamat/tajneed/add" class="fa fa-plus" title="Add New Tajneed"></a>
-                        <a href="" class="fa fa-print noPrint" ng-print print-element-id="dvPrint" title="Print List"></a>
-                        <a href="javascript:;" ng-click="forceTajneedRefresh()" class="fa fa-refresh" title="Refresh Data from Server"></a>
-                        <a href="/jamat" class="fa fa-times" title="Close"></a>
+                        <a href="/jamat/tajneed/add" class="fa fa-plus" uib-tooltip="Add new tajneed"></a>
+                        <a href="" ng-click="getFile('xlsx', filter)" class="fa fa-print" uib-tooltip="Export to excel format"></a>
+                        <a href="javascript:;" ng-click="forceTajneedRefresh()" class="fa fa-refresh" uib-tooltip="Refresh Tajneed Data"></a>
+                        <a href="/jamat" class="fa fa-times" uib-tooltip="Close screen"></a>
                     </span>
                 </header>
                 <div class="panel-body">

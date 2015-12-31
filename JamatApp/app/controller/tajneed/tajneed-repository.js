@@ -70,17 +70,73 @@ jamatModule.factory('tajneedRepository', ['$resource', '$http', '$q', 'localStor
         return $resource('/api/tajneed/getTajneedWassiyat').query();
     };
 
+    var _getPdfFile = function (type, tajneed) {
+            var req = {
+                method: 'GET',
+                url: '/api/tajneed/getFile/' + type + '/',
+                params: tajneed,
+                headers: {
+                    'Content-type': type === 'pdf' ? 'application/pdf' : 'application/xlsx'
+                },
+                responseType: 'arraybuffer'
+            };
+            var deferred = $q.defer();
+
+            $http(req)
+                .success(function (res) {
+                    deferred.resolve(res);
+                })
+                .error(function (err) {
+                    deferred.reject(err);
+                });
+            return deferred.promise;
+            //return $resource('/api/item/getPdfFile').query(item);
+        };
+
+        var _getExcelFile = function (tajneed) {
+            var req = {
+                method: 'GET',
+                url: '/api/tajneed/getExcelFile',
+                params: tajneed,
+                headers: {
+                    'Content-type': 'application/xlsx'
+                },
+                responseType: 'arraybuffer'
+            };
+            var deferred = $q.defer();
+
+            $http(req)
+                .success(function (res) {
+                    deferred.resolve(res);
+                })
+                .error(function (err) {
+                    deferred.reject(err);
+                });
+            return deferred.promise;
+            //return $resource('/api/item/getPdfFile').query(item);
+        };
+
+        var _addTajneedCard = function (tajneedCard) {
+            return $resource('/api/tajneed/upload').save(tajneedCard);
+        };
+
+
     return {
         getAllTajneed: _getAllTajneed,
         getTajneedById: _getTajneedById,
-        addTajneed: _addTajneed,
-        editTajneed: _editTajneed,
-        addTajneedIncome: _addTajneedIncome,
         getTajneedCount: _getTajneedCount,
         getCountByAuxilary: _getCountByAuxilary,
         getCountByRegion: _getCountByRegion,
         getCountByNationality: _getCountByNationality,
-        getCountByWassiyat: _getCountByWassiyat
-    };
+        getCountByWassiyat: _getCountByWassiyat,
 
+        getPdfFile: _getPdfFile,
+        getExcelFile: _getExcelFile,
+
+        addTajneed: _addTajneed,
+        addTajneedIncome: _addTajneedIncome,
+        addTajneedCard: _addTajneedCard,
+
+        editTajneed: _editTajneed
+    };
 }]);

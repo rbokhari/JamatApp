@@ -111,7 +111,7 @@ namespace Jamat.DC
             {
                 return _ctx.SaveChanges() > 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // TODO log this error
                 return false ;
@@ -125,7 +125,7 @@ namespace Jamat.DC
                 _ctx.Tajneeds.Add(newTajneed);
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // TODO log this error
                 return false;
@@ -142,7 +142,7 @@ namespace Jamat.DC
                 //_ctx.Entry(updateTajneed).State = EntityState.Modified;
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // TODO log this error
                 return false;
@@ -158,7 +158,7 @@ namespace Jamat.DC
                 _ctx.TajneedIncomes.Add(newIncome);
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // TODO log this error
                 return false;
@@ -173,7 +173,7 @@ namespace Jamat.DC
                 _ctx.Entry(updateIncome).State = EntityState.Modified;
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // TODO log this error
                 return false;
@@ -231,8 +231,6 @@ namespace Jamat.DC
 
         }
 
-
-
         public IQueryable<TajneedCount> GetTajneedWassiyatCount()
         {
             return _ctx.Tajneeds
@@ -244,6 +242,23 @@ namespace Jamat.DC
                     CountTotal = c.Count(),
                     CountName = c.Key.IsMosi == 1 ? "YES" : "NO"
                 });
+        }
+
+        public bool UpdateDocuments(TajneedCard tajneedCard)
+        {
+            var card = _ctx.TajneedCards
+                    .SingleOrDefault(c => 
+                            c.TajneedId == tajneedCard.TajneedId && 
+                            c.CardTypeId == tajneedCard.CardTypeId);
+
+            if (card!= null)
+            {
+                _ctx.TajneedCards.Remove(card);
+            }
+
+            _ctx.TajneedCards.Add(tajneedCard);
+
+            return true;
         }
 
 

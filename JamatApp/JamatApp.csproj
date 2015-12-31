@@ -330,6 +330,7 @@
     <Content Include="Content\img\vector-lab.jpg" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -356,6 +357,8 @@
     <Content Include="login.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
+    <Content Include="Scripts\angular-file-upload-shim.min.js" />
+    <Content Include="Scripts\angular-file-upload.min.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-resource.js" />
     <Content Include="Scripts\angular-resource.min.js" />
@@ -363,6 +366,12 @@
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular-signalr-hub.js" />
     <Content Include="Scripts\angular-signalr-hub.min.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angularFileUpload\angular-file-upload.js" />
@@ -557,13 +566,15 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <None Include="Properties\PublishProfiles\amc %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\amc - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\amc - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\amc - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\amc - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\amc.pubxml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
-    <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery.gritter.js" />
@@ -612,6 +623,7 @@
     <Content Include="templates\tajneed\tajneed-detail.html" />
     <Content Include="templates\tajneed\tajneed-edit.html" />
     <Content Include="templates\tajneed\tajneed-add.html" />
+    <Content Include="templates\tajneed\tajneed-document.html" />
     <Content Include="templates\tajneed\tajneed-income.html" />
     <Content Include="templates\tajneed\tajneed-list.html" />
     <Content Include="templates\tajneed\tajneed-lookup.html" />
@@ -639,6 +651,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\css\" />
     <Folder Include="Models\" />
+    <Folder Include="temp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
